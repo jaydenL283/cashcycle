@@ -138,6 +138,24 @@
   .cf .tour-focus { position: relative; z-index: 4; outline: 3px solid var(--color-fg); outline-offset: 6px; border-radius: var(--r); box-shadow: 0 0 0 100vmax color-mix(in srgb, var(--color-bg) 55%, transparent); }
   @media (prefers-reduced-motion: no-preference) { .cf .tour-focus { transition: outline-offset var(--cds-dur-slow); } }
 
+  /* highlights switch + main points */
+  .cf .head-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .cf .switch { display: inline-flex; align-items: center; gap: 10px; font: inherit; font-size: var(--cds-font-size-body); min-height: 44px; padding: 0 16px 0 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--color-bg); color: var(--color-fg); cursor: pointer; }
+  .cf .switch .track { position: relative; width: 40px; height: 24px; border-radius: 999px; background: var(--softer); transition: background var(--cds-dur-slow); }
+  .cf .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--color-fg-muted); transition: transform var(--cds-dur-slow) var(--cds-ease-out), background var(--cds-dur-slow); }
+  .cf .switch[aria-checked="true"] .track { background: var(--color-fg); }
+  .cf .switch[aria-checked="true"] .track::after { transform: translateX(16px); background: var(--color-bg); }
+  .cf .switch:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .cf .keypoints { border-radius: var(--r); padding: 16px 18px; background: color-mix(in srgb, var(--color-fg) 5%, var(--color-panel)); border: 1px solid var(--line); }
+  .cf .keypoints h3 { margin: 0 0 8px; font-size: var(--cds-font-size-caption); text-transform: uppercase; letter-spacing: .05em; color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+  .cf .keypoints ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; counter-reset: kp; }
+  .cf .keypoints li { counter-increment: kp; display: grid; grid-template-columns: 1.75rem 1fr; gap: 8px; line-height: 1.45; font-size: var(--cds-font-size-body); }
+  .cf .keypoints li::before { content: counter(kp); display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--color-fg); color: var(--color-bg); font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+  .cf .keypoints li.bad::before { background: var(--color-bad); } .cf .keypoints li.warn::before { background: var(--color-warn); } .cf .keypoints li.good::before { background: var(--color-ok); }
+  .cf .keypoints li { color: var(--color-fg); }
+  .cf .keypoints .go { font: inherit; font-size: var(--cds-font-size-caption); background: none; border: none; padding: 0 0 0 6px; color: var(--color-fg-muted); text-decoration: underline; cursor: pointer; }
+  .cf.no-highlights .keypoints { display: none; }
+
   /* phone */
   @media (max-width: 640px) {
     .cf { gap: var(--cds-gap-md); }
@@ -159,7 +177,7 @@
     <h1 id="title">CashCycle Cash Flow</h1>
     <p class="takeaway" id="takeaway" data-source="kpis recurring creditors_summary payroll_summary">—</p>
     <p class="src">Snapshot of Seapoint data for Hackathon - R3CON Tech, fetched 20 Oct 2026. Forecasts and projections are estimates from past patterns, not commitments. Click any tab or card; every number can be traced in Sources.</p>
-  </div><button class="tour-btn" id="tour-start" type="button">Take the tour</button></div>
+  </div><div class="head-actions"><button class="switch" id="hl-switch" type="button" role="switch" aria-checked="true"><span class="track" aria-hidden="true"></span><span>Highlights</span></button><button class="tour-btn" id="tour-start" type="button">Take the tour</button></div></div>
 
   <div class="tabs" role="tablist" id="tabs">
     <button class="tab" role="tab" data-tab="home" id="tab-home">Home</button>
@@ -182,6 +200,7 @@
 
   <!-- HOME -->
   <section class="page" id="home" role="tabpanel">
+    <div class="keypoints" id="kp-home" data-source="kpis warnings creditors_summary"><h3>Main points</h3><ol></ol></div>
     <div class="tiles">
       <div class="tile"><div class="label">Cash today</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=opening_cash">—</div><div class="sub">Eligible cash across all accounts, GBP</div></div>
       <div class="tile"><div class="label">Forecast in 90 days</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=closing_90d">—</div><div class="sub">If the recurring pattern holds</div></div>
@@ -218,6 +237,7 @@
 
   <!-- EARLY WARNINGS -->
   <section class="page" id="warnings" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-warnings" data-source="warnings"><h3>Main points</h3><ol></ol></div>
     <div class="tiles">
       <div class="tile"><div class="label">Act now</div><div class="big" id="w-high" data-source="warnings">—</div><div class="sub">High: money lost or a supplier about to chase</div></div>
       <div class="tile"><div class="label">Check this week</div><div class="big" id="w-medium" data-source="warnings">—</div><div class="sub">Medium: off-pattern, needs a look</div></div>
@@ -234,6 +254,7 @@
 
   <!-- MONEY IN & OUT -->
   <section class="page" id="money" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-money" data-source="method_share recurring"><h3>Main points</h3><ol></ol></div>
     <div class="grid2">
       <div class="card" id="money-in">
         <h2>How money comes in</h2>
@@ -287,6 +308,7 @@
   </section>
   <!-- CREDITORS -->
   <section class="page" id="creditors" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-creditors" data-source="creditors_summary creditors_open"><h3>Main points</h3><ol></ol></div>
     <div class="tiles">
       <div class="tile"><div class="label">Open supplier bills</div><div class="big" data-source="creditors_summary" data-field="value" data-where="metric=open_gbp_total">—</div><div class="sub"><span data-source="creditors_summary" data-field="value" data-where="metric=open_bills">—</span> GBP bills, duplicates counted once</div></div>
       <div class="tile"><div class="label">Days to pay a bill</div><div class="big" data-source="creditors_summary" data-field="value" data-where="metric=avg_days_to_pay">—</div><div class="sub">Average from invoice date to payment, paid bills</div></div>
@@ -334,6 +356,7 @@
   </section>
   <!-- YEAR ON YEAR -->
   <section class="page" id="yoy" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-yoy" data-source="yoy_months year_totals"><h3>Main points</h3><ol></ol></div>
     <div class="tiles" id="year-tiles" data-source="year_totals"></div>
     <div class="card" id="yoy-chart">
       <h2>Money out, same month each year</h2>
@@ -355,6 +378,7 @@
   </section>
   <!-- PAYROLL -->
   <section class="page" id="payroll" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-payroll" data-source="payroll_summary payroll_projection"><h3>Main points</h3><ol></ol></div>
     <div class="tiles">
       <div class="tile"><div class="label">Payroll per month</div><div class="big" data-source="payroll_summary" data-field="value" data-where="metric=last_3_months_avg">—</div><div class="sub">Average of the last three full months, including contractors</div></div>
       <div class="tile"><div class="label">Growth so far</div><div class="big" data-source="payroll_summary" data-field="value" data-where="metric=growth_over_period_pct">—</div><div class="sub" data-source="payroll_summary" data-field="value" data-where="metric=period">—</div></div>
@@ -388,6 +412,7 @@
   </section>
   <!-- COSTS -->
   <section class="page" id="costs" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-costs" data-source="costs_summary costs_by_category"><h3>Main points</h3><ol></ol></div>
     <div class="tiles">
       <div class="tile"><div class="label">Fixed costs per month</div><div class="big" data-source="costs_summary" data-field="value" data-where="metric=avg_fixed_monthly">—</div><div class="sub">Rent, payroll, subscriptions, professional fees, bank fees</div></div>
       <div class="tile"><div class="label">Variable costs per month</div><div class="big" data-source="costs_summary" data-field="value" data-where="metric=avg_variable_monthly">—</div><div class="sub">Hosting, marketing, travel, food, office</div></div>
@@ -414,6 +439,7 @@
 
   <!-- VALUE -->
   <section class="page" id="value" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-value" data-source="leverage_opportunities leverage_summary"><h3>Main points</h3><ol></ol></div>
     <div class="tiles">
       <div class="tile"><div class="label">Revenue covers running costs</div><div class="big" data-source="leverage_summary" data-field="value" data-where="metric=revenue_covers_opex_pct">—</div><div class="sub">Average month, <span data-source="leverage_summary" data-field="value" data-where="metric=months">—</span></div></div>
       <div class="tile"><div class="label">Growth spend per month</div><div class="big" data-source="leverage_summary" data-field="value" data-where="metric=growth_spend_monthly">—</div><div class="sub">Marketing and advertising; revenue per £1 of it: <span data-source="leverage_summary" data-field="value" data-where="metric=revenue_per_growth_pound">—</span></div></div>
@@ -446,6 +472,7 @@
   </section>
   <!-- CARDS -->
   <section class="page" id="cards" role="tabpanel" hidden>
+    <div class="keypoints" id="kp-cards" data-source="card_spend_by_holder card_vendors"><h3>Main points</h3><ol></ol></div>
     <div class="grid2">
       <div class="card" id="who-spent">
         <h2>Card spend by staff member</h2>
@@ -980,6 +1007,83 @@
   document.getElementById('tour-close').addEventListener('click', () => tourShow(-1));
   document.addEventListener('keydown', (e) => { if (tourAt < 0) return; if (e.key === 'Escape') tourShow(-1); if (e.key === 'ArrowRight' && e.target.tagName !== 'INPUT') tourShow(tourAt + 1); if (e.key === 'ArrowLeft' && e.target.tagName !== 'INPUT') tourShow(tourAt - 1); });
   document.getElementById('tabs').addEventListener('click', () => { if (tourAt >= 0) document.querySelectorAll('.tour-focus').forEach(el => el.classList.remove('tour-focus')); });
+
+  // ---- highlights switch -------------------------------------------------
+  const hl = document.getElementById('hl-switch'); const root = document.querySelector('.cf');
+  hl.addEventListener('click', () => dash.setParams({ highlights: !(dash.params().highlights ?? true) }));
+  function kp(page, items) {
+    const box = document.getElementById('kp-' + page); if (!box) return;
+    const ol = box.querySelector('ol'); ol.innerHTML = '';
+    for (const it of items.filter(Boolean)) { const li = document.createElement('li'); if (it.tone) li.className = it.tone; li.appendChild(document.createTextNode(it.text));
+      if (it.go) { const b = document.createElement('button'); b.className = 'go'; b.type = 'button'; b.textContent = it.goLabel || 'See more'; b.addEventListener('click', () => showTab(it.go, true)); li.appendChild(b); } ol.appendChild(li); }
+    box.hidden = !items.filter(Boolean).length;
+  }
+  function highlights() {
+    const on = dash.params().highlights ?? true;
+    hl.setAttribute('aria-checked', String(on)); root.classList.toggle('no-highlights', !on);
+    if (!on) return;
+    const get = (id) => dash.data(id).status === 'ok' ? dash.data(id).data : null;
+    const val = (id, k) => { const d = get(id); const r = d && d.find(x => x.metric === k); return r ? r.value : null; };
+    const ws = get('warnings') || [];
+    const high = ws.filter(w => w.severity === 'high'), med = ws.filter(w => w.severity === 'medium');
+    const dupTotal = d3.sum(ws.filter(w => w.kind === 'duplicate_payment'), w => Number(w.expected_amount));
+    if (get('kpis')) kp('home', [
+      { text: `Cash is ${fmtBig(Number(val('kpis', 'opening_cash')))} today and forecast at ${fmtBig(Number(val('kpis', 'closing_90d')))} in 90 days.`, tone: 'good' },
+      high.length && { text: `${high.length} payment problems need action now, including ${ws.filter(w => w.kind === 'duplicate_payment').length} doubled direct debits worth ${fmtMoney(dupTotal)}.`, tone: 'bad', go: 'warnings', goLabel: 'Open warnings' },
+      val('creditors_summary', 'open_gbp_total') != null && { text: `${fmtBig(Number(val('creditors_summary', 'open_gbp_total')))} of supplier bills are open.`, go: 'creditors', goLabel: 'See who we owe' },
+    ]);
+    if (ws.length) kp('warnings', [
+      ...high.slice(0, 3).map(w => ({ text: w.title + '.', tone: 'bad' })),
+      med.length && { text: `${med.length} more to check this week, starting with: ${med[0].title}.`, tone: 'warn' },
+    ]);
+    const share = get('method_share'), rec = get('recurring');
+    if (share && rec) kp('money', [
+      { text: `${share[0].method[0].toUpperCase() + share[0].method.slice(1)} is the main way money goes out: ${d3.format('.0%')(share[0].share)} of spend.` },
+      { text: `Regular customers bring in about ${fmtMoney(d3.sum(rec.filter(r => r.direction === 'in'), r => Number(r.typical_amount)))} a month; regular outgoings are about ${fmtMoney(d3.sum(rec.filter(r => r.direction === 'out'), r => Number(r.typical_amount)))}.`, tone: 'warn' },
+      { text: 'Payroll lands on the 25th and Snowflake\'s direct debit on the 11th: the two biggest days for cash out.' },
+    ]);
+    const open = get('creditors_open');
+    if (open && get('creditors_summary')) { const od = open.filter(r => !r.duplicate_capture && r.days_overdue > 0); const oldest = od.sort((a, b) => b.days_overdue - a.days_overdue)[0];
+      kp('creditors', [
+        { text: `${fmtBig(Number(val('creditors_summary', 'open_gbp_total')))} open across ${val('creditors_summary', 'open_bills')} bills; ${od.length} are past their due date.`, tone: od.length ? 'warn' : 'good' },
+        oldest && { text: `Oldest: ${oldest.reference} from ${oldest.vendor}, ${oldest.days_overdue} days overdue.`, tone: 'bad' },
+        { text: `${open.filter(r => r.duplicate_capture).length} bills were captured twice: pay each once.`, tone: 'bad' },
+        { text: `Bills are paid ${val('creditors_summary', 'avg_days_to_pay')} days after invoice on average, ${Math.abs(Number(val('creditors_summary', 'avg_days_vs_due')))} days ${Number(val('creditors_summary', 'avg_days_vs_due')) < 0 ? 'before' : 'after'} the due date.`, tone: 'good' },
+      ]); }
+    const ym = get('yoy_months');
+    if (ym) { const sep = ym.find(r => r.month === 'Sep'); const aug = ym.find(r => r.month === 'Aug');
+      kp('yoy', [
+        sep && sep.out_change_pct != null && { text: `September spend was ${fmtPct(sep.out_change_pct)} on September last year (${fmtBig(sep.out_2026)} against ${fmtBig(sep.out_2025)}).`, tone: 'warn' },
+        sep && sep.in_change_pct != null && { text: `September money in was ${fmtPct(sep.in_change_pct)} on last year, mostly two one-off customer payments.`, tone: 'good' },
+        aug && aug.out_change_pct != null && { text: `August spend was ${fmtPct(aug.out_change_pct)} year on year.` },
+      ]); }
+    const proj = get('payroll_projection');
+    if (proj && get('payroll_summary')) kp('payroll', [
+      { text: `Payroll is ${fmtBig(Number(val('payroll_summary', 'last_3_months_avg')))} a month and has grown ${fmtPct(val('payroll_summary', 'growth_over_period_pct'))} since August 2025.`, tone: 'warn' },
+      { text: `At ${fmtPct(val('payroll_summary', 'annualised_growth_pct'))} a year it reaches ${fmtBig(proj[proj.length - 1].projected_annual_payroll)} a year by ${proj[proj.length - 1].year}.` },
+      { text: 'October salaries were paid early, on 18 September, so September carried two salary runs.', go: 'warnings', goLabel: 'Why' },
+    ]);
+    const cats = get('costs_by_category');
+    if (cats && get('costs_summary')) { const sw = cats.filter(c => c.kind === 'fixed' && c.swing_pct != null).sort((a, b) => b.swing_pct - a.swing_pct)[0];
+      kp('costs', [
+        { text: `${val('costs_summary', 'avg_fixed_share_pct')}% of running costs are fixed: ${fmtBig(Number(val('costs_summary', 'avg_fixed_monthly')))} a month against ${fmtBig(Number(val('costs_summary', 'avg_variable_monthly')))} variable.` },
+        { text: 'Payroll is the biggest fixed cost; hosting is the biggest variable one.' },
+        sw && { text: `${sw.category} is meant to be fixed but swings ${d3.format('.0f')(sw.swing_pct)}% month to month: worth a look.`, tone: 'warn' },
+      ]); }
+    const ops = get('leverage_opportunities');
+    if (ops && get('leverage_summary')) kp('value', [
+      { text: `Revenue covers ${val('leverage_summary', 'revenue_covers_opex_pct')}% of running costs, so growth spend is the lever that matters most.`, tone: 'warn' },
+      ...ops.slice(0, 3).map(o => ({ text: `${o.area}: ${o.action}.`, tone: o.priority === 1 ? 'good' : '' })),
+    ]);
+    const hold = get('card_spend_by_holder'), cv = get('card_vendors');
+    if (hold && cv) { const by = d3.rollups(hold, v => d3.sum(v, r => Number(r.total)), r => r.holder).sort((a, b) => b[1] - a[1]);
+      kp('cards', [
+        by[0] && { text: `${by[0][0]} has spent the most on company cards: ${fmtMoney(by[0][1])}.` },
+        { text: `${hold.filter(r => r.card_status !== 'active').length ? 'A frozen card still has charges against it' : 'All cards with spend are active'}.`, tone: hold.some(r => r.card_status !== 'active') ? 'warn' : 'good' },
+        { text: `${cv[0].vendor} is the largest card vendor since June at ${fmtMoney(cv[0].total)}; most card spend has no named holder in Seapoint.` },
+      ]); }
+  }
+  dash.onData(highlights);
 
   showTab(current, false);
   dash.onData(draw);
