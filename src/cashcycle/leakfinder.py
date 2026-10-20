@@ -31,7 +31,7 @@ class Leak:
     card_id: str | None = None
     renewal_date: date | None = None
     days_until: int | None = None
-    source: str = "fixture"
+    source: str = "sample data"
 
     def to_dict(self) -> dict:
         return {

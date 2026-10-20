@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +14,7 @@ from cashcycle.collections import CollectionsTotals, RankedInvoice, allowed_numb
 from cashcycle.config import DEFAULT_POLICY, Policy
 from cashcycle.data import Snapshot
 from cashcycle.leakfinder import LeakReport, find_leaks
+from cashcycle.live_leaks import find_live_leaks
 from cashcycle.llm import LLM, LLMError
 from cashcycle.runway import Runway, compute_runway, q1
 from cashcycle.trust.audit import AuditLog, content_hash
@@ -120,6 +122,10 @@ def run_all(snap: Snapshot, llm: LLM | None, audit: AuditLog, *, sender: str = "
         audit.append("collections", f"draft_{d.decision}", r.invoice_id, {"step": d.step, "tier": d.tier, "draft_sha256": content_hash({"subject": d.subject, "body": d.body}), "figure_check": d.figure_check.get("reasons", []), "written_by": d.written_by})
 
     leaks = find_leaks(snap, llm, policy)
+    raw = snap.notes.get("live_raw")
+    if raw:
+        live = find_live_leaks(raw.get("invoices", []), raw.get("cards", []), raw.get("card_activity", []))
+        leaks = LeakReport(leaks.leaks + live, leaks.monthly_total + sum((l.monthly_saving for l in live), Decimal("0")), (leaks.monthly_total + sum((l.monthly_saving for l in live), Decimal("0"))) * 12)
     for l in leaks.leaks:
         audit.append("leakfinder", f"leak_{l.type}", ",".join(l.vendor_ids), {"monthly_saving": float(l.monthly_saving), "evidence": l.evidence, "judgement": l.judgement})
 
@@ -138,9 +144,15 @@ def run_all(snap: Snapshot, llm: LLM | None, audit: AuditLog, *, sender: str = "
         "leaks_annual_runway_days": float(q1(leak_days)) if leak_days is not None else None,
         "total_runway_days": float(q1(tot.overdue_runway_days + q1(leak_days))) if tot.overdue_runway_days is not None and leak_days is not None else None,
     }
-    hook["line"] = f"£{tot.overdue_gbp:,.0f} overdue + £{leaks.monthly_total:,.0f}/month of quiet leaks = about {hook['total_runway_days']:.0f} days of runway" if hook["total_runway_days"] is not None else f"£{tot.overdue_gbp:,.0f} overdue + £{leaks.monthly_total:,.0f}/month of quiet leaks (runway not computable: net burn is not positive)"
-
     sources = snap.notes.get("sources") or {k: "fixture" for k in ("cash", "burn", "cards", "invoices", "vendors", "transactions", "replies", "board")}
+    inv_label = f" ({sources['invoices']})" if sources.get("invoices") not in (None, "fixture") else ""
+    burn_label = f" on live net burn of £{runway.daily_net_burn:,.2f}/day" if sources.get("burn") == "live" else ""
+    hook["line"] = (
+        f"£{tot.overdue_gbp:,.0f} overdue{inv_label} + £{leaks.monthly_total:,.0f}/month of quiet leaks = about {hook['total_runway_days']:.0f} days of runway{burn_label}"
+        if hook["total_runway_days"] is not None
+        else f"£{tot.overdue_gbp:,.0f} overdue{inv_label} + £{leaks.monthly_total:,.0f}/month of quiet leaks (runway not computable: net burn is not positive)"
+    )
+
     notes = list(snap.notes.get("live", {}).get("notes", []))
     if snap.notes.get("synthetic"):
         notes.append("fixture data is synthetic (Brightwell Studio Ltd is fictional)")

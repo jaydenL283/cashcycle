@@ -34,7 +34,7 @@ def test_live_overlay_runs_end_to_end(tmp_path):
     rw = compute_runway(snap.cash)
     assert rw.runway_days == Decimal("602.2")  # 2,459,109.84 / (122,503.84 / 30)
     rep = run_all(snap, None, AuditLog(tmp_path / "l.jsonl", tmp_path / "h"))
-    assert rep.sources["cash"] == "seapoint_mcp" and rep.sources["invoices"] == "fixture"
+    assert rep.sources["cash"] == "live" and rep.sources["invoices"] == "sample data"
     assert any(c.holder_status == "deactivated" for c in snap.cards)
 
 

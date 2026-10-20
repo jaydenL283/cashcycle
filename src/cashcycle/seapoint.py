@@ -147,6 +147,9 @@ class LiveOverlay:
     fetched_at: str | None
     organisation_name: str | None = None
     notes: list[str] = field(default_factory=list)
+    raw_cards: list[dict] = field(default_factory=list)
+    raw_invoices: list[dict] = field(default_factory=list)
+    raw_card_activity: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {"cash": self.cash.to_dict(), "burn": self.burn.to_dict(), "cards": [c.id for c in self.cards], "organisation_id": self.organisation_id, "fetched_at": self.fetched_at, "notes": self.notes}
@@ -161,6 +164,8 @@ def load_live(dir_path: Path, basis: str = "last_month") -> LiveOverlay:
     acc = read("accounts.json")
     burn = read("burn_by_month.json")
     cards = read("cards.json") if (dir_path / "cards.json").exists() else {"data": []}
+    invoices = read("invoices.json") if (dir_path / "invoices.json").exists() else {"data": []}
+    activity = read("card_activity.json") if (dir_path / "card_activity.json").exists() else {"data": []}
     cash = eligible_cash(acc["data"])
     b = net_burn(burn_by_month(burn["data"]), basis)
     notes = [f"cash and burn from Seapoint MCP export fetched {acc.get('fetched_at')}", f"burn basis {basis}; denominator is net burn per the Seapoint methodology"]
@@ -170,7 +175,7 @@ def load_live(dir_path: Path, basis: str = "last_month") -> LiveOverlay:
         notes.append("a connected card reported 0 liability; missing card debt may overstate cash")
     if not b.complete:
         notes.append("a burn month had transactions with no FX rate; burn is under-counted")
-    return LiveOverlay(cash, b, live_cards(cards["data"]), acc.get("organisation_id"), acc.get("fetched_at"), acc.get("organisation_name"), notes)
+    return LiveOverlay(cash, b, live_cards(cards["data"]), acc.get("organisation_id"), acc.get("fetched_at"), acc.get("organisation_name"), notes, cards["data"], invoices["data"], activity["data"])
 
 
 def apply_live(snap: Snapshot, live: LiveOverlay) -> Snapshot:
@@ -179,7 +184,8 @@ def apply_live(snap: Snapshot, live: LiveOverlay) -> Snapshot:
     if live.cards:
         snap.cards = live.cards
     if live.organisation_name:
-        snap.company = Company(id=live.organisation_id or snap.company.id, name=f"{live.organisation_name} (receivables, vendors and board lines from fixture)", country=snap.company.country, currency=live.cash.currency)
+        snap.company = Company(id=live.organisation_id or snap.company.id, name=f"{live.organisation_name} (receivables, vendors and board lines: sample data)", country=snap.company.country, currency=live.cash.currency)
     snap.notes["live"] = live.to_dict()
-    snap.notes["sources"] = {"cash": "seapoint_mcp", "burn": "seapoint_mcp", "cards": "seapoint_mcp" if live.cards else "fixture", "invoices": "fixture", "vendors": "fixture", "transactions": "fixture", "replies": "fixture", "board": "fixture"}
+    snap.notes["live_raw"] = {"cards": live.raw_cards, "invoices": live.raw_invoices, "card_activity": live.raw_card_activity}
+    snap.notes["sources"] = {"cash": "live", "burn": "live", "cards": "live" if live.cards else "sample data", "supplier_bills": "live" if live.raw_invoices else "n/a", "invoices": "sample data", "vendors": "sample data", "transactions": "sample data", "replies": "sample data", "board": "sample data"}
     return snap

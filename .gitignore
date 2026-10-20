@@ -8,3 +8,7 @@ dist/
 audit/*.jsonl
 audit/*.head
 .env
+.env.*
+*.key
+*.pem
+secrets/

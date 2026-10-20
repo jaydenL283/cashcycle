@@ -1,0 +1,6 @@
+{"object":"aggregate","source":"seapoint_mcp:query_transactions","organisation_id":"org_01m5d5cmjbe49a5y4d904dq3c8","fetched_at":"2026-10-20",
+"note":"one aggregate call per non-active card: where.card_id = <id>, grouped by month and status, sum of reporting_amount. card_id is not groupable, so the card id is recorded per call here.",
+"data":[
+{"card_id":"card_4gp755h72w2p0sbrry1sej46s9","groups":[]},
+{"card_id":"card_3gtkc2q5719q9gytyer1r0617m","groups":[{"metrics":{"total":1215,"rows":49,"last_seen":"2026-09-28T10:00:00.000Z","first_seen":"2026-09-02T10:00:00.000Z"},"group":{"date":"2026-09-01","status":"BOOKED"},"money":{"total":{"currency":"GBP","included_count":49,"excluded_count":0,"complete":true}}}]}
+]}

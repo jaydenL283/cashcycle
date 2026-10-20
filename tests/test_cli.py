@@ -19,4 +19,4 @@ def test_check_drafts_matches_expected(tmp_path):
 
 def test_live_runway(tmp_path, capsys):
     assert main(["--live", "data/live/r3con-tech", "--audit-dir", str(tmp_path), "runway"]) == 0
-    assert "seapoint_mcp" in capsys.readouterr().out
+    assert "cash/burn source: live" in capsys.readouterr().out

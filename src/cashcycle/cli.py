@@ -82,7 +82,8 @@ def print_report(rep, llm) -> None:
     print()
     print(f"HOOK     {rep.hook['line']}")
     print()
-    print("COLLECTIONS  (ranked by runway impact; tier decided in code)")
+    inv_src = rep.sources.get("invoices", "fixture")
+    print(f"COLLECTIONS  (ranked by runway impact; tier decided in code; invoices: {inv_src}; runway days on {rep.sources.get('burn', 'fixture')} net burn)")
     print(f"  {'invoice':9} {'customer':26} {'amount':>10} {'overdue':>7} {'step':>4} {'tier':>4} {'runway d':>8} {'interest':>9} {'comp':>5}  reason")
     for r in rep.ranked:
         print(f"  {r.invoice_id:9} {r.customer_name[:26]:26} {gbp(r.amount):>10} {r.days_overdue:>7} {r.step:>4} {r.tier:>4} {str(r.runway_impact_days):>8} {gbp(r.statutory_interest_gbp) if r.statutory_interest_gbp is not None else '-':>9} {str(r.fixed_compensation_gbp or '-'):>5}  {r.tier_reason}")
@@ -108,7 +109,7 @@ def print_report(rep, llm) -> None:
     print("LEAKS  (evidence shown; judgement calls marked; nothing cancelled automatically)")
     for l in rep.leaks.leaks:
         j = f"  [judgement: {l.judgement.get('duplicate')} by {l.judgement.get('judged_by')}]" if l.judgement else ""
-        print(f"  {l.type:17} {', '.join(l.vendor_names):28} {gbp(l.monthly_saving):>10}/mo  {l.evidence}{j}")
+        print(f"  [{l.source:6}] {l.type:24} {', '.join(l.vendor_names)[:34]:34} {gbp(l.monthly_saving):>10}/mo  {l.evidence}{j}")
     print(f"  total {gbp(rep.leaks.monthly_total)}/month = {gbp(rep.leaks.annual_total)}/year = {rep.hook['leaks_annual_runway_days']} days of runway")
     print()
     if rep.variances:
