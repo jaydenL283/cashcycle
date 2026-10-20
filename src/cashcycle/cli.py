@@ -150,6 +150,42 @@ def cmd_classify(args) -> int:
     return 0
 
 
+def cmd_cashflow(args) -> int:
+    """Cash-flow view from the live export: methods in and out, recurring days, 90-day forecast. Writes the dashboard data files."""
+    from cashcycle.cashflow import build_cashflow
+
+    live = Path(args.live or "data/live/r3con-tech")
+    d = build_cashflow(live, date.fromisoformat(args.as_of) if args.as_of else date(2026, 10, 20))
+    out = Path(args.out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "cashflow.json").write_text(json.dumps(d, indent=1), encoding="utf-8")
+    rows = [{"month": m, "direction": dr, "method": k, "total": v["total"], "transactions": v["rows"], "partial_month": m == d["as_of"][:7]} for m, dd in d["by_month"].items() for dr, methods in dd.items() for k, v in methods.items()]
+    (out / "flows_by_month.json").write_text(json.dumps(rows), encoding="utf-8")
+    (out / "recurring.json").write_text(json.dumps([{**r, "direction": "in" if r["direction"] == "credit" else "out", "months_seen": len(r["months_seen"])} for r in d["recurring_in"] + d["recurring_out"]]), encoding="utf-8")
+    (out / "forecast_days.json").write_text(json.dumps([{**x, "items": "; ".join(x["items"])} for x in d["forecast_days"]]), encoding="utf-8")
+    (out / "forecast_weekly.json").write_text(json.dumps(d["forecast_weekly"]), encoding="utf-8")
+    (out / "kpis.json").write_text(json.dumps([
+        {"metric": "opening_cash", "value": d["opening_cash"], "label": "Cash today (eligible, GBP)"},
+        {"metric": "closing_90d", "value": d["closing_balance_90d"], "label": "Forecast cash in 90 days"},
+        {"metric": "lowest_balance", "value": d["lowest_point"]["balance"], "label": "Lowest forecast balance"},
+        {"metric": "lowest_date", "value": d["lowest_point"]["date"], "label": "Date of lowest balance"},
+        {"metric": "card_daily_run_rate", "value": d["card_daily_run_rate"], "label": "Card spend per day (3-month avg)"},
+        {"metric": "as_of", "value": d["as_of"], "label": "Snapshot date"}]), encoding="utf-8")
+    print(f"{d['organisation']}  as of {d['as_of']}  ({d['source']})")
+    print(f"  cash today {gbp(d['opening_cash'])}  ->  forecast in 90 days {gbp(d['closing_balance_90d'])}  (lowest {gbp(d['lowest_point']['balance'])} on {d['lowest_point']['date']})")
+    print("  money out by method (full months):")
+    for k, v in d["out_share_full_months"].items():
+        print(f"    {k:14} {gbp(v['total']):>14}  {v['share_pct']:>5}%")
+    print("  recurring money in:")
+    for r in d["recurring_in"]:
+        print(f"    day {r['usual_day']:>2}  {r['name'][:30]:30} {r['method']:14} {gbp(r['typical_amount']):>12}")
+    print("  recurring money out (top 10):")
+    for r in d["recurring_out"][:10]:
+        print(f"    day {r['usual_day']:>2}  {r['name'][:30]:30} {r['method']:14} {gbp(r['typical_amount']):>12}")
+    print(f"  dashboard data written to {out}/")
+    return 0
+
+
 def cmd_verify_log(args) -> int:
     audit = _audit(args)
     ok, problems = audit.verify()
@@ -191,6 +227,10 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("text", help="the text, or - for stdin")
     s.add_argument("--invoice")
     s.set_defaults(fn=cmd_classify)
+
+    s = sub.add_parser("cashflow", help="how money comes in and goes out, recurring days, 90-day forecast; writes dashboard data")
+    s.add_argument("--out-dir", default="out/dash")
+    s.set_defaults(fn=cmd_cashflow)
 
     s = sub.add_parser("verify-log", help="verify the audit chain against the pinned head")
     s.set_defaults(fn=cmd_verify_log)

@@ -1,0 +1,21 @@
+{"object":"list","source":"seapoint_mcp:query_transactions (rows per card) + query_cards (holders)","organisation_id":"org_01m5d5cmjbe49a5y4d904dq3c8","fetched_at":"2026-10-20",
+"note":"card payments joined to the card holder. The Travel card (frozen) is an aggregate by category and vendor; the three active cards are the full rows. The cancelled card has no charges.",
+"data":[
+{"card_id":"card_3gtkc2q5719q9gytyer1r0617m","card_name":"Travel card","last_four":"7302","status":"frozen","holder":"Rhys Owen","period":"2026-09","lines":[
+ {"category":"Operating Expenses › Travel & Entertainment","vendor":"Trainline","total":807.5,"rows":24},
+ {"category":"Operating Expenses › Travel & Entertainment","vendor":"Uber","total":318.5,"rows":24},
+ {"category":"Operating Expenses › Travel & Entertainment","vendor":"Premier Inn","total":89,"rows":1}]},
+{"card_id":"card_2vysmzbsp6nt6fgbbtzme0je5t","card_name":"Engineering tools","last_four":"5540","status":"active","holder":"Isla Fraser","period":"2026-09","lines":[
+ {"category":"Financial Items › Capital Investments","vendor":"Apple Store","total":2398.8,"rows":1,"date":"2026-09-16","has_evidence":true},
+ {"category":"Operating Expenses › Subscriptions","vendor":"JetBrains","total":1990,"rows":1,"date":"2026-09-12","has_evidence":true},
+ {"category":"Operating Expenses › Office Expenses","vendor":"Currys","total":62.34,"rows":1,"date":"2026-09-17","has_evidence":false}]},
+{"card_id":"card_2h2acarpw399wasm6qq19c4gpe","card_name":"Marketing card","last_four":"4821","status":"active","holder":"Priya Chandra","period":"2026-09 to 2026-10","lines":[
+ {"category":"Operating Expenses › Travel & Entertainment","vendor":"Sketch London","total":286.5,"rows":1,"date":"2026-09-24","has_evidence":true},
+ {"category":"Operating Expenses › Office Expenses","vendor":"Amazon UK","total":47.98,"rows":1,"date":"2026-09-09","has_evidence":false},
+ {"category":"Operating Expenses › Food & Dining","vendor":"Pret A Manger","total":8.13,"rows":2,"date":"2026-10-13","has_evidence":false}]},
+{"card_id":"card_25mccjb5h7rr40zzjpvf30ymtv","card_name":"Subscriptions","last_four":"9113","status":"active","holder":"Priya Chandra","period":"2026-09","lines":[
+ {"category":"Operating Expenses › Subscriptions","vendor":"BCS, The Chartered Institute for IT","total":790,"rows":2,"date":"2026-09-15","has_evidence":true},
+ {"category":"Operating Expenses › Subscriptions","vendor":"Spotify","total":11.99,"rows":1,"date":"2026-09-14","has_evidence":true}]},
+{"card_id":"card_4gp755h72w2p0sbrry1sej46s9","card_name":"Old project card","last_four":"0007","status":"cancelled","holder":"Isla Fraser","period":"none","lines":[]}
+],
+"unattributed_card_payments_note":"CARD_PAYMENT rows with no card id, by month (card not in the cards list, e.g. connected-bank cards): 2026-06 £16,549.07 (149 rows), 2026-07 £16,661.57 (152), 2026-08 £16,309.94 (149), 2026-09 £13,762.90 (105), 2026-10 £12,565.00 (81)"}

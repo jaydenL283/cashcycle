@@ -12,3 +12,4 @@ audit/*.head
 *.key
 *.pem
 secrets/
+out/

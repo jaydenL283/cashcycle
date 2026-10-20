@@ -1,0 +1,322 @@
+<style>
+  .cf { font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; display: grid; gap: var(--cds-gap-md); }
+  .cf h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+  .cf .takeaway { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: 0; max-width: 70ch; }
+  .cf .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+  .cf .tile, .cf .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+  .cf .tile .label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .02em; text-transform: uppercase; }
+  .cf .tile .big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.2; margin-top: var(--cds-gap-xs); }
+  .cf .tile .sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-xs); }
+  .cf .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  .cf .card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .cf .card .note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 var(--cds-gap-md); }
+  .cf .plot { position: relative; min-height: 220px; }
+  .cf .plot svg { display: block; width: 100%; height: auto; }
+  .cf .plot text { font-family: var(--font-anthropic-sans); fill: var(--color-fg-muted); font-size: 11px; }
+  .cf .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); }
+  .cf .legend span::before { content: ""; display: inline-block; width: .7em; height: .7em; border-radius: 2px; margin-right: .4em; background: var(--sw); vertical-align: -1px; }
+  .cf .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg); white-space: nowrap; z-index: 2; }
+  .cf .tip .t { color: var(--cds-text-secondary); margin-bottom: 2px; }
+  .cf table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); }
+  .cf th, .cf td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .cf th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); position: sticky; top: 0; background: var(--color-panel); cursor: pointer; }
+  .cf td.n, .cf th.n { text-align: right; }
+  .cf .scroll { max-height: 22rem; overflow: auto; }
+  .cf .pill { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); color: var(--color-fg-muted); }
+  .cf .in { color: var(--color-ok); } .cf .out { color: var(--color-fg); }
+  .cf [data-dash-source-state=empty] { color: transparent; }
+  .cf [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .cf .failed { display: flex; align-items: center; justify-content: center; gap: .5em; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-height: 220px; }
+  .cf .failed::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+  .cf .src { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+</style>
+
+<div class="cf">
+  <div>
+    <h1 id="title">CashCycle Cash Flow</h1>
+    <p class="takeaway" id="takeaway" data-source="kpis recurring">—</p>
+    <p class="src" id="src">Snapshot of Seapoint data for Hackathon - R3CON Tech, fetched 20 Oct 2026. Forecast figures are estimates from past patterns, not commitments.</p>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="label">Cash today</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=opening_cash">—</div><div class="sub">Eligible cash across all accounts, GBP</div></div>
+    <div class="tile"><div class="label">Forecast in 90 days</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=closing_90d">—</div><div class="sub">If the recurring pattern holds</div></div>
+    <div class="tile"><div class="label">Lowest point</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=lowest_balance">—</div><div class="sub" data-source="kpis" data-field="value" data-where="metric=lowest_date">—</div></div>
+    <div class="tile"><div class="label">Card spend per day</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=card_daily_run_rate">—</div><div class="sub">Three-month average, all cards</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card" id="money-in">
+      <h2>How money comes in</h2>
+      <p class="note">Customer payments received, by month and payment method. October is a partial month.</p>
+      <div class="plot" id="in-plot" data-source="flows_by_month"></div>
+      <div class="legend" id="in-legend"></div>
+    </div>
+    <div class="card" id="money-out">
+      <h2>How money goes out</h2>
+      <p class="note">Spend by month and payment method: bank transfers, direct debits, cards, fees. October is a partial month.</p>
+      <div class="plot" id="out-plot" data-source="flows_by_month"></div>
+      <div class="legend" id="out-legend"></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card" id="method-share">
+      <h2>Share of spend by payment method</h2>
+      <p class="note">Full months June to September. Share of total money out.</p>
+      <div id="share-list" data-source="method_share"></div>
+    </div>
+    <div class="card" id="day-of-month">
+      <h2>Which day of the month money moves</h2>
+      <p class="note">Recurring items placed on their usual day. Above the line is money in, below is money out.</p>
+      <div class="plot" id="dom-plot" data-source="recurring"></div>
+      <div class="legend"><span style="--sw: var(--color-ok)">Money in</span><span style="--sw: var(--cds-chart-muted)">Money out</span></div>
+    </div>
+  </div>
+
+  <div class="card" id="forecast">
+    <h2>90-day cash forecast</h2>
+    <p class="note">Opening cash, plus recurring customer payments, minus recurring outgoings on their usual days, card spend at the daily average, and open supplier bills on their due date. Hover for what lands each day.</p>
+    <div class="plot" id="fc-plot" data-source="forecast_days"></div>
+    <div class="scroll" style="margin-top: var(--cds-gap-md)">
+      <table id="fc-table" data-source="forecast_weekly" data-row-key="week_start">
+        <thead><tr><th data-field="week_start">Week starting</th><th class="n" data-field="inflow">Money in</th><th class="n" data-field="outflow">Money out</th><th class="n" data-field="closing_balance">Closing cash</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card" id="recurring-in">
+      <h2>Who pays us, and when</h2>
+      <p class="note">Customers seen in at least two months. Typical amount is the median month.</p>
+      <div class="scroll">
+        <table id="rin-table" data-source="recurring_in" data-row-key="name">
+          <thead><tr><th data-field="name">Customer</th><th data-field="method">Method</th><th class="n" data-field="usual_day">Usual day</th><th class="n" data-field="typical_amount">Typical</th><th class="n" data-field="months_seen">Months</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" id="recurring-out">
+      <h2>What we pay, and when</h2>
+      <p class="note">Suppliers, payroll and fees seen in at least two months, largest first.</p>
+      <div class="scroll">
+        <table id="rout-table" data-source="recurring_out" data-row-key="name">
+          <thead><tr><th data-field="name">Payee</th><th data-field="method">Method</th><th data-field="category">Category</th><th class="n" data-field="usual_day">Day</th><th class="n" data-field="typical_amount">Typical</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="who-spent">
+    <h2>Card spend by staff member</h2>
+    <p class="note">Every card payment is credited to the card's holder. Cards with no holder activity are listed with none.</p>
+    <div class="scroll">
+      <table id="holder-table" data-source="card_spend_by_holder" data-row-key="holder,card,vendor">
+        <thead><tr><th data-field="holder">Staff member</th><th data-field="card">Card</th><th data-field="card_status">Status</th><th data-field="category">Category</th><th data-field="vendor">Vendor</th><th class="n" data-field="total">Total</th><th class="n" data-field="transactions">Payments</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const gbp = d3.format(',.0f');
+  const gbp2 = d3.format(',.2f');
+  const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 2 });
+  const fmtMoney = (v) => '£' + gbp(v);
+  const fmtBig = (v) => '£' + compact.format(v);
+  const monthLabel = (m) => d3.utcFormat('%b')(new Date(m + '-01T00:00:00Z'));
+  const dayLabel = (s) => d3.utcFormat('%-d %b')(new Date(s + 'T00:00:00Z'));
+  const METHODS = ['bank transfer', 'direct debit', 'card', 'bank fee', 'transfer'];
+  const color = (method) => dash.colors[Math.max(0, METHODS.indexOf(method))];
+
+  dash.calc('method_share', {
+    inputs: ['flows_by_month'],
+    title: 'Spend share by method',
+    description: 'Money out per payment method over the full months (June to September), as a share of all money out.',
+    fn: (flows_by_month) => {
+      const full = flows_by_month.filter(r => r.direction === 'out' && !r.partial_month);
+      const by = {};
+      for (const r of full) by[r.method] = (by[r.method] || 0) + Number(r.total);
+      const total = Object.values(by).reduce((a, b) => a + b, 0);
+      return Object.entries(by).map(([method, amount]) => ({ method, amount, share: total ? amount / total : 0 })).sort((a, b) => b.amount - a.amount);
+    }
+  });
+  dash.calc('recurring_in', { inputs: ['recurring'], title: 'Recurring money in', description: 'Recurring rows where direction is in.', fn: (recurring) => recurring.filter(r => r.direction === 'in') });
+  dash.calc('recurring_out', { inputs: ['recurring'], title: 'Recurring money out', description: 'Recurring rows where direction is out, largest typical amount first.', fn: (recurring) => recurring.filter(r => r.direction === 'out').sort((a, b) => Number(b.typical_amount) - Number(a.typical_amount)) });
+
+  function tip(container) {
+    let el = container.querySelector('.tip');
+    if (!el) { el = document.createElement('div'); el.className = 'tip'; el.hidden = true; container.appendChild(el); }
+    return {
+      show(x, y, html) { el.innerHTML = ''; el.appendChild(html); el.hidden = false; const w = container.clientWidth; el.style.left = Math.min(x + 12, Math.max(0, w - el.offsetWidth - 4)) + 'px'; el.style.top = Math.max(0, y - el.offsetHeight - 10) + 'px'; },
+      hide() { el.hidden = true; }
+    };
+  }
+  function tipBody(title, lines) {
+    const f = document.createDocumentFragment();
+    const t = document.createElement('div'); t.className = 't'; t.textContent = title; f.appendChild(t);
+    for (const [sw, name, val] of lines) { const d = document.createElement('div'); if (sw) { const s = document.createElement('span'); s.style.cssText = 'display:inline-block;width:.6em;height:.6em;border-radius:2px;margin-right:.4em;background:' + sw; d.appendChild(s); } d.appendChild(document.createTextNode(name + '  ' + val)); f.appendChild(d); }
+    return f;
+  }
+  function failed(container) { container.innerHTML = ''; const d = document.createElement('div'); d.className = 'failed'; d.textContent = 'Failed to load'; container.appendChild(d); }
+  function stateOf(container, res) {
+    if (res.status === 'error' || res.status === 'connect') { failed(container); return false; }
+    if (res.status !== 'ok') { container.classList.add('dash-skeleton'); container.innerHTML = ''; return false; }
+    container.classList.remove('dash-skeleton'); return true;
+  }
+
+  function stackedMonths(container, rows, direction, legendEl) {
+    container.innerHTML = '';
+    const months = Array.from(new Set(rows.map(r => r.month))).sort();
+    const methods = METHODS.filter(m => rows.some(r => r.direction === direction && r.method === m));
+    const data = months.map(m => { const o = { month: m }; for (const k of methods) o[k] = 0; for (const r of rows) if (r.month === m && r.direction === direction) o[r.method] += Number(r.total); return o; });
+    const series = d3.stack().keys(methods)(data);
+    const W = Math.max(280, container.clientWidth), H = 220, m = { t: 12, r: 12, b: 28, l: 52 };
+    const x = d3.scaleBand(months, [m.l, W - m.r]).paddingInner(0.3).paddingOuter(0.1);
+    const yMax = d3.max(data, d => methods.reduce((a, k) => a + d[k], 0)) || 1;
+    const y = d3.scaleLinear([0, yMax], [H - m.b, m.t]).nice();
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%');
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(v => '£' + compact.format(v)).tickSize(-(W - m.l - m.r))).attr('font-size', null).attr('font-family', null)
+      .call(g => g.select('.domain').remove()).call(g => g.selectAll('line').attr('stroke', 'var(--cds-chart-grid)'));
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickFormat(monthLabel).tickSize(0)).attr('font-size', null).attr('font-family', null).call(g => g.select('.domain').attr('stroke', 'var(--cds-chart-axis)'));
+    const t = tip(container);
+    svg.append('g').selectAll('g').data(series).join('g').attr('fill', s => color(s.key))
+      .selectAll('rect').data(s => s.map(d => ({ ...d, key: s.key }))).join('rect')
+      .attr('x', d => x(d.data.month)).attr('width', x.bandwidth()).attr('y', d => y(d[1])).attr('height', d => Math.max(0, y(d[0]) - y(d[1]) - (d[0] > 0 ? 2 : 0))).attr('rx', 2)
+      .on('mousemove', (ev, d) => { const [px, py] = d3.pointer(ev, container); t.show(px, py, tipBody(monthLabel(d.data.month) + (d.data.month === months[months.length - 1] ? ' (partial)' : ''), methods.map(k => [color(k), k, fmtMoney(d.data[k])]).concat([[null, 'total', fmtMoney(methods.reduce((a, k) => a + d.data[k], 0))]]))); })
+      .on('mouseleave', () => t.hide());
+    svg.append('g').selectAll('text').data(data).join('text').attr('x', d => x(d.month) + x.bandwidth() / 2).attr('y', d => y(methods.reduce((a, k) => a + d[k], 0)) - 4).attr('text-anchor', 'middle').text(d => '£' + compact.format(methods.reduce((a, k) => a + d[k], 0)));
+    legendEl.innerHTML = '';
+    for (const k of methods) { const s = document.createElement('span'); s.style.setProperty('--sw', color(k)); s.textContent = k; legendEl.appendChild(s); }
+  }
+
+  function shareList(container, rows) {
+    container.innerHTML = '';
+    const max = d3.max(rows, r => r.share) || 1;
+    for (const r of rows) {
+      const row = document.createElement('div'); row.style.cssText = 'display:grid;grid-template-columns:8rem 1fr 4.5rem 6rem;gap:8px;align-items:center;margin:6px 0;font-size:var(--cds-font-size-caption)';
+      const name = document.createElement('span'); name.textContent = r.method;
+      const bar = document.createElement('div'); bar.style.cssText = 'height:14px;border-radius:4px;background:' + color(r.method) + ';width:' + (r.share / max * 100) + '%';
+      const pct = document.createElement('span'); pct.className = 'n'; pct.style.textAlign = 'right'; pct.setAttribute('data-source', 'method_share'); pct.setAttribute('data-field', 'share'); pct.setAttribute('data-where', 'method=' + encodeURIComponent(r.method)); pct.textContent = d3.format('.1%')(r.share);
+      const amt = document.createElement('span'); amt.style.cssText = 'text-align:right;color:var(--color-fg-muted)'; amt.setAttribute('data-source', 'method_share'); amt.setAttribute('data-field', 'amount'); amt.setAttribute('data-where', 'method=' + encodeURIComponent(r.method)); amt.textContent = fmtMoney(r.amount);
+      row.append(name, bar, pct, amt); container.appendChild(row);
+    }
+  }
+
+  function dayOfMonth(container, rows) {
+    container.innerHTML = '';
+    const days = d3.range(1, 32);
+    const inBy = new Map(days.map(d => [d, 0])), outBy = new Map(days.map(d => [d, 0])), items = new Map(days.map(d => [d, []]));
+    for (const r of rows) { const d = Number(r.usual_day), a = Number(r.typical_amount); (r.direction === 'in' ? inBy : outBy).set(d, (r.direction === 'in' ? inBy : outBy).get(d) + a); items.get(d).push(r); }
+    const W = Math.max(280, container.clientWidth), H = 240, m = { t: 12, r: 8, b: 24, l: 52 };
+    const x = d3.scaleBand(days, [m.l, W - m.r]).paddingInner(0.25);
+    const maxIn = d3.max(days, d => inBy.get(d)) || 1, maxOut = d3.max(days, d => outBy.get(d)) || 1;
+    const y = d3.scaleLinear([-maxOut, maxIn], [H - m.b, m.t]).nice();
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%');
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => '£' + compact.format(Math.abs(v))).tickSize(-(W - m.l - m.r))).attr('font-size', null).attr('font-family', null)
+      .call(g => g.select('.domain').remove()).call(g => g.selectAll('line').attr('stroke', 'var(--cds-chart-grid)'));
+    svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', 'var(--cds-chart-axis)');
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(days.filter(d => d % 5 === 0 || d === 1)).tickSize(0)).attr('font-size', null).attr('font-family', null).call(g => g.select('.domain').remove());
+    const t = tip(container);
+    const hover = (ev, d) => { const [px, py] = d3.pointer(ev, container); const list = items.get(d); t.show(px, py, tipBody('Day ' + d, list.length ? list.map(r => [r.direction === 'in' ? 'var(--color-ok)' : 'var(--cds-chart-muted)', r.name, (r.direction === 'in' ? '+' : '-') + fmtMoney(r.typical_amount)]) : [[null, 'nothing recurring', '']])); };
+    svg.append('g').selectAll('rect.in').data(days).join('rect').attr('x', d => x(d)).attr('width', x.bandwidth()).attr('y', d => y(inBy.get(d))).attr('height', d => Math.max(0, y(0) - y(inBy.get(d)))).attr('rx', 2).attr('fill', 'var(--color-ok)').on('mousemove', hover).on('mouseleave', () => t.hide());
+    svg.append('g').selectAll('rect.out').data(days).join('rect').attr('x', d => x(d)).attr('width', x.bandwidth()).attr('y', y(0)).attr('height', d => Math.max(0, y(-outBy.get(d)) - y(0))).attr('rx', 2).attr('fill', 'var(--cds-chart-muted)').on('mousemove', hover).on('mouseleave', () => t.hide());
+    svg.append('g').selectAll('rect.hit').data(days).join('rect').attr('x', d => x(d) - 2).attr('width', x.bandwidth() + 4).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent').on('mousemove', hover).on('mouseleave', () => t.hide());
+  }
+
+  function forecastLine(container, rows) {
+    container.innerHTML = '';
+    const data = rows.map(r => ({ date: new Date(r.date + 'T00:00:00Z'), balance: Number(r.balance), inflow: Number(r.inflow), outflow: Number(r.outflow), items: r.items }));
+    const W = Math.max(280, container.clientWidth), H = 260, m = { t: 12, r: 16, b: 28, l: 58 };
+    const x = d3.scaleUtc(d3.extent(data, d => d.date), [m.l, W - m.r]);
+    const y = d3.scaleLinear([d3.min(data, d => d.balance) * 0.98, d3.max(data, d => d.balance) * 1.01], [H - m.b, m.t]).nice();
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%');
+    const gid = 'cf-grad-' + Math.random().toString(36).slice(2, 8);
+    const grad = svg.append('defs').append('linearGradient').attr('id', gid).attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 1);
+    [[0, .26], [.25, .16], [.5, .08], [.75, .03], [1, 0]].forEach(([o, a]) => grad.append('stop').attr('offset', o).attr('style', 'stop-color:' + dash.colors[0]).attr('stop-opacity', a));
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v => '£' + compact.format(v)).tickSize(-(W - m.l - m.r))).attr('font-size', null).attr('font-family', null)
+      .call(g => g.select('.domain').remove()).call(g => g.selectAll('line').attr('stroke', 'var(--cds-chart-grid)'));
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(W < 500 ? 4 : 7).tickFormat(d3.utcFormat('%-d %b')).tickSize(0)).attr('font-size', null).attr('font-family', null).call(g => g.select('.domain').attr('stroke', 'var(--cds-chart-axis)'));
+    svg.append('path').datum(data).attr('fill', `url(#${gid})`).attr('d', d3.area().x(d => x(d.date)).y0(H - m.b).y1(d => y(d.balance)));
+    svg.append('path').datum(data).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round').attr('d', d3.line().x(d => x(d.date)).y(d => y(d.balance)));
+    const last = data[data.length - 1];
+    svg.append('circle').attr('cx', x(last.date)).attr('cy', y(last.balance)).attr('r', 4).attr('fill', dash.colors[0]);
+    svg.append('text').attr('x', x(last.date) - 6).attr('y', y(last.balance) - 8).attr('text-anchor', 'end').text('£' + compact.format(last.balance));
+    const rule = svg.append('line').attr('y1', m.t).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '3 3').style('display', 'none');
+    const dot = svg.append('circle').attr('r', 4).attr('fill', dash.colors[0]).style('display', 'none');
+    const t = tip(container);
+    const bisect = d3.bisector(d => d.date).center;
+    svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', W - m.l - m.r).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+      .on('mousemove', (ev) => { const [px, py] = d3.pointer(ev, container); const [sx] = d3.pointer(ev); const d = data[bisect(data, x.invert(sx))]; rule.attr('x1', x(d.date)).attr('x2', x(d.date)).style('display', null); dot.attr('cx', x(d.date)).attr('cy', y(d.balance)).style('display', null);
+        const lines = [[dash.colors[0], 'cash', fmtMoney(d.balance)], [null, 'in', '+' + fmtMoney(d.inflow)], [null, 'out', '-' + fmtMoney(d.outflow)]];
+        for (const it of String(d.items || '').split('; ').filter(Boolean).slice(0, 8)) lines.push([null, it, '']);
+        t.show(px, py, tipBody(d3.utcFormat('%a %-d %b %Y')(d.date), lines)); })
+      .on('mouseleave', () => { t.hide(); rule.style('display', 'none'); dot.style('display', 'none'); });
+  }
+
+  function fillTable(table, rows, cols) {
+    const tb = table.querySelector('tbody'); tb.innerHTML = '';
+    for (const r of rows) {
+      const tr = document.createElement('tr');
+      if (table.dataset.rowKey.includes(',')) tr.dataset.key = table.dataset.rowKey.split(',').map(k => encodeURIComponent(r[k])).join(',');
+      for (const [k, f, cls] of cols) { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = f ? f(r[k], r) : String(r[k] ?? ''); tr.appendChild(td); }
+      tb.appendChild(tr);
+    }
+  }
+  const sorters = new WeakMap();
+  function sortable(table, getRows, cols) {
+    table.querySelectorAll('th').forEach((th, i) => th.addEventListener('click', () => {
+      const s = sorters.get(table) || {}; s.i = i; s.dir = s.i === i && s.dir === 'asc' ? 'desc' : 'asc'; sorters.set(table, s);
+      const k = cols[i][0]; const rows = [...getRows()].sort((a, b) => { const va = a[k], vb = b[k]; const na = Number(va), nb = Number(vb); const c = (!isNaN(na) && !isNaN(nb)) ? na - nb : String(va).localeCompare(String(vb)); return s.dir === 'asc' ? c : -c; });
+      table.querySelectorAll('th').forEach(h => h.removeAttribute('aria-sort')); th.setAttribute('aria-sort', s.dir === 'asc' ? 'ascending' : 'descending');
+      fillTable(table, rows, cols);
+    }));
+  }
+  const fcCols = [['week_start', dayLabel], ['inflow', v => '+' + fmtMoney(v), 'n in'], ['outflow', v => '-' + fmtMoney(v), 'n'], ['closing_balance', fmtMoney, 'n']];
+  const rinCols = [['name'], ['method'], ['usual_day', v => String(v), 'n'], ['typical_amount', fmtMoney, 'n'], ['months_seen', v => String(v), 'n']];
+  const routCols = [['name'], ['method'], ['category', v => String(v).split(' › ').pop()], ['usual_day', v => String(v), 'n'], ['typical_amount', fmtMoney, 'n']];
+  const holderCols = [['holder'], ['card'], ['card_status'], ['category'], ['vendor'], ['total', fmtMoney, 'n'], ['transactions', v => String(v), 'n']];
+  sortable(document.getElementById('fc-table'), () => dash.data('forecast_weekly').data, fcCols);
+  sortable(document.getElementById('rin-table'), () => dash.data('recurring_in').data, rinCols);
+  sortable(document.getElementById('rout-table'), () => dash.data('recurring_out').data, routCols);
+  sortable(document.getElementById('holder-table'), () => dash.data('card_spend_by_holder').data, holderCols);
+
+  dash.onData(() => {
+    const kpis = dash.data('kpis');
+    document.querySelectorAll('[data-source="kpis"]').forEach(el => {
+      el.classList.remove('dash-skeleton');
+      if (kpis.status !== 'ok') { el.textContent = '—'; if (kpis.status === 'loading') el.classList.add('dash-skeleton'); return; }
+      const metric = el.dataset.where.split('=')[1];
+      const row = kpis.data.find(r => r.metric === metric);
+      if (!row) { el.textContent = '—'; return; }
+      el.textContent = metric === 'lowest_date' ? 'on ' + d3.utcFormat('%-d %b %Y')(new Date(row.value + 'T00:00:00Z')) : (metric === 'card_daily_run_rate' ? '£' + gbp2(row.value) : fmtBig(Number(row.value)));
+    });
+    const rec = dash.data('recurring');
+    const tk = document.getElementById('takeaway');
+    if (kpis.status === 'ok' && rec.status === 'ok') {
+      const open = Number(kpis.data.find(r => r.metric === 'opening_cash')?.value), close = Number(kpis.data.find(r => r.metric === 'closing_90d')?.value);
+      const inM = d3.sum(rec.data.filter(r => r.direction === 'in'), r => Number(r.typical_amount)), outM = d3.sum(rec.data.filter(r => r.direction === 'out'), r => Number(r.typical_amount));
+      tk.textContent = `Recurring outgoings of about ${fmtMoney(outM)} a month against recurring customer payments of about ${fmtMoney(inM)}; cash is forecast to go from ${fmtBig(open)} to ${fmtBig(close)} over the next 90 days.`;
+    } else tk.textContent = '—';
+
+    const flows = dash.data('flows_by_month');
+    const inPlot = document.getElementById('in-plot'), outPlot = document.getElementById('out-plot');
+    if (stateOf(inPlot, flows)) stackedMonths(inPlot, flows.data, 'in', document.getElementById('in-legend'));
+    if (stateOf(outPlot, flows)) stackedMonths(outPlot, flows.data, 'out', document.getElementById('out-legend'));
+    const share = dash.data('method_share'); const shareEl = document.getElementById('share-list');
+    if (share.status === 'ok') shareList(shareEl, share.data); else shareEl.innerHTML = '';
+    const dom = document.getElementById('dom-plot');
+    if (stateOf(dom, rec)) dayOfMonth(dom, rec.data);
+    const fc = dash.data('forecast_days'); const fcPlot = document.getElementById('fc-plot');
+    if (stateOf(fcPlot, fc)) forecastLine(fcPlot, fc.data);
+    const wk = dash.data('forecast_weekly'); fillTable(document.getElementById('fc-table'), wk.status === 'ok' ? wk.data : [], fcCols);
+    const rin = dash.data('recurring_in'); fillTable(document.getElementById('rin-table'), rin.status === 'ok' ? rin.data : [], rinCols);
+    const rout = dash.data('recurring_out'); fillTable(document.getElementById('rout-table'), rout.status === 'ok' ? rout.data : [], routCols);
+    const hold = dash.data('card_spend_by_holder'); fillTable(document.getElementById('holder-table'), hold.status === 'ok' ? hold.data : [], holderCols);
+  });
+})();
+</script>
