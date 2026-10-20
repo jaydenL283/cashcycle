@@ -156,6 +156,26 @@
   .cf .keypoints .go { font: inherit; font-size: var(--cds-font-size-caption); background: none; border: none; padding: 0 0 0 6px; color: var(--color-fg-muted); text-decoration: underline; cursor: pointer; }
   .cf.no-highlights .keypoints { display: none; }
 
+  /* payment cards */
+  .cf .pcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: var(--cds-gap-md); }
+  .cf .pcard { position: relative; aspect-ratio: 1.586; max-width: 100%; text-align: left; font: inherit; color: var(--pc-fg); background: var(--pc-bg); border: 2px solid transparent; border-radius: 14px; padding: 16px 18px;
+               display: grid; grid-template-rows: auto 1fr auto; cursor: pointer; overflow: hidden; transition: transform var(--cds-dur-slow), border-color var(--cds-dur-slow), opacity var(--cds-dur-slow); }
+  .cf .pcard::before { content: ""; position: absolute; inset: auto -30% -60% auto; width: 80%; aspect-ratio: 1; border-radius: 50%; background: color-mix(in srgb, var(--pc-fg) 8%, transparent); pointer-events: none; }
+  .cf .pcard.active { --pc-bg: var(--color-fg); --pc-fg: var(--color-bg); }
+  .cf .pcard.frozen { --pc-bg: color-mix(in srgb, var(--color-warn) 22%, var(--color-panel)); --pc-fg: var(--color-fg); }
+  .cf .pcard.cancelled, .cf .pcard.expired, .cf .pcard.created { --pc-bg: var(--color-panel); --pc-fg: var(--color-fg-muted); border-style: dashed; border-color: var(--line); }
+  .cf .pcard:hover { transform: translateY(-2px); }
+  .cf .pcard[aria-pressed="true"] { border-color: var(--color-ok); border-style: solid; }
+  .cf .pcards.has-pick .pcard[aria-pressed="false"] { opacity: .45; }
+  .cf .pcard .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: var(--cds-font-size-caption); }
+  .cf .pcard .nm { font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cf .pcard .st { padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--pc-fg) 14%, transparent); text-transform: uppercase; letter-spacing: .05em; font-size: 10px; white-space: nowrap; }
+  .cf .pcard .num { align-self: center; font-family: var(--font-anthropic-serif); font-size: calc(var(--cds-font-size-heading) * 1.15); letter-spacing: .12em; }
+  .cf .pcard .bot { display: flex; justify-content: space-between; align-items: end; gap: 8px; font-size: var(--cds-font-size-caption); }
+  .cf .pcard .bot b { display: block; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  .cf .pcard .lbl { opacity: .7; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
+  @media (prefers-reduced-motion: reduce) { .cf .pcard:hover { transform: none; } }
+
   /* phone */
   @media (max-width: 640px) {
     .cf { gap: var(--cds-gap-md); }
@@ -218,7 +238,7 @@
         <button class="q" data-go="payroll"><span class="qt">How fast is payroll growing?</span><span class="qd">Monthly payroll, growth rate and a three-year projection</span><span class="qv" id="qv-payroll">—</span></button>
         <button class="q" data-go="costs"><span class="qt">What is fixed and what is variable?</span><span class="qd">Costs split by category, with how much each swings</span><span class="qv" id="qv-costs">—</span></button>
         <button class="q" data-go="value"><span class="qt">Where does spend create the most value?</span><span class="qd">Every cost ranked by leverage, with where to put more</span><span class="qv" id="qv-value">—</span></button>
-        <button class="q" data-go="cards"><span class="qt">Who used which card?</span><span class="qd">Card payments credited to the card holder</span><span class="qv" id="qv-cards">—</span></button>
+        <button class="q" data-go="cards"><span class="qt">Which cards do we have, and who used them?</span><span class="qd">Card payments credited to the card holder</span><span class="qv" id="qv-cards">—</span></button>
         <button class="q" data-go="search"><span class="qt">Find anything</span><span class="qd">Search every supplier, customer, person, reference and amount the dashboard holds</span><span class="qv">Search</span></button>
       </div>
     </div>
@@ -472,6 +492,11 @@
   </section>
   <!-- CARDS -->
   <section class="page" id="cards" role="tabpanel" hidden>
+    <div class="card" id="company-cards">
+      <h2>Company cards</h2>
+      <p class="note">The cards Seapoint issued, who holds each one, and what has been spent on it. Click a card to see only its payments below; click it again to show all.</p>
+      <div class="pcards" id="pcards" data-source="cards_list"></div>
+    </div>
     <div class="keypoints" id="kp-cards" data-source="card_spend_by_holder card_vendors"><h3>Main points</h3><ol></ol></div>
     <div class="grid2">
       <div class="card" id="who-spent">
@@ -779,7 +804,7 @@
   const cvCols = [['vendor'], ['category'], ['total', fmtMoney, 'n'], ['payments', v => String(v), 'n']];
   const levCols = [['rank', v => String(v), 'n'], ['category'], ['role', v => pill(v)], ['kind', v => pill(v)], ['leverage_score', v => String(v), 'n'], ['avg_monthly', fmtMoney, 'n'], ['share_of_opex_pct', v => v == null ? '—' : v + '%', 'n'], ['trend_pct', v => v == null ? '—' : signed(v, false), 'n'], ['revenue_correlation', v => v == null ? '—' : String(v), 'n']];
   sortable(document.getElementById('lev-table'), () => (dash.params().role ? rowsOf('leverage_rows').filter(r => r.role === dash.params().role) : rowsOf('leverage_rows')), levCols);
-  const SEARCH_SETS = [['kpis', 'Headline figures'], ['flows_by_month', 'Money in and out by method'], ['recurring', 'Recurring payments'], ['forecast_days', 'Daily forecast'], ['forecast_weekly', 'Weekly forecast'], ['card_spend_by_holder', 'Card spend by staff member'], ['creditors_open', 'Open supplier bills'], ['creditors_paid', 'Paid bills'], ['creditors_by_vendor', 'Creditors by supplier'], ['yoy_months', 'Year on year'], ['payroll_monthly', 'Payroll by month'], ['payroll_people', 'People on payroll'], ['payroll_projection', 'Payroll projection'], ['costs_by_month', 'Fixed and variable by month'], ['costs_by_category', 'Costs by category'], ['card_vendors', 'Card spend by vendor'], ['leverage_rows', 'Spend ranked by value'], ['leverage_opportunities', 'Opportunities'], ['warnings', 'Early warnings']];
+  const SEARCH_SETS = [['kpis', 'Headline figures'], ['flows_by_month', 'Money in and out by method'], ['recurring', 'Recurring payments'], ['forecast_days', 'Daily forecast'], ['forecast_weekly', 'Weekly forecast'], ['card_spend_by_holder', 'Card spend by staff member'], ['creditors_open', 'Open supplier bills'], ['creditors_paid', 'Paid bills'], ['creditors_by_vendor', 'Creditors by supplier'], ['yoy_months', 'Year on year'], ['payroll_monthly', 'Payroll by month'], ['payroll_people', 'People on payroll'], ['payroll_projection', 'Payroll projection'], ['costs_by_month', 'Fixed and variable by month'], ['costs_by_category', 'Costs by category'], ['card_vendors', 'Card spend by vendor'], ['leverage_rows', 'Spend ranked by value'], ['leverage_opportunities', 'Opportunities'], ['warnings', 'Early warnings'], ['cards_list', 'Company cards']];
   let searchTimer = null;
   document.getElementById('search-box').addEventListener('input', (e) => { clearTimeout(searchTimer); const v = e.target.value; searchTimer = setTimeout(() => dash.setParams({ q: v || null }), 250); });
   function renderSearch(q) {
@@ -818,7 +843,7 @@
   const filterMethod = (rows) => { const p = dash.params().method; return p ? rows.filter(r => r.method === p) : rows; };
   const filterOpen = (rows) => { const b = dash.params().bucket, v = dash.params().vendor; return rows.filter(r => (!b || r.bucket === b) && (!v || r.vendor === v)); };
   const filterKind = (rows) => { const k = dash.params().kind; return k ? rows.filter(r => r.kind === k) : rows; };
-  const filterHolder = (rows) => { const h = dash.params().holder; return h ? rows.filter(r => r.holder === h) : rows; };
+  const filterHolder = (rows) => { const h = dash.params().holder, c = dash.params().card; return rows.filter(r => (!h || r.holder === h) && (!c || r.card === c)); };
   const filterVendorCat = (rows) => { const c = dash.params().vendor_cat; return c ? rows.filter(r => r.category === c) : rows; };
   document.getElementById('vendor-table').addEventListener('click', (e) => { const tr = e.target.closest('tr[data-key]'); if (tr) dash.setParams({ vendor: dash.params().vendor === tr.dataset.key ? null : tr.dataset.key }); });
   document.getElementById('holder-table').addEventListener('click', (e) => { const tr = e.target.closest('tr[data-key]'); if (!tr) return; const h = decodeURIComponent(tr.dataset.key.split(',')[0]); dash.setParams({ holder: dash.params().holder === h ? null : h }); });
@@ -961,8 +986,23 @@
       renderSearch(P.q ?? '');
     }
     if (current === 'cards') {
+      const cl = dash.data('cards_list'); const pc = document.getElementById('pcards'); pc.innerHTML = '';
+      pc.classList.toggle('has-pick', !!P.card);
+      if (cl.status === 'ok') for (const c of cl.data) {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'pcard ' + c.status; b.setAttribute('aria-pressed', String(P.card === c.label));
+        b.setAttribute('data-source', 'cards_list'); b.setAttribute('data-where', 'card_id=' + c.card_id);
+        b.addEventListener('click', () => dash.setParams({ card: P.card === c.label ? null : c.label, holder: null }));
+        const top = document.createElement('div'); top.className = 'top'; const nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = c.name; const st = document.createElement('span'); st.className = 'st'; st.textContent = c.status; top.append(nm, st);
+        const num = document.createElement('div'); num.className = 'num'; num.textContent = '•••• ' + c.last_four;
+        const bot = document.createElement('div'); bot.className = 'bot';
+        const who = document.createElement('div'); const wl = document.createElement('span'); wl.className = 'lbl'; wl.textContent = 'Holder'; const wb = document.createElement('b'); wb.textContent = c.holder; who.append(wl, wb);
+        const sp = document.createElement('div'); sp.style.textAlign = 'right'; const sl = document.createElement('span'); sl.className = 'lbl'; sl.textContent = 'Spent · limit ' + fmtMoney(c.lifetime_limit); const sb = document.createElement('b'); sb.textContent = fmtMoney(c.attributed_spend); sp.append(sl, sb);
+        bot.append(who, sp);
+        b.append(top, num, bot); b.title = `${c.label}, ${c.holder}, ${c.status}, expires ${c.expires}, ${c.attributed_payments} payments, ${fmtMoney(c.spent_this_month)} this month`;
+        pc.appendChild(b);
+      }
       const holders = Array.from(new Set(rowsOf('card_spend_by_holder').map(r => r.holder)));
-      chips(document.getElementById('holder-chips'), holders, P.holder, (v) => dash.setParams({ holder: v }), 'Everyone');
+      chips(document.getElementById('holder-chips'), holders, P.holder, (v) => dash.setParams({ holder: v, card: null }), 'Everyone');
       fillTable(document.getElementById('holder-table'), filterHolder(rowsOf('card_spend_by_holder')), holderCols);
       const cats = Array.from(new Set(rowsOf('card_vendors').map(r => r.category))).sort();
       chips(document.getElementById('vendor-cat-chips'), cats, P.vendor_cat, (v) => dash.setParams({ vendor_cat: v }), 'All categories');
@@ -980,6 +1020,7 @@
     ['payroll', 'payroll-chart', 'Payroll growth', 'Solid bars are what was paid. Dashed bars project the next three years at the growth rate seen so far: a projection, not a plan.'],
     ['costs', 'costs-chart', 'Fixed and variable', 'Fixed costs stay put whatever happens; variable ones move with activity. Click either in the legend to filter the category table below.'],
     ['value', 'opportunities', 'Where spend creates value', 'Every cost ranked by how much an extra pound can grow the business, with where to put more and where to take from. Each suggestion shows the numbers behind it.'],
+    ['cards', 'company-cards', 'The company cards', 'Every card Seapoint issued, who holds it and what has gone on it. A frozen or cancelled card is greyed. Click a card to see only its payments.'],
     ['cards', 'who-spent', 'Who used which card', 'Card payments credited to the person who holds the card. Click a name to see only their spending.'],
     ['search', 'search-card', 'Find anything', 'Type a supplier, a person, an invoice reference or an amount and every matching row from every page comes up.'],
   ];
