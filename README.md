@@ -122,3 +122,21 @@ docs/              JUDGE_QA.md, PREP_KIT.md
 Payment-probability ranking, real email sending behind approvals,
 accounting-system write-back with approval, and signed audit logs an auditor
 can verify independently.
+
+## Recording the guided tour (Loom / screen recording)
+
+The dashboard's **Take the tour** button narrates itself: each step is read
+aloud and the tour moves to the next page when the voice finishes. On a Mac
+the browser uses the same system voices as `say`. Use **Voice on/off** in the
+tour panel to mute it.
+
+For a cleaner voice-over, or if the browser voice is unavailable, use the
+macOS `say` script. It reads the same text from `dashboard/tour.json`:
+
+```bash
+./scripts/tour_say.sh                    # one step at a time: press Return, click Next
+./scripts/tour_say.sh --auto             # hands-free, ~3 minutes
+./scripts/tour_say.sh --out tour.m4a     # audio file to drop into Loom or iMovie
+VOICE=Serena RATE=170 ./scripts/tour_say.sh --auto
+say -v '?' | grep en_                    # list installed English voices
+```

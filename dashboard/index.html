@@ -214,7 +214,7 @@
 
   <div class="tour" id="tour" hidden role="dialog" aria-live="polite" aria-labelledby="tour-title">
     <div><div class="step" id="tour-step"></div><div class="tt" id="tour-title"></div><div class="tx" id="tour-text"></div></div>
-    <div class="nav"><button type="button" id="tour-close">Close</button><button type="button" id="tour-back">Back</button><button type="button" class="primary" id="tour-next">Next</button></div>
+    <div class="nav"><button type="button" id="tour-voice" aria-pressed="true" title="Narration on or off">Voice on</button><button type="button" id="tour-close">Close</button><button type="button" id="tour-back">Back</button><button type="button" class="primary" id="tour-next">Next</button></div>
     <div class="dots" id="tour-dots"></div>
   </div>
 
@@ -1011,24 +1011,44 @@
   }
   // ---- guided tour ---------------------------------------------------------
   const TOUR = [
-    ['home', 'questions', 'Start here', 'Every card asks a question the dashboard answers, with the headline already filled in. Click any card to open the page behind it.'],
-    ['home', 'forecast', 'Your next 90 days of cash', 'Today\'s cash, minus what usually goes out and plus what usually comes in, day by day. Hover the line to see exactly which payments land on each day.'],
-    ['warnings', 'warning-list', 'Early warnings', 'Each customer and supplier has a usual payment day, amount and rhythm. When one breaks pattern (a customer late, a direct debit taken twice, a bill unusually large) it shows here, worst first. Filter by money in or out.'],
-    ['money', 'money-out', 'How money moves', 'Spend by month split into bank transfers, direct debits, cards and fees. Click a coloured segment and every table on the page filters to that payment method.'],
-    ['creditors', 'ageing', 'Who we owe', 'Unpaid supplier bills grouped by how late they are. Click a band, or a supplier in the next table, to see just those bills. Bills captured twice are flagged so they are not paid twice.'],
-    ['yoy', 'yoy-chart', 'This year against last', 'Each month beside the same month a year earlier. Hover a bar for the change. History starts in August 2025.'],
-    ['payroll', 'payroll-chart', 'Payroll growth', 'Solid bars are what was paid. Dashed bars project the next three years at the growth rate seen so far: a projection, not a plan.'],
-    ['costs', 'costs-chart', 'Fixed and variable', 'Fixed costs stay put whatever happens; variable ones move with activity. Click either in the legend to filter the category table below.'],
-    ['value', 'opportunities', 'Where spend creates value', 'Every cost ranked by how much an extra pound can grow the business, with where to put more and where to take from. Each suggestion shows the numbers behind it.'],
-    ['cards', 'company-cards', 'The company cards', 'Every card Seapoint issued, who holds it and what has gone on it. A frozen or cancelled card is greyed. Click a card to see only its payments.'],
-    ['cards', 'who-spent', 'Who used which card', 'Card payments credited to the person who holds the card. Click a name to see only their spending.'],
-    ['search', 'search-card', 'Find anything', 'Type a supplier, a person, an invoice reference or an amount and every matching row from every page comes up.'],
+    ["home", "questions", "Start here", "Every card asks a question the dashboard answers, with the headline already filled in. Click any card to open the page behind it.", "Welcome to CashCycle. It reads a company's live banking data from Seapoint and turns it into answers a founder can act on. Code works out every number. The A I only writes words and checks for risk. This is the home page. Each card asks a plain question, and shows the answer straight away."],
+    ["home", "forecast", "Your next 90 days of cash", "Today's cash, minus what usually goes out and plus what usually comes in, day by day. Hover the line to see exactly which payments land on each day.", "Below that is the ninety day cash forecast. It starts from today's cash, and places every regular payment in and out on the day it usually happens. Hover the line to see exactly what lands on each day."],
+    ["warnings", "warning-list", "Early warnings", "Each customer and supplier has a usual payment day, amount and rhythm. When one breaks pattern it shows here, worst first. Filter by money in or out.", "This is the early warning system. CashCycle learns each customer's and each supplier's usual payment day, amount and rhythm. When one breaks pattern, it shows here, worst first. Right now it has found four direct debits taken twice in September, a supplier direct debit six days late, and a customer two days late on their usual payment."],
+    ["money", "money-out", "How money moves", "Spend by month split into bank transfers, direct debits, cards and fees. Click a coloured segment and every table on the page filters to that payment method.", "Money in and out shows how the company pays and gets paid: bank transfers, direct debits, cards and bank fees, month by month. Click any coloured segment, and every table on the page filters to that payment method."],
+    ["creditors", "ageing", "Who we owe", "Unpaid supplier bills grouped by how late they are. Click a band, or a supplier, to see just those bills. Bills captured twice are flagged so they are not paid twice.", "Creditors shows who the company owes, grouped by how late each bill is. Click an age band or a supplier to drill in. Two bills were captured twice, and they are flagged so nobody pays them twice."],
+    ["yoy", "yoy-chart", "This year against last", "Each month beside the same month a year earlier. Hover a bar for the change. History starts in August 2025.", "Year on year puts each month beside the same month last year. September spending was up about a quarter on last September."],
+    ["payroll", "payroll-chart", "Payroll growth", "Solid bars are what was paid. Dashed bars project the next three years at the growth rate seen so far: a projection, not a plan.", "Payroll tracks the biggest cost. It has grown about eighteen percent a year. The dashed bars project the next three years at that rate. It is a projection, not a plan."],
+    ["costs", "costs-chart", "Fixed and variable", "Fixed costs stay put whatever happens; variable ones move with activity. Click either in the legend to filter the category table below.", "Fixed versus variable splits every cost into what stays put, and what moves with activity. About fifty five percent of running costs are fixed."],
+    ["value", "opportunities", "Where spend creates value", "Every cost ranked by how much an extra pound can grow the business, with where to put more and where to take from. Each suggestion shows the numbers behind it.", "Value of spend ranks every cost by how much an extra pound can grow the business. Marketing ranks first, hosting second, and overhead last. Each suggestion shows the numbers that triggered it."],
+    ["cards", "company-cards", "The company cards", "Every card Seapoint issued, who holds it and what has gone on it. A frozen or cancelled card is greyed. Click a card to see only its payments.", "Cards shows every company card, who holds it, and what has been spent on it. The travel card is frozen, but still has charges against it."],
+    ["cards", "who-spent", "Who used which card", "Card payments credited to the person who holds the card. Click a name to see only their spending.", "Every card payment is credited to the person holding the card. Click a name to see only their spending."],
+    ["search", "search-card", "Find anything", "Type a supplier, a person, an invoice reference or an amount and every matching row from every page comes up.", "Finally, search finds anything the dashboard holds: a supplier, a person, an invoice reference, or an amount. That is CashCycle. Automation you can defend to an auditor."],
   ];
-  let tourAt = -1;
+  let tourAt = -1, tourTimer = null, voiceOn = true;
   const tourEl = document.getElementById('tour');
+  const synth = window.speechSynthesis || null;
+  let voice = null;
+  function pickVoice() {
+    if (!synth) return; const vs = synth.getVoices(); if (!vs.length) return;
+    const pref = ['Daniel', 'Serena', 'Kate', 'Samantha', 'Google UK English Female', 'Google UK English Male'];
+    voice = pref.map(n => vs.find(v => v.name.startsWith(n))).find(Boolean) || vs.find(v => v.lang === 'en-GB') || vs.find(v => v.lang && v.lang.startsWith('en')) || null;
+  }
+  if (synth) { pickVoice(); try { synth.addEventListener('voiceschanged', pickVoice); } catch (e) {} }
+  function stopVoice() { clearTimeout(tourTimer); if (synth) try { synth.cancel(); } catch (e) {} }
+  function narrate(i) {
+    stopVoice();
+    if (!voiceOn || !synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+    const u = new SpeechSynthesisUtterance(TOUR[i][4]); if (voice) u.voice = voice; u.rate = 0.98; u.pitch = 1;
+    u.onend = () => { if (tourAt === i && voiceOn) tourTimer = setTimeout(() => tourShow(i + 1), 1200); };
+    try { synth.speak(u); } catch (e) {}
+  }
+  const voiceBtn = document.getElementById('tour-voice');
+  function setVoiceBtn() { voiceBtn.setAttribute('aria-pressed', String(voiceOn)); voiceBtn.textContent = voiceOn ? 'Voice on' : 'Voice off'; voiceBtn.hidden = !synth; }
+  voiceBtn.addEventListener('click', () => { voiceOn = !voiceOn; setVoiceBtn(); if (voiceOn && tourAt >= 0) narrate(tourAt); else stopVoice(); });
+  setVoiceBtn();
   function tourShow(i) {
     document.querySelectorAll('.tour-focus').forEach(el => el.classList.remove('tour-focus'));
-    if (i < 0 || i >= TOUR.length) { tourAt = -1; tourEl.hidden = true; document.getElementById('tour-start').focus(); return; }
+    if (i < 0 || i >= TOUR.length) { stopVoice(); tourAt = -1; tourEl.hidden = true; document.getElementById('tour-start').focus(); return; }
     tourAt = i; const [tab, target, title, text] = TOUR[i];
     if (current !== tab) showTab(tab, true);
     tourEl.hidden = false;
@@ -1041,6 +1061,7 @@
     const el = document.getElementById(target);
     if (el) { el.classList.add('tour-focus'); requestAnimationFrame(() => el.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })); }
     document.getElementById('tour-next').focus({ preventScroll: true });
+    narrate(i);
   }
   document.getElementById('tour-start').addEventListener('click', () => tourShow(0));
   document.getElementById('tour-next').addEventListener('click', () => tourShow(tourAt + 1));
