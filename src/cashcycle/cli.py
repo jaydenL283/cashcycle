@@ -195,6 +195,32 @@ def cmd_cashflow(args) -> int:
     return 0
 
 
+def cmd_ref(args) -> int:
+    from cashcycle import invoice_ref as ir
+
+    if args.ref_cmd == "make":
+        r = ir.next_ref(args.existing or [], args.prefix, args.customer, date.fromisoformat(args.date) if args.date else date.today())
+        print(f"{r.dashed()}   compact: {r.compact()}   period {r.period} seq {r.seq}" + (f" customer {r.customer_code}" if r.customer_code else ""))
+        return 0
+    if args.ref_cmd == "parse":
+        try:
+            r = ir.parse(args.text, prefix=args.prefix)
+        except ir.InvalidReference as e:
+            print(f"not a smart reference: {e}")
+            return 1
+        print(json.dumps({"prefix": r.prefix, "customer_code": r.customer_code, "year": r.year, "month": r.month, "seq": r.seq, "dashed": r.dashed(), "compact": r.compact()}, indent=2))
+        return 0
+    if args.ref_cmd == "match":
+        hits = ir.find_references(args.text, prefix=args.prefix)
+        if not hits:
+            print("no references found")
+            return 1
+        for h in hits:
+            print(f"found {h.invoice_ref.dashed()}  (as written: {h.reference!r})")
+        return 0
+    return 1
+
+
 def cmd_verify_log(args) -> int:
     audit = _audit(args)
     ok, problems = audit.verify()
@@ -240,6 +266,13 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("cashflow", help="how money comes in and goes out, recurring days, 90-day forecast; writes dashboard data")
     s.add_argument("--out-dir", default="out/dash")
     s.set_defaults(fn=cmd_cashflow)
+
+    s = sub.add_parser("ref", help="smart invoice references: PREFIX-CUST-YYMM-SSS")
+    rs = s.add_subparsers(dest="ref_cmd", required=True)
+    r = rs.add_parser("make", help="next reference for a month"); r.add_argument("--prefix", default="CS"); r.add_argument("--customer"); r.add_argument("--date"); r.add_argument("--existing", nargs="*", help="references already issued")
+    r = rs.add_parser("parse", help="decode a reference"); r.add_argument("text"); r.add_argument("--prefix")
+    r = rs.add_parser("match", help="find references inside payment text"); r.add_argument("text"); r.add_argument("--prefix", default="CS")
+    s.set_defaults(fn=cmd_ref)
 
     s = sub.add_parser("verify-log", help="verify the audit chain against the pinned head")
     s.set_defaults(fn=cmd_verify_log)

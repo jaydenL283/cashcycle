@@ -12,7 +12,8 @@ from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
 
 _NUMBER = re.compile(r"(?<![A-Za-z0-9])(\d[\d,]*(?:\.\d+)?)(?![\d])")
-_INVOICE_REF = re.compile(r"\b[A-Z]{2,5}-\d{2,8}\b")
+# INV-1043, CS-SRG-2610-001, CSSRG2610001: an invoice reference is not a number the model invented
+_INVOICE_REF = re.compile(r"\b[A-Z]{2,5}(?:-[A-Z0-9]{2,5})?-\d{2,8}(?:-\d{2,8})?\b|\b[A-Z]{2,9}\d{7,8}\b")
 _LINK = re.compile(r"(https?://|www\.)\S+", re.I)
 _BANK_DETAILS = re.compile(r"\b(sort\s*code|account\s*number|iban|swift|bic)\b|\b\d{2}-\d{2}-\d{2}\b|\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b", re.I)
 
