@@ -46,32 +46,101 @@
   .cf .bar-row .bar { height: 14px; border-radius: 4px; }
   .cf .bar-row .r { text-align: right; } .cf .bar-row .m { text-align: right; color: var(--color-fg-muted); }
   @media (max-width: 520px) { .cf .bar-row { grid-template-columns: 7rem 1fr 4rem; } .cf .bar-row .m { display: none; } }
+  .cf .qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--cds-gap-md); }
+  .cf .q { text-align: left; font: inherit; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); cursor: pointer; color: var(--color-fg); display: grid; gap: 4px; }
+  .cf .q:hover { border-color: var(--color-fg); }
+  .cf .q .qt { font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-body); }
+  .cf .q .qd { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .cf .q .qv { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-heading); margin-top: 2px; }
+  .cf .search { width: 100%; box-sizing: border-box; font: inherit; font-size: var(--cds-font-size-body); padding: 10px 12px; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); }
+  .cf .hit { border-top: 1px solid var(--color-border-line); padding: 8px 0; font-size: var(--cds-font-size-caption); display: grid; grid-template-columns: 11rem 1fr; gap: 8px; }
+  .cf .hit .ds { color: var(--color-fg-muted); } .cf .hit .kv b { font-weight: var(--cds-font-weight-medium); }
+  .cf .opp { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--cds-gap-sm); padding: var(--cds-pad-sm) 0; border-top: 1px solid var(--color-border-line); }
+  .cf .opp .num { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-title); line-height: 1; }
+  .cf .opp .area { font-weight: var(--cds-font-weight-medium); } .cf .opp .why { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-top: 2px; }
+  .cf .warn-row { display: grid; grid-template-columns: 5.5rem 1fr auto; gap: var(--cds-gap-sm); padding: var(--cds-pad-sm) 0; border-top: 1px solid var(--color-border-line); align-items: start; }
+  .cf .sev { display: inline-flex; align-items: center; gap: .4em; font-size: var(--cds-font-size-caption); text-transform: uppercase; letter-spacing: .03em; color: var(--color-fg-muted); }
+  .cf .sev::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--sevc); }
+  .cf .warn-row .wt { font-weight: var(--cds-font-weight-medium); }
+  .cf .warn-row .wd { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-top: 2px; max-width: 80ch; }
+  .cf .warn-row .wa { text-align: right; font-size: var(--cds-font-size-caption); white-space: nowrap; }
+  .cf .back { font: inherit; font-size: var(--cds-font-size-caption); background: none; border: none; color: var(--color-fg-muted); cursor: pointer; padding: 0; text-decoration: underline; }
 </style>
 
 <div class="cf">
   <div>
     <h1 id="title">CashCycle Cash Flow</h1>
     <p class="takeaway" id="takeaway" data-source="kpis recurring creditors_summary payroll_summary">—</p>
-    <p class="src">Snapshot of Seapoint data for Hackathon - R3CON Tech, fetched 20 Oct 2026. Forecasts and projections are estimates from past patterns, not commitments.</p>
+    <p class="src">Snapshot of Seapoint data for Hackathon - R3CON Tech, fetched 20 Oct 2026. Forecasts and projections are estimates from past patterns, not commitments. Click any tab or card; every number can be traced in Sources.</p>
   </div>
 
   <div class="tabs" role="tablist" id="tabs">
-    <button class="tab" role="tab" data-tab="overview" id="tab-overview">Overview</button>
+    <button class="tab" role="tab" data-tab="home" id="tab-home">Home</button>
+    <button class="tab" role="tab" data-tab="warnings" id="tab-warnings">Early warnings <span id="warn-count"></span></button>
+    <button class="tab" role="tab" data-tab="money" id="tab-money">Money in &amp; out</button>
     <button class="tab" role="tab" data-tab="creditors" id="tab-creditors">Creditors</button>
     <button class="tab" role="tab" data-tab="yoy" id="tab-yoy">Year on year</button>
     <button class="tab" role="tab" data-tab="payroll" id="tab-payroll">Payroll</button>
     <button class="tab" role="tab" data-tab="costs" id="tab-costs">Fixed vs variable</button>
+    <button class="tab" role="tab" data-tab="value" id="tab-value">Value of spend</button>
     <button class="tab" role="tab" data-tab="cards" id="tab-cards">Cards</button>
+    <button class="tab" role="tab" data-tab="search" id="tab-search">Search</button>
   </div>
 
-  <!-- OVERVIEW -->
-  <section class="page" id="overview" role="tabpanel">
+  <!-- HOME -->
+  <section class="page" id="home" role="tabpanel">
     <div class="tiles">
       <div class="tile"><div class="label">Cash today</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=opening_cash">—</div><div class="sub">Eligible cash across all accounts, GBP</div></div>
       <div class="tile"><div class="label">Forecast in 90 days</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=closing_90d">—</div><div class="sub">If the recurring pattern holds</div></div>
       <div class="tile"><div class="label">Lowest point</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=lowest_balance">—</div><div class="sub" data-source="kpis" data-field="value" data-where="metric=lowest_date">—</div></div>
-      <div class="tile"><div class="label">Card spend per day</div><div class="big dash-skeleton" data-source="kpis" data-field="value" data-where="metric=card_daily_run_rate">—</div><div class="sub">Three-month average, all cards</div></div>
+      <div class="tile"><div class="label">Open supplier bills</div><div class="big" data-source="creditors_summary" data-field="value" data-where="metric=open_gbp_total">—</div><div class="sub">GBP bills not yet paid</div></div>
     </div>
+    <div class="card" id="questions">
+      <h2>What do you want to know?</h2>
+      <p class="note">Each card opens the page that answers it.</p>
+      <div class="qgrid" id="qgrid">
+        <button class="q" data-go="warnings"><span class="qt">Is anything going wrong with payments?</span><span class="qd">Customers who have not paid on their usual day, and creditor payments that are missing, doubled or unusually large</span><span class="qv" id="qv-warnings">—</span></button>
+        <button class="q" data-go="money"><span class="qt">How does money come in and go out?</span><span class="qd">By bank transfer, direct debit, card or fee, and on which day of the month</span><span class="qv" id="qv-money">—</span></button>
+        <button class="q" data-go="creditors"><span class="qt">Who do we owe, and how late are we?</span><span class="qd">Open supplier bills aged by due date, and how fast we pay</span><span class="qv" id="qv-creditors">—</span></button>
+        <button class="q" data-go="yoy"><span class="qt">How does this year compare with last?</span><span class="qd">Same month, side by side</span><span class="qv" id="qv-yoy">—</span></button>
+        <button class="q" data-go="payroll"><span class="qt">How fast is payroll growing?</span><span class="qd">Monthly payroll, growth rate and a three-year projection</span><span class="qv" id="qv-payroll">—</span></button>
+        <button class="q" data-go="costs"><span class="qt">What is fixed and what is variable?</span><span class="qd">Costs split by category, with how much each swings</span><span class="qv" id="qv-costs">—</span></button>
+        <button class="q" data-go="value"><span class="qt">Where does spend create the most value?</span><span class="qd">Every cost ranked by leverage, with where to put more</span><span class="qv" id="qv-value">—</span></button>
+        <button class="q" data-go="cards"><span class="qt">Who used which card?</span><span class="qd">Card payments credited to the card holder</span><span class="qv" id="qv-cards">—</span></button>
+        <button class="q" data-go="search"><span class="qt">Find anything</span><span class="qd">Search every supplier, customer, person, reference and amount the dashboard holds</span><span class="qv">Search</span></button>
+      </div>
+    </div>
+    <div class="card" id="forecast">
+      <h2>90-day cash forecast</h2>
+      <p class="note">Opening cash, plus recurring customer payments, minus recurring outgoings on their usual days, card spend at the daily average, and open supplier bills on their due date. Hover for what lands each day.</p>
+      <div class="plot" id="fc-plot" data-source="forecast_days"></div>
+      <div class="scroll" style="margin-top: var(--cds-gap-md)">
+        <table id="fc-table" data-source="forecast_weekly" data-row-key="week_start">
+          <thead><tr><th data-field="week_start">Week starting</th><th class="n" data-field="inflow">Money in</th><th class="n" data-field="outflow">Money out</th><th class="n" data-field="closing_balance">Closing cash</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- EARLY WARNINGS -->
+  <section class="page" id="warnings" role="tabpanel" hidden>
+    <div class="tiles">
+      <div class="tile"><div class="label">Act now</div><div class="big" id="w-high" data-source="warnings">—</div><div class="sub">High: money lost or a supplier about to chase</div></div>
+      <div class="tile"><div class="label">Check this week</div><div class="big" id="w-medium" data-source="warnings">—</div><div class="sub">Medium: off-pattern, needs a look</div></div>
+      <div class="tile"><div class="label">Heads-up</div><div class="big" id="w-info" data-source="warnings">—</div><div class="sub">Info: large payments due, one-off receipts</div></div>
+    </div>
+    <div class="card" id="warning-list">
+      <h2>Early warnings</h2>
+      <p class="note">Each payee's usual day, amount and cadence is learnt from its own history. Money in warns when a customer misses or short-pays; money out warns when a creditor payment is missing, taken twice, much larger than usual, or goes to a new payee. Click a filter to narrow the list.</p>
+      <div class="chips" id="w-dir"></div>
+      <div class="chips" id="w-sev"></div>
+      <div id="w-list" data-source="warnings"></div>
+    </div>
+  </section>
+
+  <!-- MONEY IN & OUT -->
+  <section class="page" id="money" role="tabpanel" hidden>
     <div class="grid2">
       <div class="card" id="money-in">
         <h2>How money comes in</h2>
@@ -99,17 +168,6 @@
         <div class="legend"><span style="--sw: var(--color-ok)">Money in</span><span style="--sw: var(--cds-chart-muted)">Money out</span></div>
       </div>
     </div>
-    <div class="card" id="forecast">
-      <h2>90-day cash forecast</h2>
-      <p class="note">Opening cash, plus recurring customer payments, minus recurring outgoings on their usual days, card spend at the daily average, and open supplier bills on their due date. Hover for what lands each day.</p>
-      <div class="plot" id="fc-plot" data-source="forecast_days"></div>
-      <div class="scroll" style="margin-top: var(--cds-gap-md)">
-        <table id="fc-table" data-source="forecast_weekly" data-row-key="week_start">
-          <thead><tr><th data-field="week_start">Week starting</th><th class="n" data-field="inflow">Money in</th><th class="n" data-field="outflow">Money out</th><th class="n" data-field="closing_balance">Closing cash</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
     <div class="grid2">
       <div class="card" id="recurring-in">
         <h2>Who pays us, and when</h2>
@@ -124,7 +182,7 @@
       </div>
       <div class="card" id="recurring-out">
         <h2>What we pay, and when</h2>
-        <p class="note">Suppliers, payroll and fees seen in at least two months, largest first. Filtered by the method you picked above.</p>
+        <p class="note">Suppliers, payroll and fees seen in at least two months, largest first. Filtered by the method you picked.</p>
         <div class="scroll">
           <table id="rout-table" data-source="recurring_out" data-row-key="name">
             <thead><tr><th data-field="name">Payee</th><th data-field="method">Method</th><th data-field="category">Category</th><th class="n" data-field="usual_day">Day</th><th class="n" data-field="typical_amount">Typical</th></tr></thead>
@@ -134,7 +192,6 @@
       </div>
     </div>
   </section>
-
   <!-- CREDITORS -->
   <section class="page" id="creditors" role="tabpanel" hidden>
     <div class="tiles">
@@ -182,7 +239,6 @@
       </div>
     </div>
   </section>
-
   <!-- YEAR ON YEAR -->
   <section class="page" id="yoy" role="tabpanel" hidden>
     <div class="tiles" id="year-tiles" data-source="year_totals"></div>
@@ -204,7 +260,6 @@
       </div>
     </div>
   </section>
-
   <!-- PAYROLL -->
   <section class="page" id="payroll" role="tabpanel" hidden>
     <div class="tiles">
@@ -238,7 +293,6 @@
       </div>
     </div>
   </section>
-
   <!-- COSTS -->
   <section class="page" id="costs" role="tabpanel" hidden>
     <div class="tiles">
@@ -265,6 +319,38 @@
     </div>
   </section>
 
+  <!-- VALUE -->
+  <section class="page" id="value" role="tabpanel" hidden>
+    <div class="tiles">
+      <div class="tile"><div class="label">Revenue covers running costs</div><div class="big" data-source="leverage_summary" data-field="value" data-where="metric=revenue_covers_opex_pct">—</div><div class="sub">Average month, <span data-source="leverage_summary" data-field="value" data-where="metric=months">—</span></div></div>
+      <div class="tile"><div class="label">Growth spend per month</div><div class="big" data-source="leverage_summary" data-field="value" data-where="metric=growth_spend_monthly">—</div><div class="sub">Marketing and advertising; revenue per £1 of it: <span data-source="leverage_summary" data-field="value" data-where="metric=revenue_per_growth_pound">—</span></div></div>
+      <div class="tile"><div class="label">Enabling plus overhead per month</div><div class="big" data-source="leverage_summary" data-field="value" data-where="metric=overhead_plus_enable_monthly">—</div><div class="sub">The lowest-leverage money: candidates to redirect</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card" id="by-role">
+        <h2>Spend by the value it creates</h2>
+        <p class="note">Growth wins customers, delivery runs the product, build improves it, enable helps the team, overhead keeps the lights on. Click a role to filter the ranking.</p>
+        <div class="bars" id="role-bars" data-source="leverage_by_role"></div>
+        <div class="legend"><span style="--sw: var(--cds-chart-muted)">fixed part</span><span style="--sw: var(--color-fg)">variable part shown as the darker bar</span></div>
+      </div>
+      <div class="card" id="opportunities">
+        <h2>Where to put more, where to take from</h2>
+        <p class="note">Ranked by leverage. Each one cites the numbers that triggered it; the action is a judgement for you to weigh.</p>
+        <div id="opp-list" data-source="leverage_opportunities"></div>
+      </div>
+    </div>
+    <div class="card" id="leverage-table-card">
+      <h2>Every cost line, ranked</h2>
+      <p class="note">Leverage score = how much an extra pound can compound (role) times how easily it can be moved (variable scores above fixed). Trend compares the last three months with the first three. Revenue correlation is weak evidence with 14 months.</p>
+      <div class="chips" id="role-chips"></div>
+      <div class="scroll">
+        <table id="lev-table" data-source="leverage_rows" data-row-key="category">
+          <thead><tr><th class="n" data-field="rank">#</th><th data-field="category">Category</th><th data-field="role">Value role</th><th data-field="kind">Kind</th><th class="n" data-field="leverage_score">Leverage</th><th class="n" data-field="avg_monthly">Avg per month</th><th class="n" data-field="share_of_opex_pct">Share</th><th class="n" data-field="trend_pct">Trend</th><th class="n" data-field="revenue_correlation">Rev. corr.</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
   <!-- CARDS -->
   <section class="page" id="cards" role="tabpanel" hidden>
     <div class="grid2">
@@ -290,6 +376,16 @@
           </table>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section class="page" id="search" role="tabpanel" hidden>
+    <div class="card" id="search-card">
+      <h2>Find anything the dashboard holds</h2>
+      <p class="note">Type a supplier, customer, staff member, invoice reference, vendor, category, month or amount. Every dataset is searched.</p>
+      <input class="search" id="search-box" type="search" placeholder="e.g. Snowflake, Priya, SNF-INV-2026-10, 21800, direct debit" aria-label="Search" autocomplete="off">
+      <div id="search-results" style="margin-top: var(--cds-gap-md)"></div>
     </div>
   </section>
 </div>
@@ -378,8 +474,9 @@
   function signed(v, goodWhenNegative) { const s = document.createElement('span'); s.textContent = (v == null || v === '') ? '—' : (Number(v) > 0 ? '+' : '') + String(v); if (v !== null && v !== '' && Number(v) !== 0) s.className = (Number(v) < 0) === !!goodWhenNegative ? 'good' : 'bad'; return s; }
 
   // ---- tabs ---------------------------------------------------------------
-  const TABS = ['overview', 'creditors', 'yoy', 'payroll', 'costs', 'cards'];
-  let current = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'overview';
+  const TABS = ['home', 'warnings', 'money', 'creditors', 'yoy', 'payroll', 'costs', 'value', 'cards', 'search'];
+  let current = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+  document.getElementById('qgrid').addEventListener('click', (e) => { const b = e.target.closest('.q'); if (b) { showTab(b.dataset.go, true); window.scrollTo({ top: 0 }); } });
   function showTab(name, setLink) {
     current = name;
     for (const t of TABS) { document.getElementById(t).hidden = t !== name; const b = document.querySelector(`.tab[data-tab="${t}"]`); b.setAttribute('aria-selected', String(t === name)); b.tabIndex = t === name ? 0 : -1; }
@@ -560,6 +657,33 @@
   const catCols = [['category'], ['kind', v => pill(v)], ['avg_monthly', fmtMoney, 'n'], ['total', fmtMoney, 'n'], ['swing_pct', v => v == null ? '—' : d3.format('.0f')(v) + '%', 'n']];
   const holderCols = [['holder'], ['card'], ['card_status', v => pill(v, v === 'active' ? '' : 'warn')], ['category'], ['vendor'], ['total', fmtMoney, 'n'], ['transactions', v => String(v), 'n']];
   const cvCols = [['vendor'], ['category'], ['total', fmtMoney, 'n'], ['payments', v => String(v), 'n']];
+  const levCols = [['rank', v => String(v), 'n'], ['category'], ['role', v => pill(v)], ['kind', v => pill(v)], ['leverage_score', v => String(v), 'n'], ['avg_monthly', fmtMoney, 'n'], ['share_of_opex_pct', v => v == null ? '—' : v + '%', 'n'], ['trend_pct', v => v == null ? '—' : signed(v, false), 'n'], ['revenue_correlation', v => v == null ? '—' : String(v), 'n']];
+  sortable(document.getElementById('lev-table'), () => (dash.params().role ? rowsOf('leverage_rows').filter(r => r.role === dash.params().role) : rowsOf('leverage_rows')), levCols);
+  const SEARCH_SETS = [['kpis', 'Headline figures'], ['flows_by_month', 'Money in and out by method'], ['recurring', 'Recurring payments'], ['forecast_days', 'Daily forecast'], ['forecast_weekly', 'Weekly forecast'], ['card_spend_by_holder', 'Card spend by staff member'], ['creditors_open', 'Open supplier bills'], ['creditors_paid', 'Paid bills'], ['creditors_by_vendor', 'Creditors by supplier'], ['yoy_months', 'Year on year'], ['payroll_monthly', 'Payroll by month'], ['payroll_people', 'People on payroll'], ['payroll_projection', 'Payroll projection'], ['costs_by_month', 'Fixed and variable by month'], ['costs_by_category', 'Costs by category'], ['card_vendors', 'Card spend by vendor'], ['leverage_rows', 'Spend ranked by value'], ['leverage_opportunities', 'Opportunities'], ['warnings', 'Early warnings']];
+  let searchTimer = null;
+  document.getElementById('search-box').addEventListener('input', (e) => { clearTimeout(searchTimer); const v = e.target.value; searchTimer = setTimeout(() => dash.setParams({ q: v || null }), 250); });
+  function renderSearch(q) {
+    const out = document.getElementById('search-results'); out.innerHTML = '';
+    const needle = String(q || '').trim().toLowerCase().replace(/[,£\s]/g, '');
+    if (!needle) { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'Start typing to search.'; out.appendChild(p); return; }
+    let total = 0;
+    for (const [id, title] of SEARCH_SETS) {
+      const res = dash.data(id); if (res.status !== 'ok') continue;
+      const hits = [];
+      res.data.forEach((row, i) => { const hay = Object.values(row).map(v => String(v ?? '')).join(' ').toLowerCase().replace(/[,£\s]/g, ''); if (hay.includes(needle)) hits.push([i, row]); });
+      if (!hits.length) continue;
+      total += hits.length;
+      const h = document.createElement('div'); h.style.cssText = 'margin-top: var(--cds-gap-md); font-weight: var(--cds-font-weight-medium)'; h.textContent = `${title} (${hits.length})`; out.appendChild(h);
+      for (const [i, row] of hits.slice(0, 40)) {
+        const d = document.createElement('div'); d.className = 'hit'; d.setAttribute('data-source', id); d.setAttribute('data-row', String(i));
+        const ds = document.createElement('div'); ds.className = 'ds'; ds.textContent = title;
+        const kv = document.createElement('div'); kv.className = 'kv';
+        for (const [k, v] of Object.entries(row)) { if (v == null || v === '' || k === 'participant_id') continue; const b = document.createElement('b'); b.textContent = k.replace(/_/g, ' ') + ': '; kv.appendChild(b); kv.appendChild(document.createTextNode((typeof v === 'number' && Math.abs(v) >= 100 ? d3.format(',.2f')(v) : String(v)) + '   ')); }
+        d.append(ds, kv); out.appendChild(d);
+      }
+    }
+    if (!total) { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'Nothing matched. Try part of a name or reference.'; out.appendChild(p); }
+  }
   const rowsOf = (id) => dash.data(id).status === 'ok' ? dash.data(id).data : [];
   sortable(document.getElementById('fc-table'), () => rowsOf('forecast_weekly'), fcCols);
   sortable(document.getElementById('rin-table'), () => filterMethod(rowsOf('recurring_in')), rinCols);
@@ -607,7 +731,21 @@
     } else tk.textContent = '—';
 
     const pickMethod = (v) => dash.setParams({ method: v });
-    if (current === 'overview') {
+    if (current === 'home') {
+      const fc = dash.data('forecast_days'); const fcPlot = document.getElementById('fc-plot'); if (ready(fcPlot, fc)) forecastLine(fcPlot, fc.data);
+      fillTable(document.getElementById('fc-table'), rowsOf('forecast_weekly'), fcCols);
+      const gv = (id, k) => { const r = dash.data(id); return r.status === 'ok' ? r.data.find(x => x.metric === k)?.value : null; };
+      const set = (id, text) => { document.getElementById(id).textContent = text ?? '—'; };
+      const ms = dash.data('method_share');
+      set('qv-money', ms.status === 'ok' && ms.data.length ? `${ms.data[0].method} ${d3.format('.0%')(ms.data[0].share)} of spend` : null);
+      set('qv-creditors', gv('creditors_summary', 'open_gbp_total') != null ? `${fmtBig(Number(gv('creditors_summary', 'open_gbp_total')))} open, paid in ${gv('creditors_summary', 'avg_days_to_pay')} days` : null);
+      const yt = dash.data('year_totals'); set('qv-yoy', yt.status === 'ok' && yt.data.length >= 2 ? `${fmtBig(Number(yt.data[1].avg_monthly_out))}/month vs ${fmtBig(Number(yt.data[0].avg_monthly_out))}` : null);
+      set('qv-payroll', gv('payroll_summary', 'annualised_growth_pct') != null ? `${fmtPct(gv('payroll_summary', 'annualised_growth_pct'))} a year` : null);
+      set('qv-costs', gv('costs_summary', 'avg_fixed_share_pct') != null ? `${gv('costs_summary', 'avg_fixed_share_pct')}% fixed` : null);
+      const lr = dash.data('leverage_rows'); set('qv-value', lr.status === 'ok' && lr.data.length ? `#1 ${lr.data[0].category}` : null);
+      const hs = dash.data('card_spend_by_holder'); set('qv-cards', hs.status === 'ok' ? `${new Set(hs.data.map(r => r.holder)).size} staff, ${fmtMoney(d3.sum(hs.data, r => Number(r.total)))}` : null);
+    }
+    if (current === 'money') {
       const flows = dash.data('flows_by_month');
       const inPlot = document.getElementById('in-plot'), outPlot = document.getElementById('out-plot');
       if (ready(inPlot, flows)) stackedMonths(inPlot, flows.data, 'in', document.getElementById('in-legend'), pickMethod);
@@ -615,8 +753,6 @@
       const share = dash.data('method_share'); const shareEl = document.getElementById('share-list');
       if (share.status === 'ok') shareList(shareEl, share.data, pickMethod); else shareEl.innerHTML = '';
       const dom = document.getElementById('dom-plot'); if (ready(dom, rec)) dayOfMonth(dom, rec.data);
-      const fc = dash.data('forecast_days'); const fcPlot = document.getElementById('fc-plot'); if (ready(fcPlot, fc)) forecastLine(fcPlot, fc.data);
-      fillTable(document.getElementById('fc-table'), rowsOf('forecast_weekly'), fcCols);
       chips(document.getElementById('method-chips'), METHODS.filter(m => rowsOf('recurring_in').concat(rowsOf('recurring_out')).some(r => r.method === m)), P.method, pickMethod, 'All methods');
       fillTable(document.getElementById('rin-table'), filterMethod(rowsOf('recurring_in')), rinCols);
       fillTable(document.getElementById('rout-table'), filterMethod(rowsOf('recurring_out')), routCols);
@@ -656,6 +792,53 @@
       if (ready(plot, cm)) costsBars(plot, cm.data, document.getElementById('costs-legend'), (v) => dash.setParams({ kind: v }));
       chips(document.getElementById('kind-chips'), ['fixed', 'variable', 'capital', 'tax'], P.kind, (v) => dash.setParams({ kind: v }), 'All kinds');
       fillTable(document.getElementById('cat-table'), filterKind(rowsOf('costs_by_category')), catCols);
+    }
+    const wr = dash.data('warnings');
+    if (wr.status === 'ok') { const hi = wr.data.filter(w => w.severity === 'high').length; document.getElementById('warn-count').textContent = hi ? '(' + hi + ')' : ''; const q = document.getElementById('qv-warnings'); if (q) q.textContent = `${hi} to act on now, ${wr.data.filter(w => w.severity === 'medium').length} to check`; }
+    if (current === 'warnings') {
+      const rows = wr.status === 'ok' ? wr.data : [];
+      for (const sv of ['high', 'medium', 'info']) document.getElementById('w-' + sv).textContent = wr.status === 'ok' ? String(rows.filter(w => w.severity === sv).length) : '—';
+      chips(document.getElementById('w-dir'), ['money in', 'money out'], P.wdir, (v) => dash.setParams({ wdir: v }), 'Money in and out');
+      chips(document.getElementById('w-sev'), ['high', 'medium', 'info'], P.wsev, (v) => dash.setParams({ wsev: v }), 'All levels');
+      const list = document.getElementById('w-list'); list.innerHTML = '';
+      const sevc = { high: 'var(--color-bad)', medium: 'var(--color-warn)', info: 'var(--cds-chart-muted)' };
+      const shown = rows.filter(w => (!P.wdir || ('money ' + w.direction) === P.wdir) && (!P.wsev || w.severity === P.wsev));
+      for (const w of shown) {
+        const d = document.createElement('div'); d.className = 'warn-row'; d.setAttribute('data-source', 'warnings'); d.setAttribute('data-where', 'id=' + w.id);
+        const sv = document.createElement('div'); sv.className = 'sev'; sv.style.setProperty('--sevc', sevc[w.severity]); sv.textContent = w.severity;
+        const body = document.createElement('div'); const t = document.createElement('div'); t.className = 'wt'; t.textContent = (w.direction === 'in' ? 'Money in · ' : 'Money out · ') + w.title; const dd = document.createElement('div'); dd.className = 'wd'; dd.textContent = w.detail; body.append(t, dd);
+        const a = document.createElement('div'); a.className = 'wa';
+        const amt = w.actual_amount ?? w.expected_amount; a.textContent = amt != null ? fmtMoney(amt) : '';
+        if (w.days_late != null) { const l = document.createElement('div'); l.className = w.severity === 'high' ? 'bad' : 'warn'; l.textContent = w.days_late + ' days'; a.appendChild(l); }
+        d.append(sv, body, a); list.appendChild(d);
+      }
+      if (!shown.length) { const p = document.createElement('p'); p.className = 'note'; p.textContent = wr.status === 'ok' ? 'Nothing matches this filter.' : ''; list.appendChild(p); }
+    }
+    if (current === 'value') {
+      setKpi('[data-source="leverage_summary"]', 'leverage_summary', (m, v) => m === 'revenue_covers_opex_pct' ? v + '%' : m === 'months' ? String(v) : m === 'revenue_per_growth_pound' ? '£' + gbp2(v) : fmtBig(Number(v)));
+      const br = dash.data('leverage_by_role'); const el = document.getElementById('role-bars'); el.innerHTML = '';
+      if (br.status === 'ok') { const max = d3.max(br.data, r => Number(r.avg_monthly)) || 1; const picked = P.role ?? null;
+        for (const r of br.data) { const row = document.createElement('div'); row.className = 'bar-row'; row.style.cursor = 'pointer'; row.addEventListener('click', () => dash.setParams({ role: picked === r.role ? null : r.role }));
+          const name = document.createElement('span'); name.textContent = r.role; if (picked === r.role) name.style.fontWeight = 'var(--cds-font-weight-medium)';
+          const wrap = document.createElement('div'); wrap.style.cssText = 'display:flex;gap:2px;opacity:' + (picked && picked !== r.role ? .35 : 1);
+          const vb = document.createElement('div'); vb.className = 'bar'; vb.style.background = 'var(--color-fg)'; vb.style.width = (Number(r.variable) / max * 100) + '%'; vb.title = 'variable';
+          const fb = document.createElement('div'); fb.className = 'bar'; fb.style.background = 'var(--cds-chart-muted)'; fb.style.width = (Number(r.fixed) / max * 100) + '%'; fb.title = 'fixed';
+          wrap.append(vb, fb);
+          const amt = document.createElement('span'); amt.className = 'r'; amt.setAttribute('data-source', 'leverage_by_role'); amt.setAttribute('data-field', 'avg_monthly'); amt.setAttribute('data-where', 'role=' + r.role); amt.textContent = fmtMoney(r.avg_monthly);
+          const sh = document.createElement('span'); sh.className = 'm'; sh.setAttribute('data-source', 'leverage_by_role'); sh.setAttribute('data-field', 'share_pct'); sh.setAttribute('data-where', 'role=' + r.role); sh.textContent = r.share_pct + '% of running costs';
+          row.append(name, wrap, amt, sh); el.appendChild(row); } }
+      const op = dash.data('leverage_opportunities'); const ol = document.getElementById('opp-list'); ol.innerHTML = '';
+      if (op.status === 'ok') for (const o of op.data) { const d = document.createElement('div'); d.className = 'opp'; d.setAttribute('data-source', 'leverage_opportunities'); d.setAttribute('data-where', 'priority=' + o.priority);
+        const n = document.createElement('div'); n.className = 'num'; n.textContent = o.priority;
+        const t = document.createElement('div'); const a = document.createElement('div'); a.className = 'area'; a.textContent = o.area + ': ' + o.action; const w = document.createElement('div'); w.className = 'why'; w.textContent = o.why; t.append(a, w);
+        d.append(n, t); ol.appendChild(d); }
+      chips(document.getElementById('role-chips'), ['growth', 'delivery', 'build', 'enable', 'overhead'], P.role, (v) => dash.setParams({ role: v }), 'All roles');
+      fillTable(document.getElementById('lev-table'), (P.role ? rowsOf('leverage_rows').filter(r => r.role === P.role) : rowsOf('leverage_rows')), levCols);
+    }
+    if (current === 'search') {
+      const box = document.getElementById('search-box');
+      if (box !== document.activeElement) box.value = P.q ?? '';
+      renderSearch(P.q ?? '');
     }
     if (current === 'cards') {
       const holders = Array.from(new Set(rowsOf('card_spend_by_holder').map(r => r.holder)));

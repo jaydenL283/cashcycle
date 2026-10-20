@@ -60,4 +60,4 @@ def test_fixed_vs_variable():
 
 def test_dashboard_files_written(tmp_path):
     files = write_dashboard_files(build_insights(LIVE, AS_OF), tmp_path)
-    assert len(files) == 15 and all(f.exists() for f in files)
+    assert len(files) == 20 and all(f.exists() for f in files)

@@ -226,6 +226,8 @@ def costs(spend_groups: list[dict], categories: dict[str, str], as_of: date) -> 
 
 
 def build_insights(live: Path, as_of: date) -> dict:
+    from cashcycle.leverage import build_leverage
+
     cats = {c["id"]: c["name"] for c in _read(live, "categories.json")["data"]}
     spend = _read(live, "spend_by_category_month.json")["data"]
     monthly = _read(live, "monthly_in_out_all_time.json")["data"]
@@ -240,6 +242,8 @@ def build_insights(live: Path, as_of: date) -> dict:
         "payroll": payroll(spend, cats, runs, as_of),
         "costs": costs(spend, cats, as_of),
         "card_vendors": sorted(vendors, key=lambda v: -v["total"]),
+        "leverage": build_leverage(live, as_of),
+        "warnings": __import__("cashcycle.early_warning", fromlist=["build_warnings"]).build_warnings(live, as_of),
     }
 
 
@@ -261,6 +265,11 @@ def write_dashboard_files(ins: dict, out: Path) -> list[Path]:
         "costs_by_category.json": ins["costs"]["by_category"],
         "costs_summary.json": [{"metric": k, "value": v} for k, v in ins["costs"]["summary"].items()],
         "card_vendors.json": ins["card_vendors"],
+        "leverage_rows.json": ins["leverage"]["rows"],
+        "leverage_by_role.json": ins["leverage"]["by_role"],
+        "leverage_summary.json": [{"metric": k, "value": v} for k, v in ins["leverage"]["summary"].items()],
+        "leverage_opportunities.json": ins["leverage"]["opportunities"],
+        "warnings.json": [{**w, "id": i + 1} for i, w in enumerate(ins["warnings"])],
     }
     written = []
     for name, data in files.items():

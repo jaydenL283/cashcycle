@@ -221,6 +221,21 @@ def cmd_ref(args) -> int:
     return 1
 
 
+def cmd_warnings(args) -> int:
+    from cashcycle.early_warning import build_warnings
+
+    ws = build_warnings(Path(args.live or "data/live/r3con-tech"), date.fromisoformat(args.as_of) if args.as_of else date(2026, 10, 20))
+    if args.json:
+        print(json.dumps(ws, indent=2))
+        return 0
+    for direction, label in (("in", "MONEY IN"), ("out", "MONEY OUT")):
+        print(label)
+        for w in [w for w in ws if w["direction"] == direction]:
+            print(f"  [{w['severity'].upper():6}] {w['title']}")
+            print(f"           {w['detail']}")
+    return 0
+
+
 def cmd_verify_log(args) -> int:
     audit = _audit(args)
     ok, problems = audit.verify()
@@ -273,6 +288,10 @@ def build_parser() -> argparse.ArgumentParser:
     r = rs.add_parser("parse", help="decode a reference"); r.add_argument("text"); r.add_argument("--prefix")
     r = rs.add_parser("match", help="find references inside payment text"); r.add_argument("text"); r.add_argument("--prefix", default="CS")
     s.set_defaults(fn=cmd_ref)
+
+    s = sub.add_parser("warnings", help="early warnings from customer and creditor payment patterns")
+    s.add_argument("--json", action="store_true")
+    s.set_defaults(fn=cmd_warnings)
 
     s = sub.add_parser("verify-log", help="verify the audit chain against the pinned head")
     s.set_defaults(fn=cmd_verify_log)
