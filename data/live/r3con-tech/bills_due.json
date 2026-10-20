@@ -1,0 +1,435 @@
+{
+"object": "aggregate",
+"source": "seapoint_mcp:query_invoices (aggregate)",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"by_vendor": {
+"where": {
+"is_paid": false
+},
+"aggregate": {
+"group_by": [
+{
+"field": "vendor_name"
+}
+],
+"metrics": [
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "owed"
+},
+{
+"function": "count",
+"as": "bills"
+},
+{
+"function": "min",
+"field": "due_date",
+"as": "soonest_due"
+}
+]
+}
+},
+"total": {
+"where": {
+"is_paid": false
+}
+},
+"overdue": {
+"where": {
+"is_paid": false,
+"due_date": {
+"lt": "2026-10-20"
+}
+}
+},
+"due_14d": {
+"where": {
+"is_paid": false,
+"due_date": {
+"gte": "2026-10-20",
+"lte": "2026-11-03"
+}
+}
+}
+},
+"data": {
+"by_vendor": [
+{
+"metrics": {
+"owed": 43600,
+"bills": 2,
+"soonest_due": "2026-10-15T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Snowflake Computing UK Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 33600,
+"bills": 1,
+"soonest_due": "2026-10-25T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Remote People Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 14400,
+"bills": 1,
+"soonest_due": "2026-10-20T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Fathom Talent Partners Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 7671.29,
+"bills": 1,
+"soonest_due": "2026-10-19T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Nordhaus Studio BV"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 7204.2,
+"bills": 1,
+"soonest_due": "2026-10-24T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Amazon Web Services UK Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 6800,
+"bills": 2,
+"soonest_due": "2026-11-06T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Clearview Media Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 6300,
+"bills": 1,
+"soonest_due": "2026-10-09T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Lodgewood Travel Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 4250,
+"bills": 1,
+"soonest_due": "2026-11-05T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Halberd Security Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 2950,
+"bills": 1,
+"soonest_due": "2026-11-01T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "WeWork UK Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 2800,
+"bills": 1,
+"soonest_due": "2026-10-05T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Sentry"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 2750,
+"bills": 1,
+"soonest_due": "2026-10-13T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Harrison & Webb Solicitors LLP"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 2480,
+"bills": 1,
+"soonest_due": "2026-11-07T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "HubSpot UK Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 2150,
+"bills": 1,
+"soonest_due": "2026-11-10T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Wren & Fielding LLP"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 1950,
+"bills": 2,
+"soonest_due": "2026-10-07T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Northwind Facilities Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 1800,
+"bills": 1,
+"soonest_due": "2026-10-26T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Connolly Accountants Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 1564.6,
+"bills": 1,
+"soonest_due": "2026-11-01T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Meridian Translations BV"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 1240,
+"bills": 1,
+"soonest_due": "2026-09-23T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Meridian Insurance Brokers Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 1152.48,
+"bills": 2,
+"soonest_due": "2026-09-15T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Harbourline Logistics Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 1049.62,
+"bills": 1,
+"soonest_due": "2026-10-10T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Anthropic, PBC"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 486,
+"bills": 1,
+"soonest_due": "2026-10-23T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "Slack Technologies Ltd"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+{
+"metrics": {
+"owed": 135,
+"bills": 1,
+"soonest_due": "2026-10-20T00:00:00.000Z"
+},
+"group": {
+"vendor_name": "PyCon UK Society"
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+}
+],
+"total": {
+"metrics": {
+"owed": 146333.19,
+"bills": 25
+},
+"money": {
+"owed": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+"overdue": {
+"metrics": {
+"overdue": 67900.91,
+"bills": 11
+},
+"money": {
+"overdue": {
+"currency": "GBP",
+"complete": true
+}
+}
+},
+"due_14d": {
+"metrics": {
+"due_14d": 62752.28,
+"bills": 9
+},
+"money": {
+"due_14d": {
+"currency": "GBP",
+"complete": true
+}
+}
+}
+},
+"note": "supplier bills only: query_invoices excludes invoices the company issued itself, so there are no receivables in the MCP"
+}

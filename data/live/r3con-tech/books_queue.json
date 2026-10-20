@@ -1,0 +1,663 @@
+{
+"object": "list",
+"source": "seapoint_mcp:query_transactions (rows)",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"needs_review": {
+"where": {
+"status": "BOOKED",
+"direction": "debit",
+"amount": {
+"gt": 0
+},
+"or": [
+{
+"reconciliation": "needs_review"
+},
+{
+"reconciliation": {
+"is_null": true
+},
+"has_evidence": false
+}
+]
+}
+},
+"awaiting_approval": {
+"where": {
+"status": "BOOKED",
+"direction": "debit",
+"amount": {
+"gt": 0
+},
+"reconciliation": "awaiting_approval"
+}
+}
+},
+"data": {
+"needs_review": [
+{
+"id": "txn_0z9asnc1qemfhqsejgvkbyzfp7",
+"date": "2026-10-12",
+"description": "CONNOLLY ACCOUNTANTS - monthly bookkeeping",
+"reporting_amount": 1800,
+"type": "CARD_PAYMENT",
+"participant": "Connolly Accountants",
+"participant_id": "ven_0ded9qq8tfc5qmrec6kn7nm8cz",
+"category": "Operating Expenses \u203a Legal & Professional Fees",
+"has_evidence": true,
+"reconciliation": "needs_review",
+"accounting_account": {
+"code": "401",
+"name": "Audit and Accountancy",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_3sgsg9rgsn5rcsxa03ekhfgg6t",
+"date": "2026-10-02",
+"description": "Management fee for September",
+"reporting_amount": 217.2,
+"type": "FEE",
+"participant": "Unknown Management Fee Vendor",
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj",
+"category": "Operating Expenses \u203a Bank Fees",
+"has_evidence": false,
+"reconciliation": null
+},
+{
+"id": "txn_53fx13sfc26ef2s1bh5y5t5drq",
+"date": "2026-10-01",
+"description": "WISE - cross-border transfer fee",
+"reporting_amount": 46.28,
+"type": "FEE",
+"participant": "Wise",
+"participant_id": "ven_1v17rwtd1x7pgmqhftqk27zjpv",
+"category": "Operating Expenses \u203a Bank Fees",
+"has_evidence": false,
+"reconciliation": "needs_review",
+"accounting_account": {
+"code": "404",
+"name": "Bank Fees",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "EXEMPTEXPENSES",
+"name": "Exempt Expenses",
+"rate": 0,
+"source": "suggested"
+}
+},
+{
+"id": "txn_31f1k1xm85k3mqs6p2yjn0mpne",
+"date": "2026-09-23",
+"description": "MERIDIAN INSURANCE BROKERS - PI renewal",
+"reporting_amount": 1240,
+"type": "PAYMENT",
+"participant": "Meridian Insurance Brokers",
+"participant_id": "ven_1aa531g8a4bd4r0fnek2z55xzs",
+"category": "Operating Expenses \u203a Legal & Professional Fees",
+"has_evidence": false,
+"reconciliation": "needs_review",
+"accounting_account": {
+"code": "433",
+"name": "Insurance",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "EXEMPTEXPENSES",
+"name": "Exempt Expenses",
+"rate": 0,
+"source": "suggested"
+}
+},
+{
+"id": "txn_1aqnspk0wz2n4c153tg8bnm418",
+"date": "2026-09-22",
+"description": "PREMIER INN MANCHESTER CITY",
+"reporting_amount": 89,
+"type": "CARD_PAYMENT",
+"participant": "Premier Inn",
+"participant_id": "ven_396dkzbk0kgz4kc94x7dck1z2s",
+"category": "Operating Expenses \u203a Travel & Entertainment",
+"has_evidence": false,
+"reconciliation": "needs_review",
+"card": "Travel card *7302"
+},
+{
+"id": "txn_5se11w6he53mpqdvmnmb45mx26",
+"date": "2026-09-17",
+"description": "CURRYS PC WORLD 0412",
+"reporting_amount": 62.34,
+"type": "CARD_PAYMENT",
+"participant": "Currys",
+"participant_id": "ven_7ns0h5thqxy5ka4h9ad4jkvn5s",
+"category": "Operating Expenses \u203a Office Expenses",
+"has_evidence": false,
+"reconciliation": "needs_review",
+"card": "Engineering tools *5540"
+},
+{
+"id": "txn_729tg837f840h6p29pdrphsya0",
+"date": "2026-09-09",
+"description": "AMAZON.CO.UK*2K4LM8QX3",
+"reporting_amount": 47.98,
+"type": "CARD_PAYMENT",
+"participant": "Amazon UK",
+"participant_id": "ven_2zadyvv7thgtv5jsmx4cx9093b",
+"category": "Operating Expenses \u203a Office Expenses",
+"has_evidence": false,
+"reconciliation": "needs_review",
+"card": "Marketing card *4821"
+},
+{
+"id": "txn_0mh4z4ph1197y7wjwketesbqhx",
+"date": "2026-09-02",
+"description": "Management fee for August",
+"reporting_amount": 180.07,
+"type": "FEE",
+"participant": "Unknown Management Fee Vendor",
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj",
+"category": "Operating Expenses \u203a Bank Fees",
+"has_evidence": false,
+"reconciliation": null
+},
+{
+"id": "txn_12aee64q937n4mv87ve466j0ka",
+"date": "2026-08-02",
+"description": "Management fee for July",
+"reporting_amount": 193.55,
+"type": "FEE",
+"participant": "Unknown Management Fee Vendor",
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj",
+"category": "Operating Expenses \u203a Bank Fees",
+"has_evidence": false,
+"reconciliation": null
+},
+{
+"id": "txn_5zz43kc53bdwanqfexb41bbfam",
+"date": "2026-07-02",
+"description": "Management fee for June",
+"reporting_amount": 172.39,
+"type": "FEE",
+"participant": "Unknown Management Fee Vendor",
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj",
+"category": "Operating Expenses \u203a Bank Fees",
+"has_evidence": false,
+"reconciliation": null
+},
+{
+"id": "txn_2zqgyw3a60wda8cq6jtcpmamz7",
+"date": "2026-06-02",
+"description": "Management fee for May",
+"reporting_amount": 133.14,
+"type": "FEE",
+"participant": "Bank",
+"participant_id": "ven_6zqnvgdx04133sytxdgjyc8pme",
+"category": "Operating Expenses \u203a Bank Fees",
+"has_evidence": false,
+"reconciliation": null
+},
+{
+"id": "txn_2vfhpjd3w1anf6xn94btdx3fsv",
+"date": "2026-05-02",
+"description": "Management fee for April",
+"reporting_amount": 77.12,
+"type": "FEE",
+"participant": "Unknown Management Fee Vendor",
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj",
+"category": "Operating Expenses \u203a Bank Fees",
+"has_evidence": false,
+"reconciliation": null
+}
+],
+"awaiting_approval": [
+{
+"id": "txn_3pp10rnar62jcq2bs2m02heh94",
+"date": "2026-10-12",
+"description": "GRIND - Old Street",
+"reporting_amount": 16.8,
+"type": "CARD_PAYMENT",
+"participant": "Grind",
+"participant_id": "ven_2fthwpv31rg3ep3fhj2axrgx36",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_4f7nescj1cjp08s8d76afz8d64",
+"date": "2026-10-11",
+"description": "DISHOOM SHOREDITCH - team lunch",
+"reporting_amount": 187.4,
+"type": "CARD_PAYMENT",
+"participant": "Dishoom",
+"participant_id": "ven_5cbfmcn7rpg1te93w4j2j1mce5",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_1md806frwdegv52dgx7fkgy70c",
+"date": "2026-10-11",
+"description": "AMAZON WEB SERVICES - EU-WEST-1 usage",
+"reporting_amount": 6850.42,
+"type": "DIRECT_DEBIT",
+"participant": "Amazon Web Services",
+"participant_id": "ven_7xm9rh8ka65a0a2c6qf06bja3x",
+"category": "Cost of Goods Sold \u203a Hosting & Infrastructure",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "310",
+"name": "Cost of Goods Sold",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_5cm3nhpdagfrt50bvp1vsjmxj9",
+"date": "2026-10-10",
+"description": "FIGMA - Organisation plan",
+"reporting_amount": 612,
+"type": "CARD_PAYMENT",
+"participant": "Figma",
+"participant_id": "ven_5k0xfnwmgesbaztzjeq2bywrdj",
+"category": "Operating Expenses \u203a Subscriptions",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "485",
+"name": "Subscriptions",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_3k43y91zmrv092gf97fx2z3fj7",
+"date": "2026-10-09",
+"description": "PRET A MANGER - Old Street",
+"reporting_amount": 11.95,
+"type": "CARD_PAYMENT",
+"participant": "Pret A Manger",
+"participant_id": "ven_551c5prj1daey2j82gbh3v97wp",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_4qga2kaxgwbpr2y0mz50g92cx0",
+"date": "2026-10-09",
+"description": "HUBSPOT - Marketing Hub Professional",
+"reporting_amount": 2480,
+"type": "DIRECT_DEBIT",
+"participant": "HubSpot",
+"participant_id": "ven_4n2vhamcvm9qbxgya5wcx1zfy2",
+"category": "Operating Expenses \u203a Marketing & Advertising",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "400",
+"name": "Advertising",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_4kthgwdqfakc5bwqywdpjaprga",
+"date": "2026-10-08",
+"description": "HAWKSMOOR SPITALFIELDS - client dinner",
+"reporting_amount": 286,
+"type": "CARD_PAYMENT",
+"participant": "Hawksmoor",
+"participant_id": "ven_0rx2knmx622c50wcsqevpz8spv",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": false,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_6w21fp6f6e6z44hmeh9btnwbte",
+"date": "2026-10-08",
+"description": "DEEL UK LTD - contractor payroll",
+"reporting_amount": 18640,
+"type": "PAYMENT",
+"participant": "Deel UK Ltd",
+"participant_id": "ven_0chrt8hsz9039y9wqtgvzm2exb",
+"category": "Operating Expenses \u203a Payroll & Benefits",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "477",
+"name": "Wages and Salaries",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "NONE",
+"name": "No VAT",
+"rate": 0,
+"source": "suggested"
+}
+},
+{
+"id": "txn_572fqe29274bqw6ff92tk0ed92",
+"date": "2026-10-07",
+"description": "GOOGLE CLOUD EMEA - monthly usage",
+"reporting_amount": 4218.76,
+"type": "DIRECT_DEBIT",
+"participant": "Google Cloud",
+"participant_id": "ven_3rsb6jn1yg42c9dje3ab1j0kvf",
+"category": "Cost of Goods Sold \u203a Hosting & Infrastructure",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "310",
+"name": "Cost of Goods Sold",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_56k8ah4fv8kzx7f1y3dwjk8pk3",
+"date": "2026-10-06",
+"description": "GAILS BAKERY - Islington",
+"reporting_amount": 28.4,
+"type": "CARD_PAYMENT",
+"participant": "GAIL's Bakery",
+"participant_id": "ven_39ad1qn0nd07v8smwvarcvtes4",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": false,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_162f55khfqdzewacvyc5h1ck5n",
+"date": "2026-10-05",
+"description": "UBER TRIP - London",
+"reporting_amount": 24.6,
+"type": "CARD_PAYMENT",
+"participant": "Uber",
+"participant_id": "ven_70erfr5pmv20sj2c1a0gdshg9g",
+"category": "Operating Expenses \u203a Travel & Entertainment",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "493",
+"name": "Travel - National",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_3v6r7jk51eqc4gbxw501q5vz1z",
+"date": "2026-10-05",
+"description": "SLACK TECHNOLOGIES - Business+ seats",
+"reporting_amount": 486,
+"type": "CARD_PAYMENT",
+"participant": "Slack Technologies",
+"participant_id": "ven_5zftdqnjyavnnppfm90nfm8k8b",
+"category": "Operating Expenses \u203a Subscriptions",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "485",
+"name": "Subscriptions",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_1a2gnavgm1kywqxzdmefv5r9ft",
+"date": "2026-10-04",
+"description": "THE CULPEPER - team drinks",
+"reporting_amount": 164.2,
+"type": "CARD_PAYMENT",
+"participant": "The Culpeper",
+"participant_id": "ven_35q44z79rb2resqmp41n6zq3xd",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_40963xyytj65qhfdckt1tmrtc6",
+"date": "2026-10-03",
+"description": "TRAINLINE - London to Manchester return",
+"reporting_amount": 286.4,
+"type": "CARD_PAYMENT",
+"participant": "Trainline",
+"participant_id": "ven_6hp23458ez342vke8de656s2h1",
+"category": "Operating Expenses \u203a Travel & Entertainment",
+"has_evidence": false,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "493",
+"name": "Travel - National",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_0tjm2md4cccj3xbqjvq8p68t3c",
+"date": "2026-10-01",
+"description": "MONMOUTH COFFEE - Borough",
+"reporting_amount": 9.7,
+"type": "CARD_PAYMENT",
+"participant": "Monmouth Coffee",
+"participant_id": "ven_5t45p4crqq68aevs4zdnpayxyn",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_6yh02bsabx5xvx26rv7kjee0fv",
+"date": "2026-09-29",
+"description": "TESCO EXPRESS - office snacks",
+"reporting_amount": 43.65,
+"type": "CARD_PAYMENT",
+"participant": "Tesco Express",
+"participant_id": "ven_3mbychbb0z77s54b7q5g47wwk6",
+"category": "Operating Expenses \u203a Food & Dining",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_4hnm18pvy7dh9y2krgatr30mp9",
+"date": "2026-09-27",
+"description": "NCP CAR PARK - Farringdon",
+"reporting_amount": 18,
+"type": "CARD_PAYMENT",
+"participant": "NCP",
+"participant_id": "ven_5jz2hexmvtqqa26b2nxhv91z7r",
+"category": "Operating Expenses \u203a Travel & Entertainment",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "493",
+"name": "Travel - National",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_22yj2wqqf0ckgv9snrgjby36d1",
+"date": "2026-09-26",
+"description": "FIGMA - Professional seats",
+"reporting_amount": 144,
+"type": "CARD_PAYMENT",
+"participant": "Figma",
+"participant_id": "ven_5k0xfnwmgesbaztzjeq2bywrdj",
+"category": "Operating Expenses \u203a Subscriptions",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "485",
+"name": "Subscriptions",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+}
+},
+{
+"id": "txn_7srcg7fmpb5shkn0amm7z5r1s7",
+"date": "2026-09-24",
+"description": "SKETCH LONDON W1S",
+"reporting_amount": 286.5,
+"type": "CARD_PAYMENT",
+"participant": "Sketch London",
+"participant_id": "ven_3m6sb278e5v9k59f3tdbesky8b",
+"category": "Operating Expenses \u203a Travel & Entertainment",
+"has_evidence": true,
+"reconciliation": "awaiting_approval",
+"accounting_account": {
+"code": "420",
+"name": "Entertainment",
+"source": "suggested"
+},
+"accounting_tax_rate": {
+"code": "INPUT2",
+"name": "20% (VAT on Expenses)",
+"rate": 20,
+"source": "suggested"
+},
+"card": "Marketing card *4821"
+}
+]
+},
+"note": "rows trimmed to the fields the exception queue uses; values verbatim"
+}

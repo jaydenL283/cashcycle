@@ -1,0 +1,52 @@
+{
+"object": "list",
+"source": "seapoint_mcp:query_invoices (include_line_items)",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"where": {
+"reference": "AWS-INV-45190"
+},
+"include_line_items": true
+},
+"data": [
+{
+"id": "evi_3vy9vq9vyrfmtqvrh0293tqgqh",
+"reference": "AWS-INV-45190",
+"vendor": {
+"name": "Amazon Web Services UK Ltd"
+},
+"amounts": {
+"total": 7204.2,
+"net": 6003.5,
+"sales_tax": 1200.7,
+"sales_tax_rate": 20,
+"currency": "GBP"
+},
+"dates": {
+"invoice_date": "2026-10-10",
+"due_date": "2026-10-24"
+},
+"line_items": [
+{
+"description": "EC2 compute \u2014 eu-west-1",
+"quantity": 1,
+"unit_price": 3580.2,
+"total_amount": 3580.2
+},
+{
+"description": "RDS Postgres \u2014 multi-AZ",
+"quantity": 1,
+"unit_price": 1602.4,
+"total_amount": 1602.4
+},
+{
+"description": "S3 storage and data transfer",
+"quantity": 1,
+"unit_price": 820.9,
+"total_amount": 820.9
+}
+]
+}
+]
+}

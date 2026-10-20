@@ -1,0 +1,1690 @@
+{
+"object": "aggregate",
+"source": "seapoint_mcp:query_transactions (aggregate by participant_id)",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"sep_2026": {
+"where": {
+"direction": "debit",
+"not": {
+"status": [
+"FAILED",
+"CANCELLED",
+"FULL_REVERSAL"
+]
+},
+"date": {
+"gte": "2026-09-01",
+"lt": "2026-10-01"
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "participant_id"
+}
+],
+"metrics": [
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+}
+]
+}
+},
+"jun_aug_2026": {
+"where": {
+"direction": "debit",
+"not": {
+"status": [
+"FAILED",
+"CANCELLED",
+"FULL_REVERSAL"
+]
+},
+"date": {
+"gte": "2026-06-01",
+"lt": "2026-09-01"
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "participant_id"
+}
+],
+"metrics": [
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+}
+]
+}
+},
+"oct_2026": {
+"where": {
+"direction": "debit",
+"not": {
+"status": [
+"FAILED",
+"CANCELLED",
+"FULL_REVERSAL"
+]
+},
+"date": {
+"gte": "2026-10-01",
+"lt": "2026-11-01"
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "participant_id"
+}
+],
+"metrics": [
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+}
+]
+}
+},
+"jul_sep_2026": {
+"where": {
+"direction": "debit",
+"not": {
+"status": [
+"FAILED",
+"CANCELLED",
+"FULL_REVERSAL"
+]
+},
+"date": {
+"gte": "2026-07-01",
+"lt": "2026-10-01"
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "participant_id"
+}
+],
+"metrics": [
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+}
+]
+}
+}
+},
+"data": {
+"sep_2026": [
+{
+"metrics": {
+"total": 3600
+},
+"group": {
+"participant_id": "ven_08f2ecavpge8p6xpffc495qbm6"
+}
+},
+{
+"metrics": {
+"total": 32000
+},
+"group": {
+"participant_id": "ven_08vvkvbz86bbvmzbexyntdh9fj"
+}
+},
+{
+"metrics": {
+"total": 1800
+},
+"group": {
+"participant_id": "ven_0ded9qq8tfc5qmrec6kn7nm8cz"
+}
+},
+{
+"metrics": {
+"total": 150
+},
+"group": {
+"participant_id": "ven_0f4q20kz7jmvz5yvnad9snjs09"
+}
+},
+{
+"metrics": {
+"total": 272.25
+},
+"group": {
+"participant_id": "ven_0m3wfh05r1cjwyb0qs4g0991s0"
+}
+},
+{
+"metrics": {
+"total": 4600
+},
+"group": {
+"participant_id": "ven_0m8t3tp5m89vzx8cb0ef40wsve"
+}
+},
+{
+"metrics": {
+"total": 21800
+},
+"group": {
+"participant_id": "ven_0rp1gzgn3nf9pn9kgyw18cdsv9"
+}
+},
+{
+"metrics": {
+"total": 2376
+},
+"group": {
+"participant_id": "ven_0strmzre8ndsm0e4zntktbkxe6"
+}
+},
+{
+"metrics": {
+"total": 24
+},
+"group": {
+"participant_id": "ven_0wcag978vdk7wbthpjhyrfhhdj"
+}
+},
+{
+"metrics": {
+"total": 654.75
+},
+"group": {
+"participant_id": "ven_18543fb0h06hgtzd1p44894ay2"
+}
+},
+{
+"metrics": {
+"total": 1240
+},
+"group": {
+"participant_id": "ven_1aa531g8a4bd4r0fnek2z55xzs"
+}
+},
+{
+"metrics": {
+"total": 8700
+},
+"group": {
+"participant_id": "ven_1g6thynmw3a65109pmwf17dey2"
+}
+},
+{
+"metrics": {
+"total": 1000
+},
+"group": {
+"participant_id": "ven_1tywy0szqa9000ggf7h82xfk75"
+}
+},
+{
+"metrics": {
+"total": 7200
+},
+"group": {
+"participant_id": "ven_2j08vm5aaxt59426qft2km1d57"
+}
+},
+{
+"metrics": {
+"total": 13400
+},
+"group": {
+"participant_id": "ven_2m6gk00mqzqstvcypvr7ty1dn8"
+}
+},
+{
+"metrics": {
+"total": 4900
+},
+"group": {
+"participant_id": "ven_2x3yhvw1gr7fcmwbpxpysn53x8"
+}
+},
+{
+"metrics": {
+"total": 47.98
+},
+"group": {
+"participant_id": "ven_2zadyvv7thgtv5jsmx4cx9093b"
+}
+},
+{
+"metrics": {
+"total": 18
+},
+"group": {
+"participant_id": "ven_38hrag7zz8f5c3e0japrra2enx"
+}
+},
+{
+"metrics": {
+"total": 89
+},
+"group": {
+"participant_id": "ven_396dkzbk0kgz4kc94x7dck1z2s"
+}
+},
+{
+"metrics": {
+"total": 96
+},
+"group": {
+"participant_id": "ven_3a6jp88g42sj7an3vam02tcxv9"
+}
+},
+{
+"metrics": {
+"total": 318.5
+},
+"group": {
+"participant_id": "ven_3ga9f4phznhrrx605sqsj5gyjc"
+}
+},
+{
+"metrics": {
+"total": 7800
+},
+"group": {
+"participant_id": "ven_3k8721vsv75nv4r867j9mbw5kc"
+}
+},
+{
+"metrics": {
+"total": 286.5
+},
+"group": {
+"participant_id": "ven_3m6sb278e5v9k59f3tdbesky8b"
+}
+},
+{
+"metrics": {
+"total": 43.65
+},
+"group": {
+"participant_id": "ven_3mbychbb0z77s54b7q5g47wwk6"
+}
+},
+{
+"metrics": {
+"total": 1316
+},
+"group": {
+"participant_id": "ven_3rsb6jn1yg42c9dje3ab1j0kvf"
+}
+},
+{
+"metrics": {
+"total": 2800
+},
+"group": {
+"participant_id": "ven_3s7320zzxq1detfrmh08t63ycw"
+}
+},
+{
+"metrics": {
+"total": 318.55
+},
+"group": {
+"participant_id": "ven_3wevtfnf54m953he1mdhcwbkzc"
+}
+},
+{
+"metrics": {
+"total": 975
+},
+"group": {
+"participant_id": "ven_41mc5tzk9jeq20fp810cns0gh4"
+}
+},
+{
+"metrics": {
+"total": 6750
+},
+"group": {
+"participant_id": "ven_449kkcde9f9dfxx22rqz359325"
+}
+},
+{
+"metrics": {
+"total": 2398.8
+},
+"group": {
+"participant_id": "ven_45jpr9ydvhpng3rapp40w3gbwe"
+}
+},
+{
+"metrics": {
+"total": 84
+},
+"group": {
+"participant_id": "ven_4d2n69kdaveh255m6j8w1emv4x"
+}
+},
+{
+"metrics": {
+"total": 48
+},
+"group": {
+"participant_id": "ven_4kejxam1z317ebzv1svrn46wey"
+}
+},
+{
+"metrics": {
+"total": 2630
+},
+"group": {
+"participant_id": "ven_4n2vhamcvm9qbxgya5wcx1zfy2"
+}
+},
+{
+"metrics": {
+"total": 151.2
+},
+"group": {
+"participant_id": "ven_551c5prj1daey2j82gbh3v97wp"
+}
+},
+{
+"metrics": {
+"total": 540.5
+},
+"group": {
+"participant_id": "ven_55pv04st5we3ze4rkndsxf2949"
+}
+},
+{
+"metrics": {
+"total": 180.07
+},
+"group": {
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj"
+}
+},
+{
+"metrics": {
+"total": 18
+},
+"group": {
+"participant_id": "ven_5jz2hexmvtqqa26b2nxhv91z7r"
+}
+},
+{
+"metrics": {
+"total": 1980
+},
+"group": {
+"participant_id": "ven_5k0xfnwmgesbaztzjeq2bywrdj"
+}
+},
+{
+"metrics": {
+"total": 486
+},
+"group": {
+"participant_id": "ven_5zftdqnjyavnnppfm90nfm8k8b"
+}
+},
+{
+"metrics": {
+"total": 811
+},
+"group": {
+"participant_id": "ven_625wv0eq9r3gxf231vj8thatmf"
+}
+},
+{
+"metrics": {
+"total": 11.99
+},
+"group": {
+"participant_id": "ven_62jyry85a7vszzv2254sqm2hwv"
+}
+},
+{
+"metrics": {
+"total": 7100
+},
+"group": {
+"participant_id": "ven_6a48mpy0pf912rhftcb3t03jkq"
+}
+},
+{
+"metrics": {
+"total": 916
+},
+"group": {
+"participant_id": "ven_6efxk02v6q9jrrt6rtwyvh1s1b"
+}
+},
+{
+"metrics": {
+"total": 732
+},
+"group": {
+"participant_id": "ven_6h18ca0ng5rq38e1tthfc72672"
+}
+},
+{
+"metrics": {
+"total": 807.5
+},
+"group": {
+"participant_id": "ven_6hp23458ez342vke8de656s2h1"
+}
+},
+{
+"metrics": {
+"total": 790
+},
+"group": {
+"participant_id": "ven_6xzdd0257cwj4s6484y88203hh"
+}
+},
+{
+"metrics": {
+"total": 561.6
+},
+"group": {
+"participant_id": "ven_6zvv3zxh2rhq070bkpzbj87bj7"
+}
+},
+{
+"metrics": {
+"total": 640
+},
+"group": {
+"participant_id": "ven_72xqcdh3842knx76h6kj5gbq6d"
+}
+},
+{
+"metrics": {
+"total": 1990
+},
+"group": {
+"participant_id": "ven_7cjcknkr392ej797z43tnrjwr9"
+}
+},
+{
+"metrics": {
+"total": 62.34
+},
+"group": {
+"participant_id": "ven_7ns0h5thqxy5ka4h9ad4jkvn5s"
+}
+},
+{
+"metrics": {
+"total": 7712.66
+},
+"group": {
+"participant_id": "ven_7pygbz6254eq926fhfmzp7pj15"
+}
+},
+{
+"metrics": {
+"total": 7106
+},
+"group": {
+"participant_id": "ven_7xm9rh8ka65a0a2c6qf06bja3x"
+}
+}
+],
+"jun_aug_2026": [
+{
+"metrics": {
+"total": 5400
+},
+"group": {
+"participant_id": "ven_08f2ecavpge8p6xpffc495qbm6"
+}
+},
+{
+"metrics": {
+"total": 102400
+},
+"group": {
+"participant_id": "ven_08vvkvbz86bbvmzbexyntdh9fj"
+}
+},
+{
+"metrics": {
+"total": 206
+},
+"group": {
+"participant_id": "ven_0bd7rf2mq6pkqprp3pfvqt602m"
+}
+},
+{
+"metrics": {
+"total": 5400
+},
+"group": {
+"participant_id": "ven_0ded9qq8tfc5qmrec6kn7nm8cz"
+}
+},
+{
+"metrics": {
+"total": 750
+},
+"group": {
+"participant_id": "ven_0f4q20kz7jmvz5yvnad9snjs09"
+}
+},
+{
+"metrics": {
+"total": 786.5
+},
+"group": {
+"participant_id": "ven_0m3wfh05r1cjwyb0qs4g0991s0"
+}
+},
+{
+"metrics": {
+"total": 11400
+},
+"group": {
+"participant_id": "ven_0m8t3tp5m89vzx8cb0ef40wsve"
+}
+},
+{
+"metrics": {
+"total": 65400
+},
+"group": {
+"participant_id": "ven_0rp1gzgn3nf9pn9kgyw18cdsv9"
+}
+},
+{
+"metrics": {
+"total": 72
+},
+"group": {
+"participant_id": "ven_0wcag978vdk7wbthpjhyrfhhdj"
+}
+},
+{
+"metrics": {
+"total": 1937.25
+},
+"group": {
+"participant_id": "ven_18543fb0h06hgtzd1p44894ay2"
+}
+},
+{
+"metrics": {
+"total": 13050
+},
+"group": {
+"participant_id": "ven_1g6thynmw3a65109pmwf17dey2"
+}
+},
+{
+"metrics": {
+"total": 65
+},
+"group": {
+"participant_id": "ven_1kbza4g7nvxhc1eb3n7wpzwstt"
+}
+},
+{
+"metrics": {
+"total": 3750
+},
+"group": {
+"participant_id": "ven_1tywy0szqa9000ggf7h82xfk75"
+}
+},
+{
+"metrics": {
+"total": 7800
+},
+"group": {
+"participant_id": "ven_27anf5r794eah9gq9cxwgy3ptv"
+}
+},
+{
+"metrics": {
+"total": 27000
+},
+"group": {
+"participant_id": "ven_2j08vm5aaxt59426qft2km1d57"
+}
+},
+{
+"metrics": {
+"total": 34200
+},
+"group": {
+"participant_id": "ven_2m6gk00mqzqstvcypvr7ty1dn8"
+}
+},
+{
+"metrics": {
+"total": 3900
+},
+"group": {
+"participant_id": "ven_2x3yhvw1gr7fcmwbpxpysn53x8"
+}
+},
+{
+"metrics": {
+"total": 54
+},
+"group": {
+"participant_id": "ven_38hrag7zz8f5c3e0japrra2enx"
+}
+},
+{
+"metrics": {
+"total": 288
+},
+"group": {
+"participant_id": "ven_3a6jp88g42sj7an3vam02tcxv9"
+}
+},
+{
+"metrics": {
+"total": 942.5
+},
+"group": {
+"participant_id": "ven_3ga9f4phznhrrx605sqsj5gyjc"
+}
+},
+{
+"metrics": {
+"total": 524
+},
+"group": {
+"participant_id": "ven_3gw9khw5es0jjsjpw22kgyj521"
+}
+},
+{
+"metrics": {
+"total": 11700
+},
+"group": {
+"participant_id": "ven_3k8721vsv75nv4r867j9mbw5kc"
+}
+},
+{
+"metrics": {
+"total": 4416
+},
+"group": {
+"participant_id": "ven_3rsb6jn1yg42c9dje3ab1j0kvf"
+}
+},
+{
+"metrics": {
+"total": 8400
+},
+"group": {
+"participant_id": "ven_3s7320zzxq1detfrmh08t63ycw"
+}
+},
+{
+"metrics": {
+"total": 2925
+},
+"group": {
+"participant_id": "ven_41mc5tzk9jeq20fp810cns0gh4"
+}
+},
+{
+"metrics": {
+"total": 323.5
+},
+"group": {
+"participant_id": "ven_42fsbma4dkfpf5h4jp5w54qtxp"
+}
+},
+{
+"metrics": {
+"total": 7050
+},
+"group": {
+"participant_id": "ven_449kkcde9f9dfxx22rqz359325"
+}
+},
+{
+"metrics": {
+"total": 252
+},
+"group": {
+"participant_id": "ven_4d2n69kdaveh255m6j8w1emv4x"
+}
+},
+{
+"metrics": {
+"total": 144
+},
+"group": {
+"participant_id": "ven_4kejxam1z317ebzv1svrn46wey"
+}
+},
+{
+"metrics": {
+"total": 182.5
+},
+"group": {
+"participant_id": "ven_4mx85gd29d4fb1t17t4eys4q19"
+}
+},
+{
+"metrics": {
+"total": 7590
+},
+"group": {
+"participant_id": "ven_4n2vhamcvm9qbxgya5wcx1zfy2"
+}
+},
+{
+"metrics": {
+"total": 41.5
+},
+"group": {
+"participant_id": "ven_4t5mbte26as98yp5v5mbhmc824"
+}
+},
+{
+"metrics": {
+"total": 469.83
+},
+"group": {
+"participant_id": "ven_551c5prj1daey2j82gbh3v97wp"
+}
+},
+{
+"metrics": {
+"total": 1679
+},
+"group": {
+"participant_id": "ven_55pv04st5we3ze4rkndsxf2949"
+}
+},
+{
+"metrics": {
+"total": 365.94
+},
+"group": {
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj"
+}
+},
+{
+"metrics": {
+"total": 1836
+},
+"group": {
+"participant_id": "ven_5k0xfnwmgesbaztzjeq2bywrdj"
+}
+},
+{
+"metrics": {
+"total": 4550
+},
+"group": {
+"participant_id": "ven_5xkndxjvat70eqb0at2g2m3pm9"
+}
+},
+{
+"metrics": {
+"total": 1458
+},
+"group": {
+"participant_id": "ven_5zftdqnjyavnnppfm90nfm8k8b"
+}
+},
+{
+"metrics": {
+"total": 741
+},
+"group": {
+"participant_id": "ven_625wv0eq9r3gxf231vj8thatmf"
+}
+},
+{
+"metrics": {
+"total": 10650
+},
+"group": {
+"participant_id": "ven_6a48mpy0pf912rhftcb3t03jkq"
+}
+},
+{
+"metrics": {
+"total": 3216
+},
+"group": {
+"participant_id": "ven_6efxk02v6q9jrrt6rtwyvh1s1b"
+}
+},
+{
+"metrics": {
+"total": 1716
+},
+"group": {
+"participant_id": "ven_6h18ca0ng5rq38e1tthfc72672"
+}
+},
+{
+"metrics": {
+"total": 2448
+},
+"group": {
+"participant_id": "ven_6hp23458ez342vke8de656s2h1"
+}
+},
+{
+"metrics": {
+"total": 133.14
+},
+"group": {
+"participant_id": "ven_6zqnvgdx04133sytxdgjyc8pme"
+}
+},
+{
+"metrics": {
+"total": 1123.2
+},
+"group": {
+"participant_id": "ven_6zvv3zxh2rhq070bkpzbj87bj7"
+}
+},
+{
+"metrics": {
+"total": 1620
+},
+"group": {
+"participant_id": "ven_72xqcdh3842knx76h6kj5gbq6d"
+}
+},
+{
+"metrics": {
+"total": 300
+},
+"group": {
+"participant_id": "ven_79qxmrbd6x2vyxmftj6xvpzzne"
+}
+},
+{
+"metrics": {
+"total": 23181.51
+},
+"group": {
+"participant_id": "ven_7pygbz6254eq926fhfmzp7pj15"
+}
+},
+{
+"metrics": {
+"total": 13706
+},
+"group": {
+"participant_id": "ven_7xm9rh8ka65a0a2c6qf06bja3x"
+}
+}
+],
+"oct_2026": [
+{
+"metrics": {
+"total": 18640
+},
+"group": {
+"participant_id": "ven_0chrt8hsz9039y9wqtgvzm2exb"
+}
+},
+{
+"metrics": {
+"total": 3600
+},
+"group": {
+"participant_id": "ven_0ded9qq8tfc5qmrec6kn7nm8cz"
+}
+},
+{
+"metrics": {
+"total": 30
+},
+"group": {
+"participant_id": "ven_0f4q20kz7jmvz5yvnad9snjs09"
+}
+},
+{
+"metrics": {
+"total": 112.75
+},
+"group": {
+"participant_id": "ven_0m3wfh05r1cjwyb0qs4g0991s0"
+}
+},
+{
+"metrics": {
+"total": 21800
+},
+"group": {
+"participant_id": "ven_0rp1gzgn3nf9pn9kgyw18cdsv9"
+}
+},
+{
+"metrics": {
+"total": 286
+},
+"group": {
+"participant_id": "ven_0rx2knmx622c50wcsqevpz8spv"
+}
+},
+{
+"metrics": {
+"total": 290.25
+},
+"group": {
+"participant_id": "ven_18543fb0h06hgtzd1p44894ay2"
+}
+},
+{
+"metrics": {
+"total": 700
+},
+"group": {
+"participant_id": "ven_1tywy0szqa9000ggf7h82xfk75"
+}
+},
+{
+"metrics": {
+"total": 46.28
+},
+"group": {
+"participant_id": "ven_1v17rwtd1x7pgmqhftqk27zjpv"
+}
+},
+{
+"metrics": {
+"total": 16.8
+},
+"group": {
+"participant_id": "ven_2fthwpv31rg3ep3fhj2axrgx36"
+}
+},
+{
+"metrics": {
+"total": 6300
+},
+"group": {
+"participant_id": "ven_2j08vm5aaxt59426qft2km1d57"
+}
+},
+{
+"metrics": {
+"total": 164.2
+},
+"group": {
+"participant_id": "ven_35q44z79rb2resqmp41n6zq3xd"
+}
+},
+{
+"metrics": {
+"total": 28.4
+},
+"group": {
+"participant_id": "ven_39ad1qn0nd07v8smwvarcvtes4"
+}
+},
+{
+"metrics": {
+"total": 96
+},
+"group": {
+"participant_id": "ven_3a6jp88g42sj7an3vam02tcxv9"
+}
+},
+{
+"metrics": {
+"total": 159.25
+},
+"group": {
+"participant_id": "ven_3ga9f4phznhrrx605sqsj5gyjc"
+}
+},
+{
+"metrics": {
+"total": 5666.76
+},
+"group": {
+"participant_id": "ven_3rsb6jn1yg42c9dje3ab1j0kvf"
+}
+},
+{
+"metrics": {
+"total": 2800
+},
+"group": {
+"participant_id": "ven_3s7320zzxq1detfrmh08t63ycw"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"participant_id": "ven_449kkcde9f9dfxx22rqz359325"
+}
+},
+{
+"metrics": {
+"total": 84
+},
+"group": {
+"participant_id": "ven_4d2n69kdaveh255m6j8w1emv4x"
+}
+},
+{
+"metrics": {
+"total": 48
+},
+"group": {
+"participant_id": "ven_4kejxam1z317ebzv1svrn46wey"
+}
+},
+{
+"metrics": {
+"total": 2480
+},
+"group": {
+"participant_id": "ven_4n2vhamcvm9qbxgya5wcx1zfy2"
+}
+},
+{
+"metrics": {
+"total": 92.38
+},
+"group": {
+"participant_id": "ven_551c5prj1daey2j82gbh3v97wp"
+}
+},
+{
+"metrics": {
+"total": 264.5
+},
+"group": {
+"participant_id": "ven_55pv04st5we3ze4rkndsxf2949"
+}
+},
+{
+"metrics": {
+"total": 217.2
+},
+"group": {
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj"
+}
+},
+{
+"metrics": {
+"total": 187.4
+},
+"group": {
+"participant_id": "ven_5cbfmcn7rpg1te93w4j2j1mce5"
+}
+},
+{
+"metrics": {
+"total": 1224
+},
+"group": {
+"participant_id": "ven_5k0xfnwmgesbaztzjeq2bywrdj"
+}
+},
+{
+"metrics": {
+"total": 9.7
+},
+"group": {
+"participant_id": "ven_5t45p4crqq68aevs4zdnpayxyn"
+}
+},
+{
+"metrics": {
+"total": 972
+},
+"group": {
+"participant_id": "ven_5zftdqnjyavnnppfm90nfm8k8b"
+}
+},
+{
+"metrics": {
+"total": 223
+},
+"group": {
+"participant_id": "ven_625wv0eq9r3gxf231vj8thatmf"
+}
+},
+{
+"metrics": {
+"total": 1048
+},
+"group": {
+"participant_id": "ven_6efxk02v6q9jrrt6rtwyvh1s1b"
+}
+},
+{
+"metrics": {
+"total": 668.9
+},
+"group": {
+"participant_id": "ven_6hp23458ez342vke8de656s2h1"
+}
+},
+{
+"metrics": {
+"total": 24.6
+},
+"group": {
+"participant_id": "ven_70erfr5pmv20sj2c1a0gdshg9g"
+}
+},
+{
+"metrics": {
+"total": 340
+},
+"group": {
+"participant_id": "ven_72xqcdh3842knx76h6kj5gbq6d"
+}
+},
+{
+"metrics": {
+"total": 8988.42
+},
+"group": {
+"participant_id": "ven_7xm9rh8ka65a0a2c6qf06bja3x"
+}
+}
+],
+"jul_sep_2026": [
+{
+"metrics": {
+"total": 3600
+},
+"group": {
+"participant_id": "ven_08f2ecavpge8p6xpffc495qbm6"
+}
+},
+{
+"metrics": {
+"total": 99200
+},
+"group": {
+"participant_id": "ven_08vvkvbz86bbvmzbexyntdh9fj"
+}
+},
+{
+"metrics": {
+"total": 5400
+},
+"group": {
+"participant_id": "ven_0ded9qq8tfc5qmrec6kn7nm8cz"
+}
+},
+{
+"metrics": {
+"total": 810
+},
+"group": {
+"participant_id": "ven_0f4q20kz7jmvz5yvnad9snjs09"
+}
+},
+{
+"metrics": {
+"total": 792
+},
+"group": {
+"participant_id": "ven_0m3wfh05r1cjwyb0qs4g0991s0"
+}
+},
+{
+"metrics": {
+"total": 12600
+},
+"group": {
+"participant_id": "ven_0m8t3tp5m89vzx8cb0ef40wsve"
+}
+},
+{
+"metrics": {
+"total": 65400
+},
+"group": {
+"participant_id": "ven_0rp1gzgn3nf9pn9kgyw18cdsv9"
+}
+},
+{
+"metrics": {
+"total": 2376
+},
+"group": {
+"participant_id": "ven_0strmzre8ndsm0e4zntktbkxe6"
+}
+},
+{
+"metrics": {
+"total": 72
+},
+"group": {
+"participant_id": "ven_0wcag978vdk7wbthpjhyrfhhdj"
+}
+},
+{
+"metrics": {
+"total": 1950.75
+},
+"group": {
+"participant_id": "ven_18543fb0h06hgtzd1p44894ay2"
+}
+},
+{
+"metrics": {
+"total": 1240
+},
+"group": {
+"participant_id": "ven_1aa531g8a4bd4r0fnek2z55xzs"
+}
+},
+{
+"metrics": {
+"total": 17400
+},
+"group": {
+"participant_id": "ven_1g6thynmw3a65109pmwf17dey2"
+}
+},
+{
+"metrics": {
+"total": 3900
+},
+"group": {
+"participant_id": "ven_1tywy0szqa9000ggf7h82xfk75"
+}
+},
+{
+"metrics": {
+"total": 4400
+},
+"group": {
+"participant_id": "ven_27anf5r794eah9gq9cxwgy3ptv"
+}
+},
+{
+"metrics": {
+"total": 24300
+},
+"group": {
+"participant_id": "ven_2j08vm5aaxt59426qft2km1d57"
+}
+},
+{
+"metrics": {
+"total": 33000
+},
+"group": {
+"participant_id": "ven_2m6gk00mqzqstvcypvr7ty1dn8"
+}
+},
+{
+"metrics": {
+"total": 8800
+},
+"group": {
+"participant_id": "ven_2x3yhvw1gr7fcmwbpxpysn53x8"
+}
+},
+{
+"metrics": {
+"total": 47.98
+},
+"group": {
+"participant_id": "ven_2zadyvv7thgtv5jsmx4cx9093b"
+}
+},
+{
+"metrics": {
+"total": 54
+},
+"group": {
+"participant_id": "ven_38hrag7zz8f5c3e0japrra2enx"
+}
+},
+{
+"metrics": {
+"total": 89
+},
+"group": {
+"participant_id": "ven_396dkzbk0kgz4kc94x7dck1z2s"
+}
+},
+{
+"metrics": {
+"total": 288
+},
+"group": {
+"participant_id": "ven_3a6jp88g42sj7an3vam02tcxv9"
+}
+},
+{
+"metrics": {
+"total": 949
+},
+"group": {
+"participant_id": "ven_3ga9f4phznhrrx605sqsj5gyjc"
+}
+},
+{
+"metrics": {
+"total": 177
+},
+"group": {
+"participant_id": "ven_3gw9khw5es0jjsjpw22kgyj521"
+}
+},
+{
+"metrics": {
+"total": 15600
+},
+"group": {
+"participant_id": "ven_3k8721vsv75nv4r867j9mbw5kc"
+}
+},
+{
+"metrics": {
+"total": 286.5
+},
+"group": {
+"participant_id": "ven_3m6sb278e5v9k59f3tdbesky8b"
+}
+},
+{
+"metrics": {
+"total": 43.65
+},
+"group": {
+"participant_id": "ven_3mbychbb0z77s54b7q5g47wwk6"
+}
+},
+{
+"metrics": {
+"total": 4392
+},
+"group": {
+"participant_id": "ven_3rsb6jn1yg42c9dje3ab1j0kvf"
+}
+},
+{
+"metrics": {
+"total": 8400
+},
+"group": {
+"participant_id": "ven_3s7320zzxq1detfrmh08t63ycw"
+}
+},
+{
+"metrics": {
+"total": 318.55
+},
+"group": {
+"participant_id": "ven_3wevtfnf54m953he1mdhcwbkzc"
+}
+},
+{
+"metrics": {
+"total": 2925
+},
+"group": {
+"participant_id": "ven_41mc5tzk9jeq20fp810cns0gh4"
+}
+},
+{
+"metrics": {
+"total": 323.5
+},
+"group": {
+"participant_id": "ven_42fsbma4dkfpf5h4jp5w54qtxp"
+}
+},
+{
+"metrics": {
+"total": 11450
+},
+"group": {
+"participant_id": "ven_449kkcde9f9dfxx22rqz359325"
+}
+},
+{
+"metrics": {
+"total": 2398.8
+},
+"group": {
+"participant_id": "ven_45jpr9ydvhpng3rapp40w3gbwe"
+}
+},
+{
+"metrics": {
+"total": 252
+},
+"group": {
+"participant_id": "ven_4d2n69kdaveh255m6j8w1emv4x"
+}
+},
+{
+"metrics": {
+"total": 144
+},
+"group": {
+"participant_id": "ven_4kejxam1z317ebzv1svrn46wey"
+}
+},
+{
+"metrics": {
+"total": 182.5
+},
+"group": {
+"participant_id": "ven_4mx85gd29d4fb1t17t4eys4q19"
+}
+},
+{
+"metrics": {
+"total": 7740
+},
+"group": {
+"participant_id": "ven_4n2vhamcvm9qbxgya5wcx1zfy2"
+}
+},
+{
+"metrics": {
+"total": 41.5
+},
+"group": {
+"participant_id": "ven_4t5mbte26as98yp5v5mbhmc824"
+}
+},
+{
+"metrics": {
+"total": 461.71
+},
+"group": {
+"participant_id": "ven_551c5prj1daey2j82gbh3v97wp"
+}
+},
+{
+"metrics": {
+"total": 1650.25
+},
+"group": {
+"participant_id": "ven_55pv04st5we3ze4rkndsxf2949"
+}
+},
+{
+"metrics": {
+"total": 546.01
+},
+"group": {
+"participant_id": "ven_5an88ghf24e9y0jecjwsyxxtvj"
+}
+},
+{
+"metrics": {
+"total": 18
+},
+"group": {
+"participant_id": "ven_5jz2hexmvtqqa26b2nxhv91z7r"
+}
+},
+{
+"metrics": {
+"total": 3204
+},
+"group": {
+"participant_id": "ven_5k0xfnwmgesbaztzjeq2bywrdj"
+}
+},
+{
+"metrics": {
+"total": 4550
+},
+"group": {
+"participant_id": "ven_5xkndxjvat70eqb0at2g2m3pm9"
+}
+},
+{
+"metrics": {
+"total": 1458
+},
+"group": {
+"participant_id": "ven_5zftdqnjyavnnppfm90nfm8k8b"
+}
+},
+{
+"metrics": {
+"total": 1437
+},
+"group": {
+"participant_id": "ven_625wv0eq9r3gxf231vj8thatmf"
+}
+},
+{
+"metrics": {
+"total": 11.99
+},
+"group": {
+"participant_id": "ven_62jyry85a7vszzv2254sqm2hwv"
+}
+},
+{
+"metrics": {
+"total": 14200
+},
+"group": {
+"participant_id": "ven_6a48mpy0pf912rhftcb3t03jkq"
+}
+},
+{
+"metrics": {
+"total": 3192
+},
+"group": {
+"participant_id": "ven_6efxk02v6q9jrrt6rtwyvh1s1b"
+}
+},
+{
+"metrics": {
+"total": 1956
+},
+"group": {
+"participant_id": "ven_6h18ca0ng5rq38e1tthfc72672"
+}
+},
+{
+"metrics": {
+"total": 2465
+},
+"group": {
+"participant_id": "ven_6hp23458ez342vke8de656s2h1"
+}
+},
+{
+"metrics": {
+"total": 790
+},
+"group": {
+"participant_id": "ven_6xzdd0257cwj4s6484y88203hh"
+}
+},
+{
+"metrics": {
+"total": 1310.4
+},
+"group": {
+"participant_id": "ven_6zvv3zxh2rhq070bkpzbj87bj7"
+}
+},
+{
+"metrics": {
+"total": 1770
+},
+"group": {
+"participant_id": "ven_72xqcdh3842knx76h6kj5gbq6d"
+}
+},
+{
+"metrics": {
+"total": 300
+},
+"group": {
+"participant_id": "ven_79qxmrbd6x2vyxmftj6xvpzzne"
+}
+},
+{
+"metrics": {
+"total": 1990
+},
+"group": {
+"participant_id": "ven_7cjcknkr392ej797z43tnrjwr9"
+}
+},
+{
+"metrics": {
+"total": 62.34
+},
+"group": {
+"participant_id": "ven_7ns0h5thqxy5ka4h9ad4jkvn5s"
+}
+},
+{
+"metrics": {
+"total": 23087.42
+},
+"group": {
+"participant_id": "ven_7pygbz6254eq926fhfmzp7pj15"
+}
+},
+{
+"metrics": {
+"total": 18362
+},
+"group": {
+"participant_id": "ven_7xm9rh8ka65a0a2c6qf06bja3x"
+}
+}
+]
+}
+}

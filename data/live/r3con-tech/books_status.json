@@ -1,0 +1,118 @@
+{
+"object": "aggregate",
+"source": "seapoint_mcp:query_transactions (aggregate)",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"where": {
+"status": "BOOKED",
+"direction": "debit",
+"amount": {
+"gt": 0
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "reconciliation"
+},
+{
+"field": "has_evidence"
+}
+],
+"metrics": [
+{
+"function": "count",
+"as": "payments"
+},
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+}
+]
+}
+},
+"data": [
+{
+"metrics": {
+"payments": 3,
+"total": 600.8
+},
+"group": {
+"reconciliation": "awaiting_approval",
+"has_evidence": false
+}
+},
+{
+"metrics": {
+"payments": 16,
+"total": 34193.98
+},
+"group": {
+"reconciliation": "awaiting_approval",
+"has_evidence": true
+}
+},
+{
+"metrics": {
+"payments": 5,
+"total": 1485.6
+},
+"group": {
+"reconciliation": "needs_review",
+"has_evidence": false
+}
+},
+{
+"metrics": {
+"payments": 1,
+"total": 1800
+},
+"group": {
+"reconciliation": "needs_review",
+"has_evidence": true
+}
+},
+{
+"metrics": {
+"payments": 2566,
+"total": 1830468.9
+},
+"group": {
+"reconciliation": "reconciled",
+"has_evidence": false
+}
+},
+{
+"metrics": {
+"payments": 11,
+"total": 36648.39
+},
+"group": {
+"reconciliation": "reconciled",
+"has_evidence": true
+}
+},
+{
+"metrics": {
+"payments": 1,
+"total": 318.55
+},
+"group": {
+"reconciliation": "synced",
+"has_evidence": true
+}
+},
+{
+"metrics": {
+"payments": 6,
+"total": 973.47
+},
+"group": {
+"reconciliation": null,
+"has_evidence": false
+}
+}
+]
+}

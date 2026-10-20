@@ -1,0 +1,213 @@
+{
+"object": "aggregate",
+"source": "seapoint_mcp:query_transactions (aggregate)",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"where": {
+"status": "BOOKED",
+"direction": "debit",
+"amount": {
+"gt": 0
+},
+"has_evidence": false,
+"date": {
+"gte": "2026-07-01"
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "date",
+"interval": "month"
+},
+{
+"field": "type"
+}
+],
+"metrics": [
+{
+"function": "count",
+"as": "payments"
+},
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+}
+]
+}
+},
+"data": [
+{
+"metrics": {
+"payments": 152,
+"total": 16661.57
+},
+"group": {
+"date": "2026-07-01",
+"type": "CARD_PAYMENT"
+}
+},
+{
+"metrics": {
+"payments": 13,
+"total": 32228.4
+},
+"group": {
+"date": "2026-07-01",
+"type": "DIRECT_DEBIT"
+}
+},
+{
+"metrics": {
+"payments": 3,
+"total": 214.39
+},
+"group": {
+"date": "2026-07-01",
+"type": "FEE"
+}
+},
+{
+"metrics": {
+"payments": 11,
+"total": 71151.2
+},
+"group": {
+"date": "2026-07-01",
+"type": "PAYMENT"
+}
+},
+{
+"metrics": {
+"payments": 1,
+"total": 4550
+},
+"group": {
+"date": "2026-07-01",
+"type": "TRANSFER"
+}
+},
+{
+"metrics": {
+"payments": 149,
+"total": 16309.94
+},
+"group": {
+"date": "2026-08-01",
+"type": "CARD_PAYMENT"
+}
+},
+{
+"metrics": {
+"payments": 14,
+"total": 39556.4
+},
+"group": {
+"date": "2026-08-01",
+"type": "DIRECT_DEBIT"
+}
+},
+{
+"metrics": {
+"payments": 3,
+"total": 235.55
+},
+"group": {
+"date": "2026-08-01",
+"type": "FEE"
+}
+},
+{
+"metrics": {
+"payments": 14,
+"total": 80924.56
+},
+"group": {
+"date": "2026-08-01",
+"type": "PAYMENT"
+}
+},
+{
+"metrics": {
+"payments": 152,
+"total": 14564.02
+},
+"group": {
+"date": "2026-09-01",
+"type": "CARD_PAYMENT"
+}
+},
+{
+"metrics": {
+"payments": 18,
+"total": 20724
+},
+"group": {
+"date": "2026-09-01",
+"type": "DIRECT_DEBIT"
+}
+},
+{
+"metrics": {
+"payments": 3,
+"total": 222.07
+},
+"group": {
+"date": "2026-09-01",
+"type": "FEE"
+}
+},
+{
+"metrics": {
+"payments": 15,
+"total": 91334.66
+},
+"group": {
+"date": "2026-09-01",
+"type": "PAYMENT"
+}
+},
+{
+"metrics": {
+"payments": 73,
+"total": 9245.08
+},
+"group": {
+"date": "2026-10-01",
+"type": "CARD_PAYMENT"
+}
+},
+{
+"metrics": {
+"payments": 11,
+"total": 30783
+},
+"group": {
+"date": "2026-10-01",
+"type": "DIRECT_DEBIT"
+}
+},
+{
+"metrics": {
+"payments": 2,
+"total": 263.48
+},
+"group": {
+"date": "2026-10-01",
+"type": "FEE"
+}
+},
+{
+"metrics": {
+"payments": 2,
+"total": 4150
+},
+"group": {
+"date": "2026-10-01",
+"type": "PAYMENT"
+}
+}
+]
+}
