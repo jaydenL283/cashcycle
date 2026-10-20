@@ -1,0 +1,182 @@
+{
+"object": "list",
+"source": "seapoint_mcp:query_categories",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"data": [
+{
+"id": "cat_01m5d5cmjce49a5ybkrx38fz19",
+"name": "Taxes & Duties \u203a Import Duties",
+"group": "Taxes & Duties",
+"leaf": "Import Duties"
+},
+{
+"id": "cat_01m5d5cmjce49a5ybfbpyrvf2s",
+"name": "Taxes & Duties \u203a Payroll Tax",
+"group": "Taxes & Duties",
+"leaf": "Payroll Tax"
+},
+{
+"id": "cat_01m5d5cmjce49a5yb0r1aynmzw",
+"name": "Taxes & Duties \u203a Income Tax",
+"group": "Taxes & Duties",
+"leaf": "Income Tax"
+},
+{
+"id": "cat_01m5d5cmjce49a5yawcrq0hpt0",
+"name": "Taxes & Duties \u203a Sales Tax / VAT",
+"group": "Taxes & Duties",
+"leaf": "Sales Tax / VAT"
+},
+{
+"id": "cat_01m5d5cmjce49a5yap13ed5qwx",
+"name": "Financial Items \u203a Interest Income",
+"group": "Financial Items",
+"leaf": "Interest Income"
+},
+{
+"id": "cat_01m5d5cmjce49a5yadp53p2fyp",
+"name": "Financial Items \u203a Internal Transfers",
+"group": "Financial Items",
+"leaf": "Internal Transfers"
+},
+{
+"id": "cat_01m5d5cmjce49a5ya5vh2jddvs",
+"name": "Financial Items \u203a Capital Investments",
+"group": "Financial Items",
+"leaf": "Capital Investments"
+},
+{
+"id": "cat_01m5d5cmjce49a5y9z9y96135m",
+"name": "Operating Expenses \u203a Motoring/Vehicle expenses",
+"group": "Operating Expenses",
+"leaf": "Motoring/Vehicle expenses"
+},
+{
+"id": "cat_01m5d5cmjce49a5y9phq5px0kk",
+"name": "Operating Expenses \u203a Legal fees",
+"group": "Operating Expenses",
+"leaf": "Legal fees"
+},
+{
+"id": "cat_01m5d5cmjce49a5y98ydcyg85h",
+"name": "Operating Expenses \u203a Building maintenance and repairs",
+"group": "Operating Expenses",
+"leaf": "Building maintenance and repairs"
+},
+{
+"id": "cat_01m5d5cmjce49a5y901mz5r62p",
+"name": "Operating Expenses \u203a Licence fees",
+"group": "Operating Expenses",
+"leaf": "Licence fees"
+},
+{
+"id": "cat_01m5d5cmjce49a5y8zhsya6epw",
+"name": "Operating Expenses \u203a Insurance",
+"group": "Operating Expenses",
+"leaf": "Insurance"
+},
+{
+"id": "cat_01m5d5cmjce49a5y8pf9m6q2nd",
+"name": "Operating Expenses \u203a General Expenses",
+"group": "Operating Expenses",
+"leaf": "General Expenses"
+},
+{
+"id": "cat_01m5d5cmjce49a5y887bt8newg",
+"name": "Operating Expenses \u203a Contractors",
+"group": "Operating Expenses",
+"leaf": "Contractors"
+},
+{
+"id": "cat_01m5d5cmjce49a5y84xfva2bfm",
+"name": "Operating Expenses \u203a Consulting",
+"group": "Operating Expenses",
+"leaf": "Consulting"
+},
+{
+"id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"name": "Operating Expenses \u203a Bank Fees",
+"group": "Operating Expenses",
+"leaf": "Bank Fees"
+},
+{
+"id": "cat_01m5d5cmjce49a5y7nehmc1s5h",
+"name": "Operating Expenses \u203a Accounting",
+"group": "Operating Expenses",
+"leaf": "Accounting"
+},
+{
+"id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"name": "Operating Expenses \u203a Legal & Professional Fees",
+"group": "Operating Expenses",
+"leaf": "Legal & Professional Fees"
+},
+{
+"id": "cat_01m5d5cmjce49a5y713yge54wx",
+"name": "Operating Expenses \u203a Office Expenses",
+"group": "Operating Expenses",
+"leaf": "Office Expenses"
+},
+{
+"id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"name": "Operating Expenses \u203a Rent",
+"group": "Operating Expenses",
+"leaf": "Rent"
+},
+{
+"id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"name": "Operating Expenses \u203a Travel & Entertainment",
+"group": "Operating Expenses",
+"leaf": "Travel & Entertainment"
+},
+{
+"id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"name": "Operating Expenses \u203a Subscriptions",
+"group": "Operating Expenses",
+"leaf": "Subscriptions"
+},
+{
+"id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"name": "Operating Expenses \u203a Food & Dining",
+"group": "Operating Expenses",
+"leaf": "Food & Dining"
+},
+{
+"id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"name": "Operating Expenses \u203a Marketing & Advertising",
+"group": "Operating Expenses",
+"leaf": "Marketing & Advertising"
+},
+{
+"id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"name": "Operating Expenses \u203a Payroll & Benefits",
+"group": "Operating Expenses",
+"leaf": "Payroll & Benefits"
+},
+{
+"id": "cat_01m5d5cmjbe49a5y5e08gqx1s6",
+"name": "Cost of Goods Sold \u203a Direct Product Costs",
+"group": "Cost of Goods Sold",
+"leaf": "Direct Product Costs"
+},
+{
+"id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"name": "Cost of Goods Sold \u203a Hosting & Infrastructure",
+"group": "Cost of Goods Sold",
+"leaf": "Hosting & Infrastructure"
+},
+{
+"id": "cat_01m5d5cmjbe49a5y4wpbdmexvb",
+"name": "Revenue \u203a Service Revenue",
+"group": "Revenue",
+"leaf": "Service Revenue"
+},
+{
+"id": "cat_01m5d5cmjbe49a5y4k9j6bbert",
+"name": "Revenue \u203a Product Revenue",
+"group": "Revenue",
+"leaf": "Product Revenue"
+}
+]
+}

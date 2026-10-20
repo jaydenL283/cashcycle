@@ -1,0 +1,1533 @@
+{
+"object": "aggregate",
+"source": "seapoint_mcp:query_transactions",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"where": {
+"direction": "debit",
+"not": {
+"status": [
+"FAILED",
+"CANCELLED",
+"FULL_REVERSAL"
+]
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "category_id"
+},
+{
+"field": "date",
+"interval": "month"
+}
+],
+"metrics": [
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+}
+]
+}
+},
+"note": "money out per category per month, Aug 2025 to 20 Oct 2026 (both pages; row counts dropped)",
+"data": [
+{
+"metrics": {
+"total": 25985
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 26513
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 26621
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 26309
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 26417
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 26945
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 26633
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 26321
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 26849
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 26957
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 26645
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 26753
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 34081
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 31949
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 37726.18
+},
+"group": {
+"category_id": "cat_01m5d5cmjbe49a5y556rf4wh5z",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 46400
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 55200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 52800
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 61600
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 50800
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 59600
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 57200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 46400
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 55200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 52800
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 61600
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 50800
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 59600
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 69000
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 18640
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5pdf6kcf18",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 13339.65
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 15014.33
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 15535.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 15172.06
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 15648.01
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 17176.41
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 16739.26
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 13331.42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 15004.74
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 15536.66
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 15026.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 15419.2
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 17095.56
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 16582.66
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 3520
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y5sd5dehr2p",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 1341.56
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 1343.7
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 1374.69
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 1369.82
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 1360.57
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 1355.69
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 1346.45
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 1341.56
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 1343.7
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 1374.69
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 1369.82
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 1360.57
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 1355.69
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 1390.1
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 1339.63
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y64r63psmtb",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 4823.9
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 4500.4
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 8847.59
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 5224
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6cxv0qsbph",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 7690.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 13426.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 12898.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 11494.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 10989.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 9622.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 9058
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 7690.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 13426.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 12898.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 11494.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 10989.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 9622.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 9451.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 7152.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6myf9pgc0e",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 6750
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 2350
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y6rkvs80vzy",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 1266.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 1574.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 1443.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 1331.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 1620.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 1509
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 1397.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 10466.25
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 1574.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 1443.5
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 1331.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 1620.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 1809
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 1826.12
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 142.75
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y713yge54wx",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 3700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 4200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 4700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 23700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 5700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 6200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 6700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 3700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 4200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 4700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 5200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 5700
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 6200
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 7940
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 3600
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7cyz4ak031",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2025-08-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2025-11-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-02-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 42
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 119.12
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 175.14
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 214.39
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 235.55
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 222.07
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 263.48
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y7tfp23fshd",
+"date": "2026-10-01"
+}
+},
+{
+"metrics": {
+"total": 412
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y8pf9m6q2nd",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 365
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y8pf9m6q2nd",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 318
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y8pf9m6q2nd",
+"date": "2026-05-01"
+}
+},
+{
+"metrics": {
+"total": 618
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y8pf9m6q2nd",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 224
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y8pf9m6q2nd",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 177
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5y8pf9m6q2nd",
+"date": "2026-08-01"
+}
+},
+{
+"metrics": {
+"total": 3850
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5ya5vh2jddvs",
+"date": "2025-10-01"
+}
+},
+{
+"metrics": {
+"total": 4900
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5ya5vh2jddvs",
+"date": "2026-01-01"
+}
+},
+{
+"metrics": {
+"total": 3500
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5ya5vh2jddvs",
+"date": "2026-04-01"
+}
+},
+{
+"metrics": {
+"total": 4550
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5ya5vh2jddvs",
+"date": "2026-07-01"
+}
+},
+{
+"metrics": {
+"total": 4774.8
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5ya5vh2jddvs",
+"date": "2026-09-01"
+}
+},
+{
+"metrics": {
+"total": 6600
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5yawcrq0hpt0",
+"date": "2025-09-01"
+}
+},
+{
+"metrics": {
+"total": 4800
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5yawcrq0hpt0",
+"date": "2025-12-01"
+}
+},
+{
+"metrics": {
+"total": 3000
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5yawcrq0hpt0",
+"date": "2026-03-01"
+}
+},
+{
+"metrics": {
+"total": 5400
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5yawcrq0hpt0",
+"date": "2026-06-01"
+}
+},
+{
+"metrics": {
+"total": 3600
+},
+"group": {
+"category_id": "cat_01m5d5cmjce49a5yawcrq0hpt0",
+"date": "2026-09-01"
+}
+}
+]
+}

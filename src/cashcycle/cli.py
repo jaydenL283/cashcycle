@@ -182,6 +182,15 @@ def cmd_cashflow(args) -> int:
     print("  recurring money out (top 10):")
     for r in d["recurring_out"][:10]:
         print(f"    day {r['usual_day']:>2}  {r['name'][:30]:30} {r['method']:14} {gbp(r['typical_amount']):>12}")
+    from cashcycle.insights import build_insights, write_dashboard_files
+
+    ins = build_insights(live, date.fromisoformat(args.as_of) if args.as_of else date(2026, 10, 20))
+    write_dashboard_files(ins, out)
+    (out / "insights.json").write_text(json.dumps(ins, indent=1), encoding="utf-8")
+    c, p, k = ins["creditors"]["summary"], ins["payroll"]["summary"], ins["costs"]["summary"]
+    print(f"  creditors: {gbp(c['open_gbp_total'])} open across {c['open_bills']} GBP bills; paid bills take {c['avg_days_to_pay']} days on average, {c['avg_days_vs_due']:+.1f} days vs due date")
+    print(f"  payroll: {gbp(p['last_3_months_avg'])}/month run-rate, {p['growth_over_period_pct']:+.1f}% over {p['period']} ({p['annualised_growth_pct']:+.1f}%/year); projection: " + ", ".join(f"{x['year']} {gbp(x['projected_annual_payroll'])}" for x in ins["payroll"]["projection"]))
+    print(f"  costs: fixed {gbp(k['avg_fixed_monthly'])}/month vs variable {gbp(k['avg_variable_monthly'])}/month ({k['avg_fixed_share_pct']}% fixed), {k['months']}")
     print(f"  dashboard data written to {out}/")
     return 0
 

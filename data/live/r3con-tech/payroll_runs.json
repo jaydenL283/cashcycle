@@ -1,0 +1,205 @@
+{
+"object": "list",
+"source": "seapoint_mcp:query_payroll",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"note": "7 pay runs, all paid; employees trimmed to name, role, salary, net pay",
+"data": [
+{
+"name": "April 2026 Payroll",
+"status": "paid",
+"pay_date": "2026-04-25",
+"currency": "GBP",
+"total_net_pay": 11800,
+"employee_count": 3,
+"employees": [
+{
+"name": "Priya Chandra",
+"role": "Operations Manager",
+"annual_salary": 60000,
+"net_pay": 3550
+},
+{
+"name": "Isla Fraser",
+"role": "Software Engineer",
+"annual_salary": 78000,
+"net_pay": 4350
+},
+{
+"name": "Rhys Owen",
+"role": "Product Designer",
+"annual_salary": 68000,
+"net_pay": 3900
+}
+]
+},
+{
+"name": "May 2026 Payroll",
+"status": "paid",
+"pay_date": "2026-05-25",
+"currency": "GBP",
+"total_net_pay": 11800,
+"employee_count": 3,
+"employees": [
+{
+"name": "Priya Chandra",
+"role": "Operations Manager",
+"annual_salary": 60000,
+"net_pay": 3550
+},
+{
+"name": "Isla Fraser",
+"role": "Software Engineer",
+"annual_salary": 78000,
+"net_pay": 4350
+},
+{
+"name": "Rhys Owen",
+"role": "Product Designer",
+"annual_salary": 68000,
+"net_pay": 3900
+}
+]
+},
+{
+"name": "June 2026 Payroll",
+"status": "paid",
+"pay_date": "2026-06-25",
+"currency": "GBP",
+"total_net_pay": 11800,
+"employee_count": 3,
+"employees": [
+{
+"name": "Priya Chandra",
+"role": "Operations Manager",
+"annual_salary": 60000,
+"net_pay": 3550
+},
+{
+"name": "Isla Fraser",
+"role": "Software Engineer",
+"annual_salary": 78000,
+"net_pay": 4350
+},
+{
+"name": "Rhys Owen",
+"role": "Product Designer",
+"annual_salary": 68000,
+"net_pay": 3900
+}
+]
+},
+{
+"name": "July 2026 Payroll",
+"status": "paid",
+"pay_date": "2026-07-25",
+"currency": "GBP",
+"total_net_pay": 11800,
+"employee_count": 3,
+"employees": [
+{
+"name": "Priya Chandra",
+"role": "Operations Manager",
+"annual_salary": 60000,
+"net_pay": 3550
+},
+{
+"name": "Isla Fraser",
+"role": "Software Engineer",
+"annual_salary": 78000,
+"net_pay": 4350
+},
+{
+"name": "Rhys Owen",
+"role": "Product Designer",
+"annual_salary": 68000,
+"net_pay": 3900
+}
+]
+},
+{
+"name": "August 2026 Payroll",
+"status": "paid",
+"pay_date": "2026-08-25",
+"currency": "GBP",
+"total_net_pay": 11800,
+"employee_count": 3,
+"employees": [
+{
+"name": "Priya Chandra",
+"role": "Operations Manager",
+"annual_salary": 60000,
+"net_pay": 3550
+},
+{
+"name": "Isla Fraser",
+"role": "Software Engineer",
+"annual_salary": 78000,
+"net_pay": 4350
+},
+{
+"name": "Rhys Owen",
+"role": "Product Designer",
+"annual_salary": 68000,
+"net_pay": 3900
+}
+]
+},
+{
+"name": "September 2026 Payroll",
+"status": "paid",
+"pay_date": "2026-09-25",
+"currency": "GBP",
+"total_net_pay": 11800,
+"employee_count": 3,
+"employees": [
+{
+"name": "Priya Chandra",
+"role": "Operations Manager",
+"annual_salary": 60000,
+"net_pay": 3550
+},
+{
+"name": "Isla Fraser",
+"role": "Software Engineer",
+"annual_salary": 78000,
+"net_pay": 4350
+},
+{
+"name": "Rhys Owen",
+"role": "Product Designer",
+"annual_salary": 68000,
+"net_pay": 3900
+}
+]
+},
+{
+"name": "October 2026 Payroll",
+"status": "paid",
+"pay_date": "2026-09-18",
+"currency": "GBP",
+"total_net_pay": 11800,
+"employee_count": 3,
+"employees": [
+{
+"name": "Priya Chandra",
+"role": "Operations Manager",
+"annual_salary": 60000,
+"net_pay": 3550
+},
+{
+"name": "Isla Fraser",
+"role": "Software Engineer",
+"annual_salary": 78000,
+"net_pay": 4350
+},
+{
+"name": "Rhys Owen",
+"role": "Product Designer",
+"annual_salary": 68000,
+"net_pay": 3900
+}
+]
+}
+]
+}

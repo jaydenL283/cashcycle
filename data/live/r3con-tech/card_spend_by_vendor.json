@@ -1,0 +1,254 @@
+{
+"object": "list",
+"source": "seapoint_mcp:query_transactions (aggregate by participant) + query_transaction_participants",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"note": "card payments since 2026-06-01 by vendor; most card payments carry no card id in the MCP (connected-bank cards), so only the Seapoint-issued cards attribute to a holder",
+"data": [
+{
+"participant_id": "ven_0ded9qq8tfc5qmrec6kn7nm8cz",
+"vendor": "Connolly Accountants",
+"category": "Legal & Professional Fees",
+"total": 1800,
+"payments": 1
+},
+{
+"participant_id": "ven_0f4q20kz7jmvz5yvnad9snjs09",
+"vendor": "Amazon Business",
+"category": "Office Expenses",
+"total": 930,
+"payments": 5
+},
+{
+"participant_id": "ven_0m3wfh05r1cjwyb0qs4g0991s0",
+"vendor": "WHSmith",
+"category": "Office Expenses",
+"total": 1171.5,
+"payments": 107
+},
+{
+"participant_id": "ven_0rx2knmx622c50wcsqevpz8spv",
+"vendor": "Hawksmoor",
+"category": "Food & Dining",
+"total": 286,
+"payments": 1
+},
+{
+"participant_id": "ven_18543fb0h06hgtzd1p44894ay2",
+"vendor": "Deliveroo",
+"category": "Food & Dining",
+"total": 2882.25,
+"payments": 107
+},
+{
+"participant_id": "ven_1tywy0szqa9000ggf7h82xfk75",
+"vendor": "Google Ads",
+"category": "Marketing & Advertising",
+"total": 5450,
+"payments": 5
+},
+{
+"participant_id": "ven_2fthwpv31rg3ep3fhj2axrgx36",
+"vendor": "Grind",
+"category": "Food & Dining",
+"total": 16.8,
+"payments": 1
+},
+{
+"participant_id": "ven_2j08vm5aaxt59426qft2km1d57",
+"vendor": "Lodgewood Travel",
+"category": "Travel & Entertainment",
+"total": 40500,
+"payments": 5
+},
+{
+"participant_id": "ven_2zadyvv7thgtv5jsmx4cx9093b",
+"vendor": "Amazon UK",
+"category": "Office Expenses",
+"total": 47.98,
+"payments": 1
+},
+{
+"participant_id": "ven_35q44z79rb2resqmp41n6zq3xd",
+"vendor": "The Culpeper",
+"category": "Food & Dining",
+"total": 164.2,
+"payments": 1
+},
+{
+"participant_id": "ven_396dkzbk0kgz4kc94x7dck1z2s",
+"vendor": "Premier Inn",
+"category": "Travel & Entertainment",
+"total": 89,
+"payments": 1
+},
+{
+"participant_id": "ven_39ad1qn0nd07v8smwvarcvtes4",
+"vendor": "GAIL's Bakery",
+"category": "Food & Dining",
+"total": 28.4,
+"payments": 1
+},
+{
+"participant_id": "ven_3ga9f4phznhrrx605sqsj5gyjc",
+"vendor": "Uber",
+"category": "Travel & Entertainment",
+"total": 1420.25,
+"payments": 107
+},
+{
+"participant_id": "ven_3m6sb278e5v9k59f3tdbesky8b",
+"vendor": "Sketch London",
+"category": "Travel & Entertainment",
+"total": 286.5,
+"payments": 1
+},
+{
+"participant_id": "ven_3mbychbb0z77s54b7q5g47wwk6",
+"vendor": "Tesco Express",
+"category": "Food & Dining",
+"total": 43.65,
+"payments": 1
+},
+{
+"participant_id": "ven_3wevtfnf54m953he1mdhcwbkzc",
+"vendor": "Pinnacle Office Supplies",
+"category": "Office Expenses",
+"total": 318.55,
+"payments": 1
+},
+{
+"participant_id": "ven_42fsbma4dkfpf5h4jp5w54qtxp",
+"vendor": "Unknown Subscription Vendor",
+"category": "Subscriptions",
+"total": 323.5,
+"payments": 1
+},
+{
+"participant_id": "ven_45jpr9ydvhpng3rapp40w3gbwe",
+"vendor": "Apple Store",
+"category": "Capital Investments",
+"total": 2398.8,
+"payments": 1
+},
+{
+"participant_id": "ven_4mx85gd29d4fb1t17t4eys4q19",
+"vendor": "Unknown Direct Debit Vendor",
+"category": "General Expenses",
+"total": 182.5,
+"payments": 1
+},
+{
+"participant_id": "ven_4n2vhamcvm9qbxgya5wcx1zfy2",
+"vendor": "HubSpot",
+"category": "Marketing & Advertising",
+"total": 10220,
+"payments": 4
+},
+{
+"participant_id": "ven_4t5mbte26as98yp5v5mbhmc824",
+"vendor": "Unknown Merchant",
+"category": "General Expenses",
+"total": 41.5,
+"payments": 1
+},
+{
+"participant_id": "ven_551c5prj1daey2j82gbh3v97wp",
+"vendor": "Pret A Manger",
+"category": "Food & Dining",
+"total": 713.41,
+"payments": 109
+},
+{
+"participant_id": "ven_55pv04st5we3ze4rkndsxf2949",
+"vendor": "Uber Eats",
+"category": "Food & Dining",
+"total": 2484,
+"payments": 107
+},
+{
+"participant_id": "ven_5cbfmcn7rpg1te93w4j2j1mce5",
+"vendor": "Dishoom",
+"category": "Food & Dining",
+"total": 187.4,
+"payments": 1
+},
+{
+"participant_id": "ven_5jz2hexmvtqqa26b2nxhv91z7r",
+"vendor": "NCP",
+"category": "Travel & Entertainment",
+"total": 18,
+"payments": 1
+},
+{
+"participant_id": "ven_5k0xfnwmgesbaztzjeq2bywrdj",
+"vendor": "Figma",
+"category": "Subscriptions",
+"total": 756,
+"payments": 2
+},
+{
+"participant_id": "ven_5t45p4crqq68aevs4zdnpayxyn",
+"vendor": "Monmouth Coffee",
+"category": "Food & Dining",
+"total": 9.7,
+"payments": 1
+},
+{
+"participant_id": "ven_5zftdqnjyavnnppfm90nfm8k8b",
+"vendor": "Slack Technologies",
+"category": "Subscriptions",
+"total": 486,
+"payments": 1
+},
+{
+"participant_id": "ven_62jyry85a7vszzv2254sqm2hwv",
+"vendor": "Spotify",
+"category": "Subscriptions",
+"total": 11.99,
+"payments": 1
+},
+{
+"participant_id": "ven_6hp23458ez342vke8de656s2h1",
+"vendor": "Trainline",
+"category": "Travel & Entertainment",
+"total": 3924.4,
+"payments": 108
+},
+{
+"participant_id": "ven_6xzdd0257cwj4s6484y88203hh",
+"vendor": "BCS, The Chartered Institute for IT",
+"category": "Subscriptions",
+"total": 790,
+"payments": 2
+},
+{
+"participant_id": "ven_70erfr5pmv20sj2c1a0gdshg9g",
+"vendor": "Uber",
+"category": "Travel & Entertainment",
+"total": 24.6,
+"payments": 1
+},
+{
+"participant_id": "ven_72xqcdh3842knx76h6kj5gbq6d",
+"vendor": "LinkedIn Ads",
+"category": "Marketing & Advertising",
+"total": 2600,
+"payments": 5
+},
+{
+"participant_id": "ven_7cjcknkr392ej797z43tnrjwr9",
+"vendor": "JetBrains",
+"category": "Subscriptions",
+"total": 1990,
+"payments": 1
+},
+{
+"participant_id": "ven_7ns0h5thqxy5ka4h9ad4jkvn5s",
+"vendor": "Currys",
+"category": "Office Expenses",
+"total": 62.34,
+"payments": 1
+}
+]
+}

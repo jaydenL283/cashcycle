@@ -1,0 +1,342 @@
+{
+"object": "aggregate",
+"source": "seapoint_mcp:query_transactions",
+"organisation_id": "org_01m5d5cmjbe49a5y4d904dq3c8",
+"fetched_at": "2026-10-20",
+"call": {
+"where": {
+"not": {
+"status": [
+"FAILED",
+"CANCELLED",
+"FULL_REVERSAL"
+]
+}
+},
+"aggregate": {
+"group_by": [
+{
+"field": "date",
+"interval": "month"
+},
+{
+"field": "direction"
+}
+],
+"metrics": [
+{
+"function": "sum",
+"field": "reporting_amount",
+"as": "total"
+},
+{
+"function": "count",
+"as": "rows"
+}
+]
+}
+},
+"note": "all booked history: Aug 2025 to 20 Oct 2026 (October partial)",
+"data": [
+{
+"metrics": {
+"total": 12080,
+"rows": 4
+},
+"group": {
+"date": "2025-08-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 106615.36,
+"rows": 175
+},
+"group": {
+"date": "2025-08-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 8580,
+"rows": 3
+},
+"group": {
+"date": "2025-09-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 130764.18,
+"rows": 176
+},
+"group": {
+"date": "2025-09-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 17480,
+"rows": 4
+},
+"group": {
+"date": "2025-10-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 126115.59,
+"rows": 176
+},
+"group": {
+"date": "2025-10-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 8580,
+"rows": 3
+},
+"group": {
+"date": "2025-11-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 147869.53,
+"rows": 176
+},
+"group": {
+"date": "2025-11-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 16580,
+"rows": 4
+},
+"group": {
+"date": "2025-12-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 124228.48,
+"rows": 176
+},
+"group": {
+"date": "2025-12-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 8580,
+"rows": 3
+},
+"group": {
+"date": "2026-01-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 134200.75,
+"rows": 176
+},
+"group": {
+"date": "2026-01-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 15680,
+"rows": 4
+},
+"group": {
+"date": "2026-02-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 125966.36,
+"rows": 175
+},
+"group": {
+"date": "2026-02-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 8580,
+"rows": 3
+},
+"group": {
+"date": "2026-03-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 119555.13,
+"rows": 179
+},
+"group": {
+"date": "2026-03-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 14780,
+"rows": 4
+},
+"group": {
+"date": "2026-04-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 128355.59,
+"rows": 178
+},
+"group": {
+"date": "2026-04-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 8580,
+"rows": 3
+},
+"group": {
+"date": "2026-05-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 122998.12,
+"rows": 178
+},
+"group": {
+"date": "2026-05-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 13880,
+"rows": 4
+},
+"group": {
+"date": "2026-06-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 135711.36,
+"rows": 180
+},
+"group": {
+"date": "2026-06-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 8580,
+"rows": 3
+},
+"group": {
+"date": "2026-07-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 124805.56,
+"rows": 180
+},
+"group": {
+"date": "2026-07-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 12980,
+"rows": 4
+},
+"group": {
+"date": "2026-08-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 137026.45,
+"rows": 180
+},
+"group": {
+"date": "2026-08-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 39830,
+"rows": 5
+},
+"group": {
+"date": "2026-09-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 162333.84,
+"rows": 203
+},
+"group": {
+"date": "2026-09-01",
+"direction": "debit"
+}
+},
+{
+"metrics": {
+"total": 8580,
+"rows": 3
+},
+"group": {
+"date": "2026-10-01",
+"direction": "credit"
+}
+},
+{
+"metrics": {
+"total": 79958.79,
+"rows": 102
+},
+"group": {
+"date": "2026-10-01",
+"direction": "debit"
+}
+}
+]
+}
