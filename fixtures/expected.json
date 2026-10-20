@@ -1,0 +1,220 @@
+{
+  "_meta": {
+    "what": "Answers your code should produce from fixture.json. Use as a test oracle. Tier rule uses the CORRECTED order (key account / step>=3 checked first).",
+    "threshold_tier_a": 2000
+  },
+  "runway": {
+    "cash": 186000,
+    "daily_net_burn": 1550.0,
+    "runway_days": 120.0
+  },
+  "invoices_ranked": [
+    {
+      "invoice_id": "INV-1041",
+      "amount": 8400,
+      "days_overdue": 40,
+      "step": 3,
+      "tier": "C",
+      "runway_impact_days": 5.42,
+      "statutory_interest_to_date_gbp": 108.16,
+      "fixed_compensation_gbp": 70,
+      "note": "reply quarantined; hold for human even though tier is already C"
+    },
+    {
+      "invoice_id": "INV-1045",
+      "amount": 6200,
+      "days_overdue": 14,
+      "step": 2,
+      "tier": "C",
+      "runway_impact_days": 4.0,
+      "statutory_interest_to_date_gbp": 27.94,
+      "fixed_compensation_gbp": 70
+    },
+    {
+      "invoice_id": "INV-1050",
+      "amount": 4600,
+      "days_overdue": -7,
+      "step": 0,
+      "tier": "B",
+      "runway_impact_days": 2.97
+    },
+    {
+      "invoice_id": "INV-1047",
+      "amount": 3900,
+      "days_overdue": 25,
+      "step": 3,
+      "tier": "C",
+      "runway_impact_days": 2.52,
+      "statutory_interest_to_date_gbp": 31.39,
+      "fixed_compensation_gbp": 70,
+      "note": "reply quarantined; hold for human even though tier is already C"
+    },
+    {
+      "invoice_id": "INV-1046",
+      "amount": 1800,
+      "days_overdue": 6,
+      "step": 1,
+      "tier": "B",
+      "runway_impact_days": 1.16,
+      "statutory_interest_to_date_gbp": 3.48,
+      "fixed_compensation_gbp": 70
+    },
+    {
+      "invoice_id": "INV-1048",
+      "amount": 1500,
+      "days_overdue": 1,
+      "step": 1,
+      "tier": "C",
+      "runway_impact_days": 0.97,
+      "statutory_interest_to_date_gbp": 0.48,
+      "fixed_compensation_gbp": 70
+    },
+    {
+      "invoice_id": "INV-1043",
+      "amount": 1250,
+      "days_overdue": 5,
+      "step": 1,
+      "tier": "A",
+      "runway_impact_days": 0.81,
+      "statutory_interest_to_date_gbp": 2.01,
+      "fixed_compensation_gbp": 70
+    },
+    {
+      "invoice_id": "INV-1049",
+      "amount": 1000,
+      "days_overdue": 61,
+      "step": 4,
+      "tier": "C",
+      "runway_impact_days": 0.65,
+      "statutory_interest_to_date_gbp": 19.64,
+      "fixed_compensation_gbp": 70
+    },
+    {
+      "invoice_id": "INV-1044",
+      "amount": 950,
+      "days_overdue": 3,
+      "step": 1,
+      "tier": "A",
+      "runway_impact_days": 0.61,
+      "statutory_interest_to_date_gbp": 0.92,
+      "fixed_compensation_gbp": 40
+    }
+  ],
+  "totals": {
+    "overdue_gbp": 25000,
+    "overdue_runway_days": 16.1,
+    "leaks_monthly_gbp": 1800,
+    "leaks_annual_gbp": 21600,
+    "leaks_annual_runway_days": 13.9,
+    "hook": "£25,000 overdue + £1,800/month of quiet leaks = 30 days of runway"
+  },
+  "tier_A_auto_send": [
+    "INV-1043",
+    "INV-1044"
+  ],
+  "rule_order_trap": "INV-1048 is small, 1 day overdue, not disputed, but a KEY ACCOUNT: must be C. The guide's original rule order would wrongly make it A.",
+  "leaks": [
+    {
+      "type": "orphaned",
+      "vendor_ids": [
+        "VEN-03",
+        "VEN-04"
+      ],
+      "card_id": "CARD-02",
+      "monthly_saving": 380,
+      "evidence": "card holder deactivated 2026-07-31; charges continue Aug-Oct 2026; 0 active users"
+    },
+    {
+      "type": "duplicate",
+      "vendor_ids": [
+        "VEN-01",
+        "VEN-02"
+      ],
+      "monthly_saving": 210,
+      "evidence": "two video-call tools; CallHub 3 of 25 seats active in 90 days",
+      "judgement": "Claude decides duplicate? yes"
+    },
+    {
+      "type": "upcoming_renewal",
+      "vendor_ids": [
+        "VEN-05"
+      ],
+      "renewal_date": "2026-11-03",
+      "days_until": 14,
+      "monthly_saving": 600,
+      "evidence": "£7,200 annual; 2 of 10 seats active"
+    },
+    {
+      "type": "price_increase",
+      "vendor_ids": [
+        "VEN-06"
+      ],
+      "monthly_saving": 160,
+      "evidence": "£320 -> £480 from Aug 2026 (+50%)"
+    },
+    {
+      "type": "unused_seats",
+      "vendor_ids": [
+        "VEN-07"
+      ],
+      "monthly_saving": 450,
+      "evidence": "30 seats x £25, 12 active -> 18 unused"
+    }
+  ],
+  "replies": {
+    "REPLY-01": "clean",
+    "REPLY-02": "clean (dispute: keep tier B, no auto-send)",
+    "REPLY-03": "quarantine (pattern scan catches it)",
+    "REPLY-04": "quarantine (no trigger words: only the isolated classifier catches it)"
+  },
+  "drafts": {
+    "DRAFT-GOOD-1": "pass",
+    "DRAFT-BAD-WRONG-AMOUNT": "block: 1520 not in allowed numbers",
+    "DRAFT-BAD-WORDS": "block: number written in words",
+    "DRAFT-BAD-INTEREST": "block: interest figure does not match computed value"
+  },
+  "board_variances": [
+    {
+      "line": "Revenue",
+      "budget": 62000,
+      "actual": 55400,
+      "variance": -6600,
+      "variance_pct": -10.6
+    },
+    {
+      "line": "Payroll",
+      "budget": 68000,
+      "actual": 69500,
+      "variance": 1500,
+      "variance_pct": 2.2
+    },
+    {
+      "line": "Contractors",
+      "budget": 12000,
+      "actual": 14800,
+      "variance": 2800,
+      "variance_pct": 23.3
+    },
+    {
+      "line": "Software",
+      "budget": 9000,
+      "actual": 11240,
+      "variance": 2240,
+      "variance_pct": 24.9
+    },
+    {
+      "line": "Marketing",
+      "budget": 8000,
+      "actual": 5100,
+      "variance": -2900,
+      "variance_pct": -36.2
+    },
+    {
+      "line": "Rent",
+      "budget": 6500,
+      "actual": 6500,
+      "variance": 0,
+      "variance_pct": 0.0
+    }
+  ]
+}

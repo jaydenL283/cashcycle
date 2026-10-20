@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cashcycle"
+version = "0.1.0"
+description = "CashCycle: collections, leak-finding and board-ready reporting for startups, with automation you can defend to an auditor."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["anthropic>=1.16"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+cashcycle = "cashcycle.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

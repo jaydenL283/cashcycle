@@ -1,0 +1,5 @@
+{"object":"list","source":"seapoint_mcp:query_categories","organisation_id":"org_01m5d5cmjbe49a5y4d904dq3c8","fetched_at":"2026-10-20","data":[
+{"id":"cat_01m5d5cmjce49a5yap13ed5qwx","name":"Financial Items › Interest Income","group":"Financial Items","leaf":"Interest Income"},
+{"id":"cat_01m5d5cmjce49a5yadp53p2fyp","name":"Financial Items › Internal Transfers","group":"Financial Items","leaf":"Internal Transfers"},
+{"id":"cat_01m5d5cmjce49a5ya5vh2jddvs","name":"Financial Items › Capital Investments","group":"Financial Items","leaf":"Capital Investments"}
+]}
