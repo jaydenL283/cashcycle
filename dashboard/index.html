@@ -645,7 +645,7 @@
   }
 
   // ---- tables -------------------------------------------------------------
-  const fcCols = [['week_start', dayLabel], ['inflow', v => '+' + fmtMoney(v), 'n good'], ['outflow', v => '-' + fmtMoney(v), 'n'], ['closing_balance', fmtMoney, 'n']];
+  const fcCols = [['week_start', dayLabel], ['inflow', fmtMoney, 'n good'], ['outflow', fmtMoney, 'n'], ['closing_balance', fmtMoney, 'n']];
   const rinCols = [['name'], ['method'], ['usual_day', v => String(v), 'n'], ['typical_amount', fmtMoney, 'n'], ['months_seen', v => String(v), 'n']];
   const routCols = [['name'], ['method'], ['category', v => String(v).split(' › ').pop()], ['usual_day', v => String(v), 'n'], ['typical_amount', fmtMoney, 'n']];
   const vendorCols = [['vendor'], ['open_total', fmtMoney, 'n'], ['open_bills', v => String(v), 'n'], ['max_days_overdue', (v) => v == null ? '—' : signed(v, true), 'n'], ['avg_days_to_pay', v => v == null ? '—' : String(v), 'n']];
